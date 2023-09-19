@@ -32,10 +32,15 @@ You have a requirement to deploy a new SQL Server on Azure Virtual Machine to mi
 ## Steps for the exercise
 
 1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above. Start with the E4ds_v5 size.
+    1. Create a new resource group for this exercise.
+    1. Use any VM name you want.
+    1. Use the region of you choice provided it supports the VM size you choose.
     1. Take note of your admin account and password.
+    1. Leave the RDP port open to the public internet.
+    1. Choose all defaults in the Disks, Networking, Management, Advanced, and Tags sections.
 1. Monitor the deployment until it is successful.
 1. Use Remote Desktop to connect into the Virtual Machine.
-1. Copy the **tpch.bak** SQL Server backup file from the GitHub repo release that contains the backup of the database to the "data" drive folder.
+1. Copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
 1. Copy the **restore_tpch.sql** script into the f:\data folder.
 1. Load the **restore_tpch.sql** script into SSMS to restore the database. Should only take about 10-15 seconds to restore.
 
