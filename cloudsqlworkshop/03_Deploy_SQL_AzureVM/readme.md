@@ -10,7 +10,7 @@ You have a requirement to deploy a new SQL Server on Azure Virtual Machine to mi
 - The Azure VM must support at minimum 4 vCores and 32Gb of RAM and use the E5-series.
 - The application has the following storage requirements:
     - The database files must be stored on a separate disk from the operating system.
-    - Tempdb must be stored on the local SSD drive for Azure VM.
+    - Tempdb must be stored on the local SSD drive for Azure VM. Use the defaults for tempdb. Our tempdb could grow to 256Gb in size so the VM size you choose must support that.
     - The database files require at minimum 512Gb storage to account for growth (Note: the database uses to verify the scenario is only 1Gb in size but is only used a test).
     - The database files must be stored on a disk that supports a max of 7K IOPS, and a max of 400Mb throughput.
     - The transaction log requires 128Gb max storage and requires 500 max IOPS and 100Mb max throughput.
@@ -35,6 +35,8 @@ You have a requirement to deploy a new SQL Server on Azure Virtual Machine to mi
     1. Create a new resource group for this exercise.
     1. Use any VM name you want.
     1. Use the region of you choice provided it supports the VM size you choose.
+    1. No availability set is required for this exercise.
+    1. Use the Standard Security type.
     1. Take note of your admin account and password.
     1. Leave the RDP port open to the public internet.
     1. Choose all defaults in the Disks, Networking, Management, Advanced, and Tags sections.

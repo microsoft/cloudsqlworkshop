@@ -16,13 +16,15 @@ You have a requirement to verify the deployment of SQL Server on Azure Virtual M
 
 Complete the following steps to verify the deployment:
 
+Note: This is a stress test. The workload constantly runs queries against the database pulling in pages from disk for reads. This will cause the disk to be constantly busy. This is not a typical workload but is used to stress test the storage system to verify it meets the requirements.
+
 - Connect with RDP into the Virtual Machine.
 - Verify the storage was configured as done during deployment using File Explorer and Disk Management in Server Manager to see the storage pools created for the 2 data disks.
 - Verify the SQL Server instance settings are set correctly including MAXDOP, Instant File Initialization, and Locked Pages in Memory.
 - Setup perfmon with the following counters:
     - Logical Disk F: Disk Bytes/Sec
     - Logical Disk F: Disk Transfer/Sec
-- Run workload.cmd from the cloudsqlworkshop folder to run the workload which will take about a minute.
+- Run **workload.cmd** from a Powershell prompt from the cloudsqlworkshop folder to run the workload which will take about a minute.
 - During the workload run observe the maximum and average values for the perfmon counters. Verify this meets or exceeds the requirements for the storage configuration.
 
 ## Advanced Exercise
