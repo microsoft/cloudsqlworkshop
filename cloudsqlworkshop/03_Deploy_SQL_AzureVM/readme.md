@@ -1,23 +1,28 @@
 # DRAFT: Exercise for Deploying SQL Server on Azure Virtual Machine
 
-This is a rough draft for the exercise to deploy SQL Server on Azure Virtual Machine
+This is a rough draft for the exercise to deploy SQL Server on Azure Virtual Machine.
 
 ## Scenario
 
 You have a requirement to deploy a new SQL Server on Azure Virtual Machine to migrate a SQL Server database. To deploy this virtual machine you need to meet the following requirements:
 
-- The Azure VM must be running Windows Server 2022 Datacenter.
-- The Azure VM must support at minimum 4vCores and 32Gb of RAM and use the E-series.
-- The application that uses this SQL Server requires SQL Server 2022 Standard Edition.
+- You need to do your testing on Windows Server 2022 and SQL Server 2022 Standard Edition.
+- The Azure VM must support at minimum 4 vCores and 32Gb of RAM and use the E5-series.
 - The application has the following storage requirements:
     - The database files must be stored on a separate disk from the operating system.
     - Tempdb must be stored on the local SSD drive for Azure VM.
-    - The database files require a minimum of 1TB to account for growth.
-    - The database files must be stored on a disk that supports at minimum 20K IOPS and X throughput. The storage for the database files should not use caching but require Premium Storage.
-    - The transaction log requires X storage and requires X IOPS and X throughput. It should be on Premium storage and should not use caching.
+    - The database files require at minimum 512Gb storage to account for growth (Note: the database uses to verify the scenario is only 1Gb in size but is only used a test).
+    - The database files must be stored on a disk that supports a max of 7K IOPS, and a max of 250Mb throughput.
+    - The transaction log requires 512Gb max storage and requires 2K max IOPS and 150Mb max throughput.
 - You must choose a VM size and storage configuration for the least cost possible while meeting all the other requirements.
+    - Note: As you use the SQL storage config assistant you wil need do the following:
+    - Provide enough storage to meet your IOPS and throughput requirements even though you need only 1TB. Use 2 disks at 1TB to get the storage IOPS and throughput you need.
+    - You will see a warning that the VM size doesn't support the max IOPS and throughput required. So you need to cancel out of this and go back and choose a different VM size. Note: If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required. 
+    - Our app only needs 4 cores so we don't want to have to overpay for cores to get the I/O performance we need. Our choices now become:
+        - E8-4ds_v5 - A constrained core that gives us the IOPS we need and more. The IOPS and throughput for this size is based on E8ds_v5. This doc page shows IOPS and throughput will work: https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. The portal shows this as ~689.12 per month.
+        - E4bds_v5 - This size is alot less expensive and meets our requirements for IOPS and throughput : https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. The portal shows this as ~344.56 per month. Note: If you choose this option you may get a warning that the VM size may cap throughput of the disk sizes you have chosen but it should still meet the requirements of the workload. You can ignore this warning or you can pick the constrained core size to ensure there won't be any issues but you pay more per month.
 - The SQL Server instance requires the following configuration:
-    - MAXDOP = 4
+    - MAXDOP = # of cores from the VM
     - Instant File Initialization enabled.
     - Locked Pages in Memory enabled.
     - All other options should be left to the defaults.
@@ -26,15 +31,12 @@ You have a requirement to deploy a new SQL Server on Azure Virtual Machine to mi
 
 ## Steps for the exercise
 
-1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above.
+1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above. Start with the E4ds_v5 size.
     1. Take note of your admin account and password.
 1. Monitor the deployment until it is successful.
 1. Use Remote Desktop to connect into the Virtual Machine.
-1. Perform a basic verification
-    1. The SQL Server instance settings are set correctly.
-    1. The storage is setup correctly for size and file layout.
-    1. The SQL Server version is correct (there is no requirement for a specific cumulative update.)
-1. Copy the files from the GitHub repo release that contains the backup of the database to the "data" drive folder.
-1. Use the supplied **restore_tpch.sql** script to restore the database. Should only take about 10-15 seconds to restore.
+1. Copy the **tpch.bak** SQL Server backup file from the GitHub repo release that contains the backup of the database to the "data" drive folder.
+1. Copy the **restore_tpch.sql** script into the f:\data folder.
+1. Load the **restore_tpch.sql** script into SSMS to restore the database. Should only take about 10-15 seconds to restore.
 
 The exercise in Module 4 will have you verify your deployment meets the requirements for storage performance.

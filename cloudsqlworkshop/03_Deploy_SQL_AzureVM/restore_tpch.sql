@@ -5,6 +5,6 @@ GO
 RESTORE FILELISTONLY FROM DISK = 'F:\data\tpch.bak';
 GO
 RESTORE DATABASE tpch FROM DISK = 'F:\data\tpch.bak'
-WITH MOVE 'tpch' TO 'F:\data\tpch.mdf',
-MOVE 'tpch_log' TO 'G:\log\tpch_log.ldf';
+WITH MOVE 'tpch2' TO 'F:\data\tpch.mdf',
+MOVE 'tpch2_log' TO 'G:\log\tpch_log.ldf';
 GO
