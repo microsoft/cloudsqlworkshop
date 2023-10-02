@@ -54,15 +54,27 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 ## Steps for the exercise
 
-1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above. On the Basics blade, fill in all the information that meet the requirements from this exercise. To help you get started, use the **E4ds_v5** Azure VM size.
+1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above.
 
-2. Use the SQL Server settings blade to configure SQL Server instance settings.
+2. To help you get started in the Azure Portal type in Azure SQL in the search box and choose **Azure SQL** and then choose **Azure SQL** from the Marketplace section.
 
-3. Use the SQL Server settings blade to configure storage for database, transaction log, and tempdb. Use the Change configuration link to use a Storage configuration assistant.
+3. You should see three choices for Azure SQL. Select the Image dropdown for SQL Virtual Machines. Based on the requirements choose the least expensive option that meets the requirements and click Create.
+
+1. You are now in a user experience to **Create a virtual machine** with several tabs starting with **Basics**.
+
+1. On the **Basics** tab, fill in all the information that meet the requirements from this exercise. To help you get started, use the **E4ds_v5** Azure VM size.
+
+1. Per the requirements use the defaults on the Disks, Networking, Management, Monitoring, and Advanced tabs.
+
+2. Use the **SQL Server settings** blade to configure SQL Server instance settings and storage requirements per the requirements. Use the defaults for Security and Networking section.
+
+1. Use the *Change configuration* link to use the Storage configuration assistant. Make choices based on the requirements for the scenario. Take your time and carefully review all options.
 
     **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the tempdb requirements. Look for any warnings on the Configure Storage screen.
 
-4. The SQL Server instance port 1433 should NOT be exposed to the public internet. All other SQL Server settings in the Azure Portal can be left to their defaults.
+1. Click on the *Change SQL instance settings* to change SQL Server instance settings per the requirements.
+
+1. Leave all other settings to their defaults.
 
 5. When you are ready, click on **Review + Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (mileage can vary).
 
