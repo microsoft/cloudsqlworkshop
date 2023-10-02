@@ -4,14 +4,14 @@ This is a rough draft for the exercise to deploy SQL Server on Azure Virtual Mac
 
 ## Scenario
 
-You have a requirement to deploy a new SQL Server on Azure Virtual Machine to migrate a SQL Server database to perform a proof of concept (PoC) test. You are trying to save costs so you want to use deployment options that meet the requirements of your PoC with the minimal costs possible. You also need to try and minimize the amount of time it takes to deploy the solution so try to configure as many requirements during deployment.
+You have a requirement to deploy a new SQL Server on Azure Virtual Machine to migrate a SQL Server database to perform a proof of concept (PoC) test. You are trying to save costs so you want to use deployment options that meet the requirements of your PoC with the *minimal costs possible*. You also need to try and minimize the amount of time it takes to deploy the solution so try to configure as many requirements during deployment.
 
 You must meet the following requirements:
 
 ### Software and Virtual Machine requirements
 
 - Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Server.
-- The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the E5-series. You must deploy the virtual machine using the Azure Portal.
+- The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. You must deploy the virtual machine using the Azure Portal.
 - The Virtual Machine has these other requirements:
     - Create a new resource group of the name of your choosing.
     - Choose a VM name of your choosing.
@@ -37,8 +37,8 @@ The database, system databases, transaction log, and tempdb must meet the follow
 **Requirements for database files**
 
 - Database files must be stored on a disk other than the OS disk, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
-- The database files require at minimum 512Gb storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
-- I/O performance requirements for database files is a max of 7K IOPS, and a max of 400Mb throughput.
+- The database files require at **minimum 512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
+- I/O performance requirements for database files is a max of **7000 IOPS**, and a max of **400Mb throughput**.
 - System databases (other than tempdb) should be configured to be on the same disk as database files.
 
 **Requirements for the transaction log**
@@ -48,13 +48,13 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 **Requirements for tempdb**
 
-- Tempdb must be stored on the local SSD drive for Azure VM so you must choose and Azure VM size that supports local SSD storage. Tempdb could grow to 256Gb in size so the VM size you choose must support that.
+- Tempdb must be stored on the local SSD drive for Azure VM so you must choose and Azure VM size that supports local SSD storage. Tempdb *could grow to 256Gb* in size so the VM size you choose must support that.
 - Configure the number of tempdb files to match vCores for your chosen VM size. 
 - Use other best practices to make tempdb data and transaction log files an intial size of 8Mb with autogrow set to 64Mb.
 
 ## Steps for the exercise
 
-1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above. On the Basics blade, fill in all the information that meet the requirements from this exercise. To help you get started, use the E4ds_v5 Azure VM size.
+1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above. On the Basics blade, fill in all the information that meet the requirements from this exercise. To help you get started, use the **E4ds_v5** Azure VM size.
 
 2. Use the SQL Server settings blade to configure SQL Server instance settings.
 
