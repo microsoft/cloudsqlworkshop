@@ -60,12 +60,11 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 3. Use the SQL Server settings blade to configure storage for database, transaction log, and tempdb. Use the Change configuration link to use a Storage configuration assistant.
 
-**Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the tempdb requirements. Look for any warnings on the Configure Storage screen.
+    **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the tempdb requirements. Look for any warnings on the Configure Storage screen.
 
-- The SQL Server instance port 1433 should NOT be exposed to the public internet.
-- All other SQL Server settings in the Azure Portal can be left to their defaults.
+4. The SQL Server instance port 1433 should NOT be exposed to the public internet. All other SQL Server settings in the Azure Portal can be left to their defaults.
 
-1. When you are ready, click on **Review + Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (mileage can vary).
+5. When you are ready, click on **Review + Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (mileage can vary).
 
 ## Answers for the exercise
 
@@ -77,6 +76,8 @@ Storage is usually what will be most difficult to configure. Consider the follow
 - Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. Our choices now become:
     - **E8-4ds_v5**:  A *constrained* core option that gives us the IOPS we need and more. The IOPS and throughput for this size is based on E8ds_v5. This doc page shows IOPS and throughput will work: https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. The portal shows this as ~689.12 per month. Since we are using Developer Edition we are not saving money on the SQL License but if we used Std or EE we would because we are only paying for 4 vCores but get the I/O performance of 8 vCores.
     - **E4bds_v5**: This size is less expensive and meets our requirements for IOPS but NOT throughput: https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series so this isn't an option unless we re-evaluate the workload to see if the throughput is really needed.
+    
+This means that the **E8-4ds_v5** is the best choice for this scenario.
     
 ## Post deployment steps
 
