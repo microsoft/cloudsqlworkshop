@@ -8,7 +8,7 @@ You have a requirement to deploy a new SQL Server on Azure Virtual Machine to mi
 
 You must meet the following requirements:
 
-## Software and Virtual Machine requirements
+### Software and Virtual Machine requirements
 
 - Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Server.
 - The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the E5-series. You must deploy the virtual machine using the Azure Portal.
