@@ -80,7 +80,7 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 ## Answers for the exercise
 
-The requirements and steps should give you enough information to complete the exercise but choosing the right storage and VM size to meet the requirements can be tricky. Here are some answers to help you get started.
+The requirements and steps should give you enough information to complete the exercise but choosing the right storage and VM size to meet the requirements can be tricky. Here are some answers to help you should you get stuck or want to verify your work.
 
 Storage is usually what will be most difficult to configure. Consider the following answers to help you get started.
 - Provide enough storage to meet your IOPS and throughput requirements even though you need only 1TB. Use 2 disks at 1TB to get the storage IOPS and throughput you need.
