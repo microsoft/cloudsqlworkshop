@@ -38,7 +38,7 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 - Database files must be stored on a disk other than the OS disk, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
 - The database files require **512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
-- I/O performance requirements for database files is a max of **5000 IOPS**, and a max of **200Mb throughput**.
+- I/O performance requirements for database files is a max of **3000 to 4000 IOPS**, and a max of **200Mb throughput**.
 - System databases (other than tempdb) should be configured to be on the same disk as database files.
 
 **Requirements for the transaction log**
@@ -94,8 +94,8 @@ The requirements and steps should give you enough information to complete the ex
 Storage is usually what will be most difficult to configure. Consider the following answers to help you if you get stuck or want to verify your work.
 
 - If you first start with a 512Gb disk you will see that the IOPS and throughput are not enough. You will need to choose a larger disk size. But when you go to 1TB you will see the IOPS and throughput are enough but you will see warnings about the VM size capping IOPS and throughput.
-- Change the transaction log to 128Gb. The IOPS and throughput are enough.
-- The warning still exists but not for IOPS anymore but for throughput.
+- Change the transaction log to 128Gb. The IOPS and throughput are enough for that disk.
+- The warning still exists for the VM size but not for IOPS anymore but for throughput. We need a VM size that supports our throughput requirements for both disks.
 - So you need to cancel out of this and go back and choose a different VM size. **Note:**If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required.
 - Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. Our choices now become. So the **E4bds_v5** becomes a new choice that meets all of our requirements but is still cost effective. Change to this VM size then go back to the storage configuration assistant. You will see that there are no more warnings. You now have the storage performance you need for the workload
 
@@ -103,7 +103,7 @@ Storage is usually what will be most difficult to configure. Consider the follow
 
 1. Use Remote Desktop to connect into the Virtual Machine.
 1. Copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
-1. Copy the **restore_tpch.sql** script into the f:\data folder.
+1. Copy the **restore_tpch.sql** script frpm this folder into the f:\data folder.
 1. Load the **restore_tpch.sql** script into SSMS to restore the database. Should only take about 10-15 seconds to restore.
 
 ## Next Steps
