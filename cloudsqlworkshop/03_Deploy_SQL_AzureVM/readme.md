@@ -1,6 +1,6 @@
-# DRAFT: Exercise for Deploying SQL Server on Azure Virtual Machines
+# Exercise for Deploying SQL Server on Azure Virtual Machines
 
-This is a rough draft for the exercise to deploy SQL Server on Azure Virtual Machine.
+This is a pre-production version for the exercise to deploy SQL Server on Azure Virtual Machine.
 
 ## Scenario
 
