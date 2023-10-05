@@ -44,7 +44,7 @@ The database, system databases, transaction log, and tempdb must meet the follow
 **Requirements for the transaction log**
 
 - Must be stored on a separate disk from database files, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
-- The transaction log requires 128Gb max storage and requires 500 max IOPS and 100Mb max throughput.
+- The transaction log requires **128Gb** max storage and requires **500** max IOPS and **100Mb** max throughput.
 
 **Requirements for tempdb**
 
@@ -69,16 +69,6 @@ The database, system databases, transaction log, and tempdb must meet the follow
 2. Use the **SQL Server settings** blade to configure SQL Server instance settings and storage requirements per the requirements. Use the defaults for Security and Networking section.
 
 1. Use the *Change configuration* link to use the Storage configuration assistant. Make choices based on the requirements for the scenario. Take your time and carefully review all options.
-
-We could do this:
-
-- IOPS required is 5000 and 200Mb throughput
-- Try a disk at 512Gb which is all what we need but IOPS are not enough
-- Go to 1TB and see IOPS and throughput are enough
-- Change log to 128
-- Notice the warning tha the VM size will constrain throughput
-- Now go back and change to E4bds_v5 and see that IOPS and throughput are enough and no warnings.
-
 
     **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. Look for any warnings on the Configure Storage screen. Go directly back to the Basics tab to change the VM size if necessary.
 
