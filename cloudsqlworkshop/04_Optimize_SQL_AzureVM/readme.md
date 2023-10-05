@@ -11,10 +11,17 @@ You have a requirement to verify the deployment of SQL Server on Azure Virtual M
 - Download the ostress program for the workload from https:/aka.ms/ostress. Run the install program from the GUI
 - Create a folder called **cloudsqlworkshop** into the c: drive.
 - Copy the **workload.cmd** and **tpch_query3.sql** files from the GitHub clone or download to the cloudsqlworkshop folder.
-
-## Steps for the exercise
+- 
+- ## Steps for the exercise
 
 Complete the following steps to verify the deployment:
+
+### SQL Server instance settings
+
+- Use sp_configure to verify MAXDOP is set to the number of cores for the VM at the server level.
+- Use SSMS or catalog views to verify tempdb is configured with the correct number of files and autogrow setttings.
+
+### Check I/O performance
 
 Note: This is a stress test. The workload constantly runs queries against the database pulling in pages from disk for reads. This will cause the disk to be constantly busy. This is not a typical workload but is used to stress test the storage system to verify it meets the requirements.
 
@@ -26,6 +33,7 @@ Note: This is a stress test. The workload constantly runs queries against the da
     - Logical Disk F: Disk Transfer/Sec
 - Run **workload.cmd** from a Powershell prompt from the cloudsqlworkshop folder to run the workload which will take about a minute.
 - During the workload run observe the maximum and average values for the perfmon counters. Verify this meets or exceeds the requirements for the storage configuration.
+
 
 ## Advanced Exercise
 
