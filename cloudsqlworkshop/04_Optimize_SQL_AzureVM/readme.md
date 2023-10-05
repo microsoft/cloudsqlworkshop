@@ -40,8 +40,6 @@ You will use a combination of Windows perfmon and a workload script and query to
 1. Open Windows perfmon and add the following counters:
     - **Logical Disk F: Disk Bytes/Sec**: This is your measure for I/O throughput.
     - **Logical Disk F: Disk Transfer/Sec**: This is your measure for IOPS.
-    
-    TODO: My test is not hitting 5k IOPS. Need to change VM size to see if I'm getting capped. Another option is dropping the IOPS requirement to a number that can't be hit with a 512Gb disk but can with a 1TB disk and with the VM size.
 
 2. Run **workload.cmd** from a Powershell prompt from the cloudsqlworkshop folder to run the workload which will take about a minute.
 3. During the workload run observe the values for the perfmon counters. Verify this meets the requirements for storage performance.
