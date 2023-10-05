@@ -11,7 +11,7 @@ You must meet the following requirements:
 ### Software and Virtual Machine requirements
 
 - Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Server.
-- The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. You must deploy the virtual machine using the Azure Portal.
+- The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. You must deploy the virtual machine using the Azure Portal. For the purposes of this exercise, use VM sizes with Intel processors.
 - The Virtual Machine has these other requirements:
     - Create a new resource group of the name of your choosing.
     - Choose a VM name of your choosing.
@@ -37,8 +37,8 @@ The database, system databases, transaction log, and tempdb must meet the follow
 **Requirements for database files**
 
 - Database files must be stored on a disk other than the OS disk, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
-- The database files require at **minimum 512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
-- I/O performance requirements for database files is a max of **7000 IOPS**, and a max of **400Mb throughput**.
+- The database files require **512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
+- I/O performance requirements for database files is a max of **5000 IOPS**, and a max of **200Mb throughput**.
 - System databases (other than tempdb) should be configured to be on the same disk as database files.
 
 **Requirements for the transaction log**
@@ -48,9 +48,9 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 **Requirements for tempdb**
 
-- Tempdb must be stored on the local SSD drive for Azure VM so you must choose and Azure VM size that supports local SSD storage. Tempdb *could grow to 256Gb* in size so the VM size you choose must support that.
+- Tempdb must be stored on the local SSD drive for Azure VM so you must choose and Azure VM size that supports local SSD storage. Tempdb *could grow to 128Gb* in size so the VM size you choose must support that.
 - Configure the number of tempdb files to match vCores for your chosen VM size. 
-- Use other best practices to make tempdb data and transaction log files an intial size of 8Mb with autogrow set to 64Mb.
+- Use other best practices to make tempdb data and transaction log files an initial size of 8Mb with autogrow set to 64Mb.
 
 ## Steps for the exercise
 
@@ -70,7 +70,19 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 1. Use the *Change configuration* link to use the Storage configuration assistant. Make choices based on the requirements for the scenario. Take your time and carefully review all options.
 
-    **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the tempdb requirements. Look for any warnings on the Configure Storage screen.
+We could do this:
+
+- IOPS required is 5000 and 200Mb throughput
+- Try a disk at 512Gb which is all what we need but IOPS are not enough
+- Go to 1TB and see IOPS and throughput are enough
+- Change log to 128
+- Notice the warning tha the VM size will constrain throughput
+- Now go back and change to E4bds_v5 and see that IOPS and throughput are enough and no warnings.
+
+
+    **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. Look for any warnings on the Configure Storage screen. Go directly back to the Basics tab to change the VM size if necessary.
+
+    The portal alone may not show you all the information you need so you may need to consult this documentation page: https://learn.microsoft.com/azure/virtual-machines/ebdsv5-ebsv5-series, https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. Use the Max uncached Premium SSD disk throughput: IOPS/MBps column to help you choose the right VM size. You may also need to consult this documentation page: https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd.
 
 1. Click on the *Change SQL instance settings* to change SQL Server instance settings per the requirements.
 
@@ -82,14 +94,13 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 The requirements and steps should give you enough information to complete the exercise but choosing the right storage and VM size to meet the requirements can be tricky. Here are some answers to help you should you get stuck or want to verify your work.
 
-Storage is usually what will be most difficult to configure. Consider the following answers to help you get started.
-- Provide enough storage to meet your IOPS and throughput requirements even though you need only 1TB. Use 2 disks at 1TB to get the storage IOPS and throughput you need.
-- You will see a warning that the VM size doesn't support the max IOPS and throughput required. So you need to cancel out of this and go back and choose a different VM size. **Note:**If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required. 
-- Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. Our choices now become:
-    - **E8-4ds_v5**:  A *constrained* core option that gives us the IOPS we need and more. The IOPS and throughput for this size is based on E8ds_v5. This doc page shows IOPS and throughput will work: https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. The portal shows this as ~689.12 per month. Since we are using Developer Edition we are not saving money on the SQL License but if we used Std or EE we would because we are only paying for 4 vCores but get the I/O performance of 8 vCores.
-    - **E4bds_v5**: This size is less expensive and meets our requirements for IOPS but NOT throughput: https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series so this isn't an option unless we re-evaluate the workload to see if the throughput is really needed.
-    
-This means that the **E8-4ds_v5** is the best choice for this scenario.
+Storage is usually what will be most difficult to configure. Consider the following answers to help you if you get stuck or want to verify your work.
+
+- If you first start with a 512Gb disk you will see that the IOPS and throughput are not enough. You will need to choose a larger disk size. But when you go to 1TB you will see the IOPS and throughput are enough but you will see warnings about the VM size capping IOPS and throughput.
+- Change the transaction log to 128Gb. The IOPS and throughput are enough.
+- The warning still exists but not for IOPS anymore but for throughput.
+- So you need to cancel out of this and go back and choose a different VM size. **Note:**If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required.
+- Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. Our choices now become. So the **E4bds_v5** becomes a new choice that meets all of our requirements but is still cost effective. Change to this VM size then go back to the storage configuration assistant. You will see that there are no more warnings. You now have the storage performance you need for the workload.
     
 ## Post deployment steps
 
