@@ -1,4 +1,4 @@
-# Exercise for Deploying SQL Server on Azure Virtual Machines
+# Exercise 3.1 - Deploying SQL Server on Azure Virtual Machines
 
 This is a pre-production version for the exercise to deploy SQL Server on Azure Virtual Machine.
 

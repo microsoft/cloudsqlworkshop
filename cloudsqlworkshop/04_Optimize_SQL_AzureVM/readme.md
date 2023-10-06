@@ -2,7 +2,7 @@
 
 This is a pre-production version of exercises to verify your SQL Server deployment based on requirements provided in Module 3. In addition there is a bonus exercise to explore the capabilities of the SQL Server IaaS Agent Extension. There is also an advanced exercise to explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks.
 
-## Verifying the SQL Server on Virtual Machine deployment.
+## Exercise 4.1 - Verifying the SQL Server on Virtual Machine deployment.
 
 In this exercise you will verify the deployment of SQL Server on Azure Virtual Machine you did in Module 3 of this workshop.
 
@@ -48,7 +48,7 @@ You will use a combination of Windows perfmon and a workload script and query to
 2. Run **workload.cmd** from a Powershell prompt from the cloudsqlworkshop folder to run the workload which will take about a minute.
 3. During the workload run observe the values for the perfmon counters. Verify this meets the requirements for storage performance.
 
-### Answers for the verify exercise
+### Answers for the exercise
 
 In case you get stuck or need to verify your work here are some tips and answers:
 
@@ -62,7 +62,7 @@ To **verify tempdb is configured correctly** you can use SSMS to look at the fil
 
 When you run the workload test to **verify I/O performance**, you should see Disk Bytes/Sec range between 3000 to 4000 and throughput should easily exceed 200Mb/sec.
 
-## Bonus Exercise
+## Exercise 4.2 - Bonus Exercise
 
 In the bonus exercise if you have time, use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Extension. You can find the documentation at https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-vm-resource-provider-overview.
 
@@ -109,7 +109,7 @@ Microsoft Defender for the Cloud can be enabled on Azure subscription by default
 
 Learn more at https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-usage
 
-## Advanced Exercise
+## Exercise 4.3 - Advanced Exercise
 
 Using the following documentation https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd-v2-performance determine how you could use a Premium SSD v2 disk for storage for database files to save cost and minimize the needed size of the managed disks. You will also need the pricing chart at https://azure.microsoft.com/en-us/pricing/details/managed-disks/.
 
