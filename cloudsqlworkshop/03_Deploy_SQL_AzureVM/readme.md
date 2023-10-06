@@ -2,6 +2,13 @@
 
 This is a pre-production version for the exercise to deploy SQL Server on Azure Virtual Machine.
 
+## Prerequisites
+
+- You must have an Azure subscription with the ability to create Azure Virtual Machines. You must have the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor.
+- You must have permissions to a SQL Server on Azure Virtual Machine from the Azure Marketplace.
+- You will need a client computer that can use the Remote Desktop Protocol(RDP)
+- You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
+
 ## Scenario
 
 You have a requirement to deploy a new SQL Server on Azure Virtual Machine to migrate a SQL Server database to perform a proof of concept (PoC) test. You are trying to save costs so you want to use deployment options that meet the requirements of your PoC with the *minimal costs possible*. You also need to try and minimize the amount of time it takes to deploy the solution so try to configure as many requirements during deployment.

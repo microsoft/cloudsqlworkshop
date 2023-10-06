@@ -2,6 +2,12 @@
 
 This is a pre-production version of exercises to verify your SQL Server deployment based on requirements provided in Module 3. In addition there is a bonus exercise to explore the capabilities of the SQL Server IaaS Agent Extension. There is also an advanced exercise to explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks.
 
+## Prerequisites
+
+- You must have completed Exercise 3.1 to deploy a SQL Server on Azure Virtual Machine.
+- You will need a client computer that can use the Remote Desktop Protocol(RDP)
+- You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
+
 ## Exercise 4.1 - Verifying the SQL Server on Virtual Machine deployment.
 
 In this exercise you will verify the deployment of SQL Server on Azure Virtual Machine you did in Module 3 of this workshop.
