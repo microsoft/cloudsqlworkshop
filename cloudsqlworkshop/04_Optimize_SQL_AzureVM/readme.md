@@ -32,8 +32,8 @@ Use any web searches, documentation, or other resources to help you complete thi
 
 You will use a combination of Windows perfmon and a workload script and query to verify the I/O performance requirements for database files. As a reminder the requirement is
 
-- 200MB/s throughput
 - 3000 - 4000 IOPS
+- 200MB/sec throughput
 
 **Note:** This is a stress test. The workload constantly runs queries against the database pulling in pages from disk for reads. This will cause the disk to be constantly busy. This is not a typical workload but is used to stress test the storage system to verify it meets the requirements.
 
@@ -50,9 +50,9 @@ In case you get stuck or need to verify your work here are some tips and answers
 
 To **verify SQL Server instance settings** you can:
 
-- The system procedure sp_configure can be used to verify the MAXDOP setting.
-- One way to see if instant file initialization is enabled is to query the sys.dm_server_services DMV for the instant_file_initialization_enabled column.
-- One way to see if locked pages is enabled is to query the sys.dm_os_sys_info DMV to see if the sql_memory_model_desc = LOCK_PAGES
+- The system procedure **sp_configure** can be used to verify the MAXDOP setting ('max degree of parallelism').
+- One way to see if instant file initialization is enabled is to query the **sys.dm_server_services** DMV for the instant_file_initialization_enabled column.
+- One way to see if locked pages is enabled is to query the **sys.dm_os_sys_info** DMV to see if the sql_memory_model_desc = LOCK_PAGES
 
 To **verify tempdb is configured correctly** you can use SSMS to look at the file properties for tempdb to ensure the right number of files and autogrow settings are configured.
 
@@ -60,4 +60,14 @@ When you run the workload test to **verify I/O performance**, you should see Dis
 
 ## Bonus Exercise
 
-Using the following documentation https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd-v2-performance determine how you could use a Premium SSD v2 disk for storage for database files to save cost and minimize the needed size of the managed disks.
+Using the following documentation https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd-v2-performance determine how you could use a Premium SSD v2 disk for storage for database files to save cost and minimize the needed size of the managed disks. You will also need the pricing chart at https://azure.microsoft.com/en-us/pricing/details/managed-disks/.
+
+### Bonus Exercise Answers
+
+Premium SSD v2 disks come with a baseline of 3000 IOPS and 125MB/second throughput. Since our requirements is 3000-4000 and 200MB for the data disk we will need more. But you get 500 IOPS for every 1Gb in size added. And you get 0.25 MB throughput for each additional IOP.
+
+So we only need to add 2Gb more to our disk to get 4000 IOPS and that also gives us an additional 250Mb per second. So now we only need a 514GB drive to achieve what originally needed for Premium v1 which was 1TB.
+
+The cost of a 1TB P30 disk is $135.17 per month. The cost of a 514GB Premium SSD v2 disk is $68.06 per month. So we save $67.11 per month or $805.32 per year.
+
+TODO: Does the VM size cap the IOPS for a Premium SSD v2 disk? If so, what is the cap?

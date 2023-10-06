@@ -37,14 +37,14 @@ The database, system databases, transaction log, and tempdb must meet the follow
 **Requirements for database files**
 
 - Database files must be stored on a disk other than the OS disk, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
-- The database files require **512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
-- I/O performance requirements for database files is a max of **3000 to 4000 IOPS**, and a max of **200Mb throughput**.
+- The database files only require **512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
+- I/O performance requirements for database files is **3000 to 4000 IOPS**, and a max of **200Mb throughput**.
 - System databases (other than tempdb) should be configured to be on the same disk as database files.
 
 **Requirements for the transaction log**
 
 - Must be stored on a separate disk from database files, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
-- The transaction log requires **128Gb** max storage and requires **500** max IOPS and **100Mb** max throughput.
+- The transaction log requires **128Gb** storage, **500** IOPS, and **100Mb** max throughput.
 
 **Requirements for tempdb**
 
@@ -72,7 +72,7 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
     **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. Look for any warnings on the Configure Storage screen. Go directly back to the Basics tab to change the VM size if necessary.
 
-    The portal alone may not show you all the information you need so you may need to consult this documentation page: https://learn.microsoft.com/azure/virtual-machines/ebdsv5-ebsv5-series, https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. Use the Max uncached Premium SSD disk throughput: IOPS/MBps column to help you choose the right VM size. You may also need to consult this documentation page: https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd.
+    The portal alone may not show you all the information you need so you may need to consult this documentation page: https://learn.microsoft.com/azure/virtual-machines/ebdsv5-ebsv5-series, https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. Use the **Max uncached Premium SSD disk throughput: IOPS/MBps column** to help you choose the right VM size. You may also need to consult this documentation page: https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd.
 
 1. Click on the *Change SQL instance settings* to change SQL Server instance settings per the requirements.
 
@@ -103,7 +103,7 @@ Storage is usually what will be most difficult to configure. Consider the follow
 
 1. Use Remote Desktop to connect into the Virtual Machine.
 1. Copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
-1. Copy the **restore_tpch.sql** script frpm this folder into the f:\data folder.
+1. Copy the **restore_tpch.sql** script from this folder into the f:\data folder.
 1. Load the **restore_tpch.sql** script into SSMS to restore the database. Should only take about 10-15 seconds to restore.
 
 ## Next Steps
