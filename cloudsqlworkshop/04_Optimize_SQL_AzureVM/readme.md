@@ -67,29 +67,29 @@ When you run the workload test to **verify I/O performance**, you should see Dis
 In the bonus exercise if you have time, use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Extension. You can find the documentation at https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-vm-resource-provider-overview.
 
 1. Find your virtual machine in the Azure Portal as a SQL Server Virtual Machine by searching in the top of the Azure Portal for "SQL Virtual Machines". Select SQL Virtual Machines from the list of Services.
-1. Select your virtual machine from the list of SQL Server Virtual Machines.
-1. Look at the properties in the main pane including SQL Server version, and edition.
-1. On the left hand menu, select **Configure**
+2. Select your virtual machine from the list of SQL Server Virtual Machines.
+3. Look at the properties in the main pane including SQL Server version, and edition.
+4. On the left hand menu, select **Configure**
 
 Notice your different license types and the ability to change the license type. The default is Pay As You Go since we used the Marketplace but you could also select Azure Hybrid Benefit to use an existing SQL Server license. In addition, if this VM was used for DR purposes from an on-premises SQL Server you could select Disaster Recovery and not pay any SQL license costs. You an learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/licensing-model-azure-hybrid-benefit-ahb-change.
 
-1. On the left hand menu select **Storage Configuration**. 
+5. On the left hand menu select **Storage Configuration**. 
  
 There is where you can expand storage for data or transaction log disks. You can also change the storage configuration of tempdb. You can also add additional disks for data or log files. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/storage-configuration?view=azuresql&tabs=windows2016#existing-vms.
 
-1. On the left hand menu select **Updates**.
+6. On the left hand menu select **Updates**.
 
 This is the Microsoft update experience for Azure virtual machines. You can use this option to enable Microsoft updates inside your VM including cumulative updates for SQL Server. You can check for updates, perform updates, and schedule updates. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/azure-update-manager-sql-vm?view=azuresql&tabs=windows.
 
-1. On the left hand menu select **Backups**.
+7. On the left hand menu select **Backups**.
 
 This is an option for you to schedule automatic backups to Azure Storage. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/automated-backup?view=azuresql.
 
-1. On the left hand menu select **Best Practices Assessment**.
+8. On the left hand menu select **Best Practices Assessment**.
 
 This is an option for you to run best practice assessments to get advice on how to configure your virtual machine and SQL Server for optimal performance and execution. You can get advice specifically based on your configuration on topics like SQL Server and database configurations, Index management, Deprecated features, Enabled or missing trace flags, Statistics, and more You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/best-practices-assessment?view=azuresql.
 
-1. On the left hand menu select **Security Configuration**.
+9. On the left hand menu select **Security Configuration**.
 
 You have two options you can use to increase security for SQL Server on Azure Virtual Machine.
 
@@ -101,7 +101,7 @@ Enabling this option allows you to store and manage keys for features like trans
 
 This option allows you to enable Microsoft Entry Authentication (formerly known as Azure Active Directory) for SQL Server running in the virtual machine (only supported for SQL Server 2022 and later) This provides a method for you to use more secure authentication methods than SQL Authentication but does not require a Windows domain. It also provides new secure login methods such as Multi-Factor Authentication (MFA). Learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm
 
-1. On the left hand menu select **Microsoft Defender for the Cloud**
+10. On the left hand menu select **Microsoft Defender for the Cloud**
 
 Microsoft Defender for the Cloud provides vulnerability assessments of your SQL Server security configuration based on industry standards and can alert you to advanced security attacks such as SQL injection.
 
