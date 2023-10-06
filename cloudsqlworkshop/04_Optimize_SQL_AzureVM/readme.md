@@ -126,5 +126,3 @@ Premium SSD v2 disks come with a baseline of 3000 IOPS and 125MB/second throughp
 So we only need to add 2Gb more to our disk to get 4000 IOPS and that also gives us an additional 250Mb per second. So now we only need a 514GB drive to achieve what originally needed for Premium v1 which was 1TB.
 
 The cost of a 1TB P30 disk is $135.17 per month. The cost of a 514GB Premium SSD v2 disk is $68.06 per month. So we save $67.11 per month or $805.32 per year.
-
-TODO: Does the VM size cap the IOPS for a Premium SSD v2 disk? If so, what is the cap?
