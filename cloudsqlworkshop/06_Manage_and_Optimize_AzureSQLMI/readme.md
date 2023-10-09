@@ -1,23 +1,24 @@
-# Exercises for data virtualization and object storage for S3 and SQL Server 2022
+# Exercises for Managing and Optimizing Azure SQL Managed Instance
 
-This is a set of exercises for data virtualization in SQL Server 2022 using the new REST API "connector" for S3 compatible object storage for parquet files and delta tables. In addition there is an exercise to see the new BACKUP/RESTORE capabilities for S3 compatible storage.
+This is a pre-production version of exercises to manage and optimize Azure SQL Managed Instance.
 
-**5.0 Using OPENROWSET with parquet files**
+## Prerequisites
 
-Exercise to  use OPENROWSET with parquet files with an public data set. Follow the steps in the **openrowset** folder.
+- You must have completed Exercise 5.1 to deploy an Azure SQL Managed Instance.
+- You will need a client computer that can use the Remote Desktop Protocol(RDP).
+- You will use RDP to connect into the jumbox virtual machine in Azure you deployed in Exercise 5.1.
+- You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
 
-**5.1 Using parquet with S3**
+## Exercise 6.1 - Explore and optimize the Azure SQL Managed Instance deployment
 
-Exercise to access parquet files with S3 compatible object storage by examining T-SQL notebooks. **Read**, not execute, the steps in the **parquet** folder.
+- Select AHUB and see the cost difference.
+- Change the Maintenance schedule
+- Evaluate the Start/Stop capabilities
+- Explore Microsoft Entra admin
+- Explore Private Endpoint connections
 
-**5.2 Using delta tables with S3**
+## Exercise 6.2 - Test and scale perf
 
-Exercise to access delta tables with S3 compatible object storage by examining T-SQL notebooks.**Read**, not execute, the steps in the **delta** folder.
+## Exercise 6.3 - Look at SQL Server compatibility
 
-**5.3 Using S3 object storage for backup and restore**
-
-Exercise to backup and restore databases with S3 compatible object storage by examining T-SQL notebooks. **Read**, not execute, the steps in the **s3objectstorage** folder.
-
-**5.4 Using minio with SQL Server 2022**
-
-Exercises to try out SQL Server 2022 data virtualization and S3 compatible object storage using minio server on Windows. Follow the steps in the **minio** folder.
+## Bonus Exercise 6.4 - Backup and restore to SQL Server 2022

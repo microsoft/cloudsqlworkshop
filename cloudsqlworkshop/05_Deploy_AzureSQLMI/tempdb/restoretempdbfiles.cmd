@@ -1,1 +1,0 @@
-sqlcmd -E -irestoretempdbfiles.sql

@@ -115,4 +115,4 @@ Storage is usually what will be most difficult to configure. Consider the follow
 
 ## Next Steps
 
-In Module 4, you will perform various steps to verify the deployment meets the requirements of the scenario as defined in this module.
+In Module 4, you will perform various steps to verify the deployment meets the requirements of the scenario as defined in this module. You will also learn about how to explore capabilities of the Azure Virtual Machine provided by the SQL Server IaaS Agent extension.
