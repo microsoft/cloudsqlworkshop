@@ -53,12 +53,20 @@ Use the following Additional settings options for the deployment
 
 ## Post deployment steps
 
-Perform the following steps after the deployment completes to perform a basic validation of the deployment by connecting to the Azure SQL Managed Instance.
+Perform the following steps after the deployment completes to perform a basic validation of the deployment by connecting to the Azure SQL Managed Instance. You will also examine in the Deployments for the resource group the duration of the Managed Instance deployment.
+
+### Connect to the Azure SQL Managed Instance
 
 1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. You can learn more at https://techcommunity.microsoft.com/t5/azure-sql-blog/the-easiest-way-to-create-azure-vm-that-can-access-your-azure/ba-p/386247#:~:text=In%20order%20to%20access%20your%20Managed%20Instance%2C%20you,SSMS%20to%20run%20the%20query%20against%20the%20instance.
 
 1. Use Remote Desktop to connect into the Virtual Machine.
 1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment.
+
+### View the deployment duration
+
+1. First let's look at the deployment from the perspective of the resource group. If you are looking at your virtual machine in the Azure Portal you can click on your resource group or it may be listed in Resources on your home page. You can also search for your resource group in the search box at the top of the Azure Portal by typing in your resource group name and selecting it.
+1. On the left-hand menu select **Deployments**.
+1. The deployment name should start with "Microsoft.SQLManagedInstance....". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Managed Instance.
 
 ## Next Steps
 
