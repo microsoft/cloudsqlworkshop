@@ -6,7 +6,7 @@ This is an exercise to deploy an Azure SQL Managed Instance.
 
 - You must have an Azure subscription with the ability to create an Azure SQL Managed Instance. You must have the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor as the Azure SQL Managed Instance might be pre-deployed.
 - The Azure SQL Managed Instance will use the Business Critical service tier.
-- You will need to have access to a virtual machine that can connect to the Azure SQL Managed Instance without a public endpoint. The most common method is to create a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. You can learn more at https://techcommunity.microsoft.com/t5/azure-sql-blog/the-easiest-way-to-create-azure-vm-that-can-access-your-azure/ba-p/386247#:~:text=In%20order%20to%20access%20your%20Managed%20Instance%2C%20you,SSMS%20to%20run%20the%20query%20against%20the%20instance.
+- You will need to have access to a virtual machine that can connect to the Azure SQL Managed Instance without a public endpoint. The most common method is to create a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure
 
 ## Scenario
 
@@ -57,8 +57,7 @@ Perform the following steps after the deployment completes to perform a basic va
 
 ### Connect to the Azure SQL Managed Instance
 
-1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. You can learn more at https://techcommunity.microsoft.com/t5/azure-sql-blog/the-easiest-way-to-create-azure-vm-that-can-access-your-azure/ba-p/386247#:~:text=In%20order%20to%20access%20your%20Managed%20Instance%2C%20you,SSMS%20to%20run%20the%20query%20against%20the%20instance.
-
+1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. A recommended method is to use this QuickStart guide at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure.
 1. Use Remote Desktop to connect into the Virtual Machine.
 1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment.
 
