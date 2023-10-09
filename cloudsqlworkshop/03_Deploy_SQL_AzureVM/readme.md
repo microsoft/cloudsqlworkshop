@@ -108,6 +108,23 @@ Storage is usually what will be most difficult to configure. Consider the follow
 
 ## Post deployment steps
 
+After your virtual machine is deployed, let's first look at Azure Resource Manager deployment details, make sure we can connect to the VM, and then prepare for the next module.
+
+### Looking at your deployment
+
+Learn how to look at more details on your deployment of the virtual machine using the Azure Portal.
+
+1. First let's look at the deployment from the perspective of the resource group. If you are looking at your virtual machine in the Azure Portal you can click on your resource group or it may be listed in Resources on your home page. You can also search for your resource group in the search box at the top of the Azure Portal by typing in your resource group name and selecting it.
+1. On the left-hand menu select **Deployments**.
+1. The deployment name should start with "CreateVm....". If you scroll to the right you can see the Duration of the deployment which is approximately the amount of time it took to deploy the virtual machine, build a virtual network, provision storage, and run software in the VM to deploy SQL Server.
+1. Click on the "CreateVm..." under Deployment Name. Click on the "V" option next to Deployment details. This will list all the detailed steps of how the virtual machine was deployed.
+1. Click on **Go to Resource**. You are now in the context of the virtual machine resource.
+1. On the left-hand menu click on **Activity Log**. This is a continuous log of all the activities that have happened to the resource. You can see the deployment of the virtual machine and the deployment of the SQL Server IaaS Agent extension. You can also see the deployment of the SQL Server instance. You can click on any of these activities to see more details.
+
+### Connecting to the VM and preparing for the next module
+
+Use the following steps to connect to the VM with RDP and prepare for the next module.
+
 1. Use Remote Desktop to connect into the Virtual Machine.
 1. Copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
 1. Copy the **restore_tpch.sql** script from this folder into the f:\data folder.
