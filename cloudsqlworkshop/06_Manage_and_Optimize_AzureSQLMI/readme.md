@@ -36,6 +36,11 @@ For instructor led workshops if time allows, you can use Azure CLI to explore yo
 ```azurecli-interactive
 az sql mi --help
 ```
+1. To see details of your Managed Instance run the following command:
+
+```azurecli-interactive
+az sql mi show --name <your managed instance name> --resource-group <your resource group name>
+```
 
 ## Exercise 6.2 - Test perf
 

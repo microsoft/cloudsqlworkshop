@@ -8,8 +8,7 @@ This is an exercise to deploy an Azure SQL Managed Instance.
 - The Azure SQL Managed Instance will use the Business Critical service tier.
 - You will need to have access to a virtual machine that can connect to the Azure SQL Managed Instance without a public endpoint. The most common method is to create a *jumpbox* virtual machine in the same virtual network (but different subnet) as the Azure SQL Managed Instance. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure.
     - The virtual machine must have SQL Server 2022 Developer Edition installed.
-    - The virtual machine must have SQL Server Management 
-    - Studio installed (https://aka.ms/ssms). Use version 19.X or later.
+    - The virtual machine must have SQL Server Management Studio installed (https://aka.ms/ssms). Use version 19.X or later.
     - The virtual machine should have 4 vCores. A VM size such as **D4ds_v5** is recommended.<br><br>
 **Tip:** Use an Azure Virtual Machine from the marketplace with SQL Server 2022 Developer Edition and Windows Server 2022. Use the Networking blade to deploy the VM in the same vnet as the MI and the new subnet you have already created. All other settings include SQL Server settings can use the defaults.
 
