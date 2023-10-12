@@ -63,7 +63,7 @@ Perform the following steps after the deployment completes to perform a basic va
 
 1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. A recommended method is to use this QuickStart guide at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure.
 1. Use Remote Desktop to connect into the Virtual Machine.
-1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment.
+1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment. Tip: In the top right hand search edit box type in **PresentOn** to increase fonts and make it easier to see.
 
 ### View the deployment duration
 

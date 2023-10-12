@@ -30,23 +30,38 @@ In this exercise, you will use the Azure Portal and Azure Cloud Shell to explore
 For instructor led workshops if time allows, you can use Azure CLI to explore your deployment. You can use the Azure Cloud Shell in the Azure Portal
 
 1. Open the Azure Cloud Shell in the Azure Portal. You can use the search bar at the top of the Azure Portal to search for "Cloud Shell" or you can find it in the top right-hand corner of the Azure Portal.
-1. The default is the Bash shell which works just fine for us to use Azure CLI.
-1. Run the following command to see what is possible for az CLI for Managed Instances:
+2. The default is the Bash shell which works just fine for us to use Azure CLI.
+3. Run the following command to see what is possible for az CLI for Managed Instances:
 
 ```azurecli-interactive
 az sql mi --help
 ```
-1. To see details of your Managed Instance run the following command:
+4. To see details of your Managed Instance run the following command:
 
 ```azurecli-interactive
 az sql mi show --name <your managed instance name> --resource-group <your resource group name>
 ```
+Examine the JSON output of the deployment including all the properties of the deployment. **Tip:** You can add the **--output table** option to see the output in a table format.
 
 ## Exercise 6.2 - Test perf
 
 Notes:
 
-- This would be about showing new tlog rates for BC tiers so we would create a table and show how initial ingestion with a SELECT INTO which runs in parallel is not hampered by tlog throttling.
+TODO: Can we use 24 vCores for this with Spektra.
+
+- Study the blog with new I/O log throughput rates for BC tiers. https://techcommunity.microsoft.com/t5/azure-sql-blog/your-max-log-rate-on-sql-managed-instance-business-critical-is/ba-p/3899817
+- Calculate the max log I/O throughput for your deployment
+- Install QPI library from https://github.com/JocaPC/qpi
+- Create a table with 1 million rows that is small
+- Snapshot waits and I/O stats
+- Do a SELECT INTO to populate the table. Show it uses parallelism.
+- Show the stats and I/O throughput
+- Change the table to make it bigger (using a padded char column)
+- Populate the table with 1 million rows
+- Snapshot waits and I/O stats
+- Do the same SELECT INTO to populate the table. Show it uses parallelism.
+- Show the stats again and see that you are throttled on log I/O throughput.
+- If you use more vCores you can increase this throughput.
 
 ## Exercise 6.3 - Look at SQL Server compatibility
 
@@ -63,9 +78,17 @@ Notes:
 Notes:
 
 - Explore the backups that were auto crated when you created the dtb and see how you could easily do a PITR
-- Explore any metadata that shows your replica was auto-created. Any catalog view or DMV. 
+- Explore any metadata that shows your replica was auto-created. Any catalog view or DMV. Here are some sample SQL queries:
+```sql
+SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
+GO
+SELECT * FROM sys.dm_hadr_fabric_replicas;
+GO
+SELECT * FROM sys.dm_hadr_fabric_replica_states;
+go
+```
 - Do a read-only replica query with SSMS
-- Do a manual failover and see how easy it is to connect back to your db. Show the SQL Agent job is part of the failover.
+- Do a manual failover and see how easy it is to connect back to your db. Show the SQL Agent job is part of the failover. Use this doc page to show how and monitor it: https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/user-initiated-failover
 
 ## Bonus Exercise 6.5 - Backup and restore to SQL Server 2022
 
