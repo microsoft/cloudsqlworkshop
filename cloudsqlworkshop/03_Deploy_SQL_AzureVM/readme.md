@@ -30,6 +30,7 @@ You must meet the following requirements:
     - The public inbound port 3389 for RDP can be left open to the public internet for this PoC.
     - You do have existing Windows Server licenses that you can use for this PoC.
     - There are no special requirements for the OS disk, Networking, Management, Advanced, or Monitoring sections when deploying the VM.
+        - **Important Note:** For instructor led labs your instruction may ask you to deploy the Azure Virtual Machine in a specific virtual network and subnet that allows it to easily connect to Azure SQL Managed Instance for other modules.
     - You do not have to specify any tags for the VM.
 - The SQL Server instance should be configured as follows:
     - MAXDOP for the server = # of cores from the VM
