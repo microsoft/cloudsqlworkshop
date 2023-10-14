@@ -9,7 +9,7 @@ This is a pre-production version of exercises to manage and optimize Azure SQL M
 - You will use RDP to connect into the *jumpbox* virtual machine in Azure you deployed in Exercise 5.1.
 - You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
 
-## Exercise 6.1 - Explore and optimize the Azure SQL Managed Instance deployment
+## Exercise 6.1 - Explore the Azure SQL Managed Instance deployment
 
 In this exercise, you will use the Azure Portal and Azure Cloud Shell to explore various aspects of the Azure SQL Managed Instance deployment.
 
@@ -25,23 +25,23 @@ In this exercise, you will use the Azure Portal and Azure Cloud Shell to explore
 1. Scroll down and select **Private endpoint connections**. This is where you would create a private endpoint should it be needed for the security of your deployment.
 1. Scroll down and select **Resource Health**. This is where you can view a history of the health of your deployment including any failover events that have occurred.
 
-### Exercise: Use Azure CLI to explore your deployment
+###     Use Azure CLI to explore your deployment
 
-Learn how to use Azure CLI to explore your deployment. You can use the Azure Cloud Shell in the Azure Portal
+Learn how to use Azure CLI to explore your deployment. You can use the Azure Cloud Shell in the Azure Portal. You will need the name of the resource group for your deployment and the instance name (not the full hostname).
 
 1. Open the Azure Cloud Shell in the Azure Portal (refer to this documentation page for a quick start: https://learn.microsoft.com/azure/cloud-shell/quickstart?tabs=azurecli#start-cloud-shell). You can use the search bar at the top of the Azure Portal to search for "Cloud Shell" or you can find it in the top right-hand corner of the Azure Portal.
 2. The default is the Bash shell which works just fine for us to use Azure CLI.
 3. Run the following command to see what is possible for az CLI for Managed Instances:
 
-```azurecli-interactive
-az sql mi --help
-```
+    ```azurecli-interactive
+    az sql mi --help
+    ```
 4. To see details of your Managed Instance run the following command:
 
-```azurecli-interactive
-az sql mi show --name <your managed instance name> --resource-group <your resource group name>
-```
-Examine the JSON output of the deployment including all the properties of the deployment. **Tip:** You can add the **--output table** option to see the output in a table format.
+    ```azurecli-interactive
+    az sql mi show --name <your managed instance name> --resource-group <your resource group name>
+    ```
+    Examine the JSON output of the deployment including all the properties of the deployment. **Tip:** You can add the **--output table** option to see the output in a table format.
 
 ## Exercise 6.2 - Test transaction log I/O performance
 
@@ -51,27 +51,27 @@ In this exercise you will create a new database, create a table, populate it wit
 
 2. To observe I/O performance we can use built in Dynamic Management Views (DMV) in SQL Server such as **sys.dm_io_virtual_file_stats**. To assist you in using these DMVs we will use the QPI library set of scripts.
 
-Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste this into a new query window in the context of the master database. Execute the query to create the QPI library.
+    Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste this into a new query window in the context of the master database. Execute the query to create the QPI library.
 
 3. Create a new database, table, and populate data in your Azure SQL Managed Instance. Use the following T-SQL to create the database:
 
-TODO: Put in query here
+    TODO: Put in query here
 
 4. In a new query window load his query to take a snapshot for I/O and wait statistics:
 
-TODO: Put in query here
+    TODO: Put in query here
 
 5. In a new query window execute this query to create a new table from the existing table. This will use DOP to populate the new table and put pressure on transaction log I/O.
 
-TODO: Put in query here
+    TODO: Put in query here
 
 6. In a new query window run the following queries to monitor I/O performance and waits while the SELECT INTO is running.
 
-TODO Put in query here
+    TODO Put in query here
 
 7. Run the query in step #5 again after the SELECT INTO has completed. You can see from both executions that I/O throughput is limited to the number of vCores * 4.5MB/sec. In addition you can see some waits on INSTANCE_LOG_RATE_GOVERNOR which shows that the log I/O is being throttled:
 
-This test is a stress test of log I/O and may not represent your normal workload. However, if you are seeing throttling on log I/O you can increase the number of vCores to increase the log I/O throughput. In addition, Microsoft has increased possible log I/O rates for Business Critical service tier. See the following blog post for more information: https://techcommunity.microsoft.com/t5/azure-sql-blog/your-max-log-rate-on-sql-managed-instance-business-critical-is/ba-p/3899817
+    This test is a stress test of log I/O and may not represent your normal workload. However, if you are seeing throttling on log I/O you can increase the number of vCores to increase the log I/O throughput. In addition, Microsoft has increased possible log I/O rates for Business Critical service tier. See the following blog post for more information: https://techcommunity.microsoft.com/t5/azure-sql-blog/your-max-log-rate-on-sql-managed-instance-business-critical-is/ba-p/3899817
 
 ## Exercise 6.3 - Look at SQL Server compatibility
 
@@ -90,89 +90,92 @@ Azure SQL Managed Instance is very compatible with SQL Server. Use this exercise
 
 ### Look at SQL diagnostics
 
-Look at common SQL diagnostics you also use for SQL Server and.
+Look at common SQL diagnostics you also use for SQL Server.
 
 1. Open a new query in SSMS and run the following query in the context of the master database so you can see a common ***catalog view*** you use in SQL Server is supported:
 
-```tsql
-SELECT name, database_id, compatibility_level, is_query_store_on, is_encrypted, is_accelerated_database_recovery_on, * FROM sys.databases;
-```
+    ```tsql
+    SELECT name, database_id, compatibility_level, is_query_store_on, is_encrypted, is_accelerated_database_recovery_on, * FROM sys.databases;
+    GO
+    ```
 
-Notice the results are the same as you might see in SQL Server with a few interesting differences:
+    Notice the results are the same as you might see in SQL Server with a few interesting differences:
 
-- The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
-- The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Note: Azure SQL Managed Instance can change the default dbcompat in the future.
-- **Query store** is ON by default for your user database.
-- Your database is encrypted with **TDE** by default.
-- **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
+    - The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
+    - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Note: Azure SQL Managed Instance can change the default dbcompat in the future.
+    - **Query store** is ON by default for your user database.
+    - Your database is encrypted with **TDE** by default.
+    - **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
 
 2. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
 
-```tsql
-SELECT * FROM sys.dm_exec_sessions;
-GO
-SELECT * FROM sys.dm_exec_requests;
-GO
-SELECT * FROM sys.dm_os_wait_stats;
-GO
-SELECT * FROM sys.dm_os_schedulers;
-GO
-```
-Try to execute any of your favorite DMVs to see they are supported since this is full instance of SQL Server.
+    ```tsql
+    SELECT * FROM sys.dm_exec_sessions;
+    GO
+    SELECT * FROM sys.dm_exec_requests;
+    GO
+    SELECT * FROM sys.dm_os_wait_stats;
+    GO
+    SELECT * FROM sys.dm_os_schedulers;
+    GO
+    ```
+
+    Try to execute any of your favorite DMVs to see they are supported since this is full instance of SQL Server.
 
 3. See how you can run live **Extended Events sessions**.
  
-In SSMS in Object Explorer, expand **XEProfiler** and right-click on Standard. Select Launch Session. You will see a new window showing a live Extended Events session. Even though you are not running queries you can see activity of various background services that support Azure SQL Managed Instance and observe the activity.
+    In SSMS in Object Explorer, expand **XEProfiler** and right-click on Standard. Select Launch Session. You will see a new window showing a live Extended Events session. Even though you are not running queries you can see activity of various background services that support Azure SQL Managed Instance and observe the activity.
 
-**Note:** Any Extended Event session you want to persist to disk must be done to Azure Storage since you don't have access to the underlying filesystem of the VM. 
+    **Note:** Any Extended Event session you want to persist to disk must be done to Azure Storage since you don't have access to the underlying filesystem of the VM. 
 
 4. Let's look at sp_configure to see what is the same and different for Azure SQL Managed Instance. Run the following query:
 
-```tsql
-sp_configure 'show advanced', 1;
-GO
-reconfigure;
-GO
-sp_configure;
-GO
-```
-Notice the options pretty much look the same as what is available in SQL Server. However, now try to run this query:
+    ```tsql
+    sp_configure 'show advanced', 1;
+    GO
+    reconfigure;
+    GO
+    sp_configure;
+    GO
+    ```
+    Notice the options pretty much look the same as what is available in SQL Server. However, now try to run this query:
 
-```tsql
-sp_configure 'max server memory', 1024;
-GO
-```
-You will get an error like this:
+    ```tsql
+    sp_configure 'max server memory', 1024;
+    GO
+    ```
 
-`Msg 5870, Level 16, State 1, Procedure sp_configure, Line 177 [Batch Start Line 6]
-Changes to server configuration option 'max server memory (MB)' are not supported in this edition of SQL Server.
-`
+    You will get an error like this:
 
-This is because memory limits are managed by Azure SQL Managed Instance and this configuration option is not needed.
+    `Msg 5870, Level 16, State 1, Procedure sp_configure, Line 177 [Batch Start Line 6]
+    Changes to server configuration option 'max server memory (MB)' are not supported in this edition of SQL Server.
+    `
+
+    This is because memory limits are managed by Azure SQL Managed Instance and this configuration option is not needed.
 
 5. As you have already seen the Query Store in on by default. Let's look at **Query Store reports** in SSMS.
 
-In SSMS, expand your database you deployed earlier in this module. Right-click on **Query Store** and select **Top Resource Consuming Queries**. You will see a report showing the top resource consuming queries just like you can in SQL Server.
+    In SSMS, expand your database you deployed earlier in this module. Right-click on **Query Store** and select **Top Resource Consuming Queries**. You will see a report showing the top resource consuming queries just like you can in SQL Server.
 
 ### Create a SQL Agent Job
 
 Like SQL Server, Azure SQL Managed Instance allows you to create and schedule SQL Agent jobs. Let's create a SQL Agent job that runs CHECKDB on the database you created in Exercise 6.2.
 
 1. Use SSMS and expand **SQL Server Agent**. Right-click on Jobs and select New Job.
-1. Fill out the name of the job as "CheckDB" and click Steps on the left-hand side.
-1. Click New and fill out the name of the step as "CheckDB" and select the database you created in Exercise 6.2. Click OK.
-1. Type in the following T-SQL command for the step:
+2. Fill out the name of the job as "CheckDB" and click Steps on the left-hand side.
+3. Click New and fill out the name of the step as "CheckDB" and select the database you created in Exercise 6.2. Click OK.
+4. Type in the following T-SQL command for the step:
 
 ```tsql
 DBCC CHECKDB;
 ```
-1. Click OK to save the step and then OK to save the job.
-1. Right-click on the new job and select Start Job at Step. You will see the job run and complete successfully.
-1. Select Close.
-1. Right-click on the job and View History.
-1. Expand the with the "+" on the Job Summary and click on the Step. Expand the window below and you will see the output of CHECKDB for the database.
+5. Click OK to save the step and then OK to save the job.
+6. Right-click on the new job and select Start Job at Step. You will see the job run and complete successfully.
+7. Select Close.
+8. Right-click on the job and View History.
+9. Expand the with the "+" on the Job Summary and click on the Step. Expand the window below and you will see the output of CHECKDB for the database.
 
-You have now been able to create and run a SQL Agent job that executes DBCC CHECKDB on your database just like you can in SQL Server.
+    You have now been able to create and run a SQL Agent job that executes DBCC CHECKDB on your database just like you can in SQL Server.
 
 ## Exercise 6.4 - Built-in HADR with Azure SQL Managed Instance
 
@@ -197,7 +200,7 @@ Let's explore automatic backups that are created for your database for Azure SQL
     GO
     ```
 
-As you look at the result set, notice the combination of Full, Differential, and log backups. You can also tell by the output that these backups use checksum and compression. Note: Do not rely on the time differences between backups. There is no specific guarantee how often we will take backups but you can read more about the normal backup frequency schedule at https://learn.microsoft.com/azure/azure-sql/managed-instance/automated-backups-overview?view=azuresql#what-are-automated-database-backups
+    As you look at the result set, notice the combination of Full, Differential, and log backups. You can also tell by the output that these backups use checksum and compression. Note: Do not rely on the time differences between backups. There is no specific guarantee how often we will take backups but you can read more about the normal backup frequency schedule at https://learn.microsoft.com/azure/azure-sql/managed-instance/automated-backups-overview?view=azuresql#what-are-automated-database-backups
 
 ### Explore the built-in replicas for Azure SQL Managed instance databases
 
@@ -207,17 +210,18 @@ The Business Critical service tier for Azure SQL Managed Instance comes with a s
 
 There are Dynamic Management views that are unique to Azure SQL Managed Instance that you can use to explore the state of replicas but also you can use one that works in SQL Server.
 
-1. Run the following queries in a query window with SSMS against your Azure SQL Managed Instance:
+Run the following queries in a query window with SSMS against your Azure SQL Managed Instance:
 
-```tsql
-SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
-GO
-SELECT db_name(database_id), * FROM sys.dm_hadr_database_replica_states;
-GO
-SELECT DISTINCT replication_endpoint_url, fabric_replica_role_desc 
-FROM sys.dm_hadr_fabric_replica_states;
-GO
-```
+    ```tsql
+    SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
+    GO
+    SELECT db_name(database_id), * FROM sys.dm_hadr_database_replica_states;
+    GO
+    SELECT DISTINCT replication_endpoint_url, fabric_replica_role_desc 
+    FROM sys.dm_hadr_fabric_replica_states;
+    GO
+    ```
+
 The first query will show you a list of databases that are being replicated including your database and system databases. The result set of the 2nd query shows that there is a single primary replica and four other secondary replicas. The result of the 3rd query is a list of the URL endpoint for each node in the Always On Availability Group and the role of the replica. **Take note of these values** for primary and secondaries as you will use them later in this module.
 
 ### Connect to a read replica
@@ -226,24 +230,25 @@ You get one free read replica to use with the Business Critical service tier. Le
 
 1. Use SSMS to disconnect your current session with your Azure SQL Managed Instance. Perform a new connection in SSMS to your Azure SQL Managed Instance. Use the following documentation page to learn how to connect to a read replica for Azure SQL Managed Instance with SSMS using your Managed Instance host, admin, and password: https://learn.microsoft.com/azure/azure-sql/database/read-scale-out?view=azuresql#connect-to-a-read-only-replica
 
-1. Verify you are connected to a read replica with the following query in SSMS connected to Azure SQL Managed Instance:
+2. Verify you are connected to a read replica with the following query in SSMS connected to Azure SQL Managed Instance:
 
-```tsql
-SELECT DATABASEPROPERTYEX('<your db>', 'Updateability');
-GO
-```
-Your result should be **READ_ONLY**.
+    ```tsql
+    SELECT DATABASEPROPERTYEX('<your db>', 'Updateability');
+    GO
+    ```
 
-1. Let's run the same queries as you did before to see the state of replicas:
+    Your result should be **READ_ONLY**.
 
-```tsql
-SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
-GO
-```
+3. Let's run the same queries as you did before to see the state of replicas:
 
-You can see in this case the is_primary_replica = 0 for all databases indicating you are in the context of a secondary replica.
+    ```tsql
+    SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
+    GO
+    ```
 
-#### Do a manual failover
+    You can see in this case the is_primary_replica = 0 for all databases indicating you are in the context of a secondary replica.
+
+### Do a manual failover
 
 Since Microsoft is managing the replicas for you, you don't have to worry about failover. However, you can do a manual failover if you want to test it out. Let's do that now. You will use the Azure Cloud Shell and the az CLI to perform the failover. And then you will reconnect with SSMS to see you are connected to the new primary replica without having to change your connection string.
 
@@ -254,25 +259,26 @@ You will need the name of the resource group and managed instance name (not the 
 3. The default is the Bash shell which works just fine for us to use Azure CLI.
 4. Run the following command to manually failover your Azure SQL Managed Instance:
 
-```azurecli-interactive
-az sql mi failover -g <resource group> -n <instance name>
-```
-You will see a status or Starting and then Running and then you will be put back to the bash shell prompt. You can close the cloud shell.
+    ```azurecli-interactive
+    az sql mi failover -g <resource group> -n <instance name>
+    ```
+
+    You will see a status or Starting and then Running and then you will be put back to the bash shell prompt. You can close the cloud shell.
 5. Go back to SSMS on your jumpstart VM and try to connect to the Azure SQL Managed Instance. **Important:** Be sure to remove any Additional Properties you had for read only connections. You should be able to connect within less than a minute.
 6. Using SSMS in Object Explorer notice your user database and SQL Server Agent Job you created earlier in this module are still there. 
 7. You can also run the following query to see the state of replicas:
 
-```tsql
-SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
-GO
-SELECT db_name(database_id), * FROM sys.dm_hadr_database_replica_states;
-GO
-SELECT DISTINCT replication_endpoint_url, fabric_replica_role_desc 
-FROM sys.dm_hadr_fabric_replica_states;
-GO
-```
+    ```tsql
+    SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
+    GO
+    SELECT db_name(database_id), * FROM sys.dm_hadr_database_replica_states;
+    GO
+    SELECT DISTINCT replication_endpoint_url, fabric_replica_role_desc 
+    FROM sys.dm_hadr_fabric_replica_states;
+    GO
+    ```
 
-The results should look similar to what you saw earlier except for the last result set notice the replication_endpoint_url for the REPLICA_ROLE_PRIMARY is different indicating you have failed over to a previous secondary.
+    The results should look similar to what you saw earlier except for the last result set notice the replication_endpoint_url for the REPLICA_ROLE_PRIMARY is different indicating you have failed over to a previous secondary.
 8. In the Azure Portal find your Azure SQL Managed Instance and click on Activity log from the left-hand menu. You should see an event that a failover was issued.
 
 ## Bonus Exercise 6.5 - Backup and restore to SQL Server 2022
