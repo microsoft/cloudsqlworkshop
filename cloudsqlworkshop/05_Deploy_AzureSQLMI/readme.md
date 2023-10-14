@@ -1,6 +1,6 @@
 # Exercise 5.1 - Deploying an Azure SQL Managed Instance
 
-This is an exercise to deploy an Azure SQL Managed Instance.
+This is an exercise to deploy an Azure SQL Managed Instance. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources. Exercises in this module are completely independent of previous modules and can be completed on its own.
 
 ## Prerequisites
 
@@ -51,6 +51,8 @@ Use the following Additional settings options for the deployment
 - Use the default time zone of UTC.
 - Use the defaults for Geo-replication
 - Use the defaults for System Maintenance Window.
+
+You do not need to use any Tags.
 
 ## Steps for the exercise
 

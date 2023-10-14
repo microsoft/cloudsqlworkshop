@@ -1,6 +1,6 @@
 # Exercises for Verifying and Optimizing SQL Server on Azure Virtual Machine
 
-This is a pre-production version of exercises to verify your SQL Server deployment based on requirements provided in Module 3. In addition there is a bonus exercise to explore the capabilities of the SQL Server IaaS Agent Extension. There is also an advanced exercise to explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks.
+This is a pre-production version of exercises to verify your SQL Server deployment based on requirements provided in Module 3, therefore you must complete exercises in Module 3 first. In addition there is a bonus exercise to explore the capabilities of the SQL Server IaaS Agent Extension. There is also an advanced exercise to explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ This is a pre-production version of exercises to verify your SQL Server deployme
 
 ## Exercise 4.1 - Verifying the SQL Server on Virtual Machine deployment.
 
-In this exercise you will verify the deployment of SQL Server on Azure Virtual Machine you did in Module 3 of this workshop.
+In this exercise you will verify the deployment of SQL Server on Azure Virtual Machine you did in Module 3 of this workshop. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
 
 ### Scenario
 

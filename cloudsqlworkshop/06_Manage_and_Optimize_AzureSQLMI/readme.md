@@ -1,6 +1,6 @@
 # Exercises for Managing and Optimizing Azure SQL Managed Instance
 
-This is a pre-production version of exercises to manage and optimize Azure SQL Managed Instance.
+This is a pre-production version of exercises to manage and optimize Azure SQL Managed Instance. Exercises in this Module are dependent on exercises in Module 5 but are independent of other modules in this workshop.
 
 ## Prerequisites
 
@@ -49,29 +49,78 @@ In this exercise you will create a new database, create a table, populate it wit
 
 1. Using the following documentation page: https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/resource-limits?view=azuresql#service-tier-characteristics, calculate the **Log write throughput limit** for your deployment.
 
+3. Create a new database, table, and populate data in your Azure SQL Managed Instance. Use the following T-SQL to create the database. This will take about 1 minute to execute:
+
+    ```tsql
+    -- Create a new database
+    --
+    DROP DATABASE IF EXISTS customersdb;
+    GO
+    CREATE DATABASE customersdb;
+    GO
+
+    -- Create a table
+    --
+    USE customersdb;
+    GO
+    DROP TABLE IF EXISTS customers;
+    GO
+    CREATE TABLE customers (tabkey int, customer_id nvarchar(10), customer_information char(100) not null);
+    GO
+
+    -- Populate 1 million rows of data into the table
+    --
+    WITH cte
+    AS
+    (
+    SELECT ROW_NUMBER() OVER(ORDER BY c1.object_id) id FROM sys.columns c1 CROSS JOIN sys.columns c2
+    )
+I   INSERT customers
+    SELECT id, CONVERT(nvarchar(10), id),'customer details' FROM cte;
+    GO
+    ```
+
 2. To observe I/O performance we can use built in Dynamic Management Views (DMV) in SQL Server such as **sys.dm_io_virtual_file_stats**. To assist you in using these DMVs we will use the QPI library set of scripts.
 
-    Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste this into a new query window in the context of the master database. Execute the query to create the QPI library.
-
-3. Create a new database, table, and populate data in your Azure SQL Managed Instance. Use the following T-SQL to create the database:
-
-    TODO: Put in query here
+    Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste all the code into a new query window in the context of the customersdb database. Execute the query to create the QPI library
 
 4. In a new query window load his query to take a snapshot for I/O and wait statistics:
 
-    TODO: Put in query here
+    ```tsql
+    USE customersdb;
+    GO
+    EXEC qpi.snapshot_file_stats
+    GO
+    EXEC qpi.snapshot_wait_stats;
+    GO
+    ```
 
 5. In a new query window execute this query to create a new table from the existing table. This will use DOP to populate the new table and put pressure on transaction log I/O.
 
-    TODO: Put in query here
+    ```tsql
+    USE customersdb;
+    GO
+    DROP TABLE IF EXISTS customers2;
+    GO
+    SELECT * INTO customers2 FROM customers;
+    GO
+    ```
 
 6. In a new query window run the following queries to monitor I/O performance and waits while the SELECT INTO is running.
 
-    TODO Put in query here
+    ```tsql
+    USE customersdb;
+    GO
+    SELECT * FROM qpi.file_stats
+    WHERE file_name = 'log';
+    GO
+    SELECT * FROM qpi.wait_stats;
+    GO
+    ```
 
-7. Run the query in step #5 again after the SELECT INTO has completed. You can see from both executions that I/O throughput is limited to the number of vCores * 4.5MB/sec. In addition you can see some waits on INSTANCE_LOG_RATE_GOVERNOR which shows that the log I/O is being throttled:
+Run this query repeatedly *while the SELECT INTO is executing*. You can see the I/O throughput is limited to the number of vCores * 4.5MB/sec. In addition you can see some waits on INSTANCE_LOG_RATE_GOVERNOR which shows that the log I/O is being throttled. Executing this script after the workload is finished will show lower numbers since no log I/O is occurring.
 
-    This test is a stress test of log I/O and may not represent your normal workload. However, if you are seeing throttling on log I/O you can increase the number of vCores to increase the log I/O throughput. In addition, Microsoft has increased possible log I/O rates for Business Critical service tier. See the following blog post for more information: https://techcommunity.microsoft.com/t5/azure-sql-blog/your-max-log-rate-on-sql-managed-instance-business-critical-is/ba-p/3899817
+This test is a stress test of log I/O and may not represent your normal workload. However, if you are seeing throttling on log I/O you can increase the number of vCores to increase the log I/O throughput. In addition, Microsoft has increased possible log I/O rates for Business Critical service tier. See the following blog post for more information: https://techcommunity.microsoft.com/t5/azure-sql-blog/your-max-log-rate-on-sql-managed-instance-business-critical-is/ba-p/3899817
 
 ## Exercise 6.3 - Look at SQL Server compatibility
 

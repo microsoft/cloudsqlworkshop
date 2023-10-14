@@ -1,6 +1,6 @@
 # Exercise 3.1 - Deploying SQL Server on Azure Virtual Machines
 
-This is a pre-production version for the exercise to deploy SQL Server on Azure Virtual Machine.
+This is a pre-production version for the exercise to deploy SQL Server on Azure Virtual Machine. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
 
 ## Prerequisites
 
@@ -59,6 +59,8 @@ The database, system databases, transaction log, and tempdb must meet the follow
 - Tempdb must be stored on the local SSD drive for Azure VM so you must choose and Azure VM size that supports local SSD storage. Tempdb *could grow to 128Gb* in size so the VM size you choose must support that.
 - Configure the number of tempdb files to match vCores for your chosen VM size. 
 - Use other best practices to make tempdb data and transaction log files an initial size of 8Mb with autogrow set to 64Mb.
+
+You do not need to use any Tags.
 
 ## Steps for the exercise
 
