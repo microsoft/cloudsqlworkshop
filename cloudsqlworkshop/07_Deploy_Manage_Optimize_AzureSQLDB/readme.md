@@ -62,6 +62,8 @@ Use the following Additional settings options for the deployment:
 
 You do not need to use any Tags.
 
+## Exercise 7.1: Deploy an Azure SQL Database
+
 ## Steps for the exercise
 
 1. Use the Azure Portal to deploy a new Azure SQL Managed Instance that meets the requirements of the scenario.
@@ -83,6 +85,10 @@ Perform the following steps after the deployment completes to perform a basic va
 1. On the left-hand menu select **Deployments**.
 1. The deployment name should start with "Microsoft.SQLManagedInstance....". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Managed Instance.
 
-## Next Steps
+## Exercise 7.2 - Configure and explore Azure SQL Database
 
-In Module 6, you will learn how to explore the capabilities of Azure SQL Managed Instance and to learn how to manage and optimize your deployment using your skills and knowledge of SQL Server.
+
+## Exercise 7.3 - Scale Azure SQL Database
+
+
+## Exercise 7.4 - Explore built-in HADR capabilities

@@ -254,8 +254,6 @@ Let's explore automatic backups that are created for your database for Azure SQL
 
 The Business Critical service tier for Azure SQL Managed Instance comes with a set of built-in replicas based on the Always On Availability Group technology. In this part of the exercise, you will explore more about the state of replicas and how to use them.
 
-#### Explore DMVs on replica states
-
 There are Dynamic Management views that are unique to Azure SQL Managed Instance that you can use to explore the state of replicas but also you can use one that works in SQL Server.
 
 Run the following queries in a query window with SSMS against your Azure SQL Managed Instance:
