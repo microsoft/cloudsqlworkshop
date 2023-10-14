@@ -75,7 +75,7 @@ In this exercise you will create a new database, create a table, populate it wit
     (
     SELECT ROW_NUMBER() OVER(ORDER BY c1.object_id) id FROM sys.columns c1 CROSS JOIN sys.columns c2
     )
-I   INSERT customers
+    INSERT customers
     SELECT id, CONVERT(nvarchar(10), id),'customer details' FROM cte;
     GO
     ```
