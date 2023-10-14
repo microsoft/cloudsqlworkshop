@@ -25,7 +25,7 @@ In this exercise, you will use the Azure Portal and Azure Cloud Shell to explore
 1. Scroll down and select **Private endpoint connections**. This is where you would create a private endpoint should it be needed for the security of your deployment.
 1. Scroll down and select **Resource Health**. This is where you can view a history of the health of your deployment including any failover events that have occurred.
 
-###     Use Azure CLI to explore your deployment
+### Use Azure CLI to explore your deployment
 
 Learn how to use Azure CLI to explore your deployment. You can use the Azure Cloud Shell in the Azure Portal. You will need the name of the resource group for your deployment and the instance name (not the full hostname).
 
@@ -101,11 +101,11 @@ Look at common SQL diagnostics you also use for SQL Server.
 
     Notice the results are the same as you might see in SQL Server with a few interesting differences:
 
-    - The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
-    - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Note: Azure SQL Managed Instance can change the default dbcompat in the future.
-    - **Query store** is ON by default for your user database.
-    - Your database is encrypted with **TDE** by default.
-    - **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
+- The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
+- The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Note: Azure SQL Managed Instance can change the default dbcompat in the future.
+- **Query store** is ON by default for your user database.
+- Your database is encrypted with **TDE** by default.
+- **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
 
 2. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
 
@@ -175,7 +175,7 @@ DBCC CHECKDB;
 8. Right-click on the job and View History.
 9. Expand the with the "+" on the Job Summary and click on the Step. Expand the window below and you will see the output of CHECKDB for the database.
 
-    You have now been able to create and run a SQL Agent job that executes DBCC CHECKDB on your database just like you can in SQL Server.
+You have now been able to create and run a SQL Agent job that executes DBCC CHECKDB on your database just like you can in SQL Server.
 
 ## Exercise 6.4 - Built-in HADR with Azure SQL Managed Instance
 
@@ -189,8 +189,7 @@ Let's explore automatic backups that are created for your database for Azure SQL
     1. Notice the Earliest PITR point has a date and time. This is the earliest date and time you can restore your database to.
     1. Click on Restore. Notice you have a screen where you can perform a PITR on a new database. Notice it can even be to a different Managed Instance. Close out this blade
     1. Click on the Retention Policies tab. This is where you can configure the retention policy for your backups. Notice the default is 7 days. You can change this up to 10 years. If you click the database and select Configure Policies you can see how to change the retention.
-1. You can track the history of the automatic backups using the *normal* backup history tables in msdb.
-    1. Connect to SSMS and run the following query:
+1. You can track the history of the automatic backups using the *normal* backup history tables in msdb. Connect to SSMS and run the following query:
     
     ```tsql
     SELECT database_name, case when type = 'D' then 'Full' when type = 'I' then 'Differential' when type = 'L' then 'Log' end,
