@@ -211,15 +211,15 @@ There are Dynamic Management views that are unique to Azure SQL Managed Instance
 
 Run the following queries in a query window with SSMS against your Azure SQL Managed Instance:
 
-    ```tsql
-    SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
-    GO
-    SELECT db_name(database_id), * FROM sys.dm_hadr_database_replica_states;
-    GO
-    SELECT DISTINCT replication_endpoint_url, fabric_replica_role_desc 
-    FROM sys.dm_hadr_fabric_replica_states;
-    GO
-    ```
+```tsql
+SELECT db_name(database_id), * FROM sys.dm_database_replica_states;
+GO
+SELECT db_name(database_id), * FROM sys.dm_hadr_database_replica_states;
+GO
+SELECT DISTINCT replication_endpoint_url, fabric_replica_role_desc 
+FROM sys.dm_hadr_fabric_replica_states;
+GO
+```
 
 The first query will show you a list of databases that are being replicated including your database and system databases. The result set of the 2nd query shows that there is a single primary replica and four other secondary replicas. The result of the 3rd query is a list of the URL endpoint for each node in the Always On Availability Group and the role of the replica. **Take note of these values** for primary and secondaries as you will use them later in this module.
 
