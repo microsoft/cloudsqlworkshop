@@ -4,8 +4,8 @@ This is a pre-production version for exercises to deploy SQL Server on Azure Vir
 
 ## Prerequisites
 
-- You must have an Azure subscription with the ability to create Azure Virtual Machines. You must have the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor.
-- You must have permissions to a SQL Server on Azure Virtual Machine from the Azure Marketplace.
+- You must have an Azure subscription with the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor on a provided subscription.
+- You must have permissions to deploy a SQL Server on Azure Virtual Machine from the Azure Marketplace.
 - You will need a client computer that can use the Remote Desktop Protocol(RDP)
 - You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
 
@@ -17,7 +17,7 @@ You must meet the following requirements:
 
 ### Software and Virtual Machine requirements
 
-- Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Server.
+- Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Serve including any free edition.
 - The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. You must deploy the virtual machine using the Azure Portal. For the purposes of this exercise, use VM sizes with Intel processors.
 - The Virtual Machine has these other requirements:
     - Create a new resource group of the name of your choosing.
@@ -52,17 +52,19 @@ The database, system databases, transaction log, and tempdb must meet the follow
 **Requirements for the transaction log**
 
 - Must be stored on a separate disk from database files, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
-- The transaction log requires **128Gb** storage, **500** IOPS, and **100Mb** max throughput.
+- The transaction log requires **128Gb** storage, **500 IOPS**, and **100Mb** max throughput.
 
 **Requirements for tempdb**
 
-- Tempdb must be stored on the local SSD drive for Azure VM so you must choose and Azure VM size that supports local SSD storage. Tempdb *could grow to 128Gb* in size so the VM size you choose must support that.
+- Tempdb must be stored on the local SSD drive for Azure VM so you must choose an Azure VM size that supports local SSD storage. Tempdb *could grow to 128Gb* in size so the VM size you choose must support that.
 - Configure the number of tempdb files to match vCores for your chosen VM size. 
 - Use other best practices to make tempdb data and transaction log files an initial size of 8Mb with autogrow set to 64Mb.
 
 You do not need to use any Tags.
 
 ## Exercise 3.2 - Deploy the Virtual Machine
+
+In this exercise, you will go through the process of deploying SQL Server on an Azure Virtual Machine using the Azure Portal.
 
 1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above.
 
@@ -78,17 +80,17 @@ You do not need to use any Tags.
 
 2. Use the **SQL Server settings** blade to configure SQL Server instance settings and storage requirements per the requirements. Use the defaults for Security and Networking section.
 
-1. Use the *Change configuration* link to use the Storage configuration assistant. Make choices based on the requirements for the scenario. Take your time and carefully review all options.
+    1. Use the *Change configuration* link to use the Storage configuration assistant. Make choices based on the requirements for the scenario. Take your time and carefully review all options.
 
     **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. Look for any warnings on the Configure Storage screen. Go directly back to the Basics tab to change the VM size if necessary.
 
-    The portal alone may not show you all the information you need so you may need to consult this documentation page: https://learn.microsoft.com/azure/virtual-machines/ebdsv5-ebsv5-series, https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. Use the **Max uncached Premium SSD disk throughput: IOPS/MBps column** to help you choose the right VM size. You may also need to consult this documentation page: https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd.
+    The portal alone may not show you all the information you need so you may need to consult these documentation pages: https://learn.microsoft.com/azure/virtual-machines/ebdsv5-ebsv5-series and https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. Use the **Max uncached Premium SSD disk throughput: IOPS/MBps column** to help you choose the right VM size. You may also need to consult this documentation page: https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd.
 
-1. Click on the *Change SQL instance settings* to change SQL Server instance settings per the requirements.
+    1. Click on the *Change SQL instance settings* to change SQL Server instance settings per the requirements.
 
-1. Leave all other settings to their defaults.
+    1. Leave all other settings to their defaults.
 
-1. When you are ready, click on **Review + Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (mileage can vary).
+1. When you are ready, click on **Review + Create** and then **Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (mileage can vary).
 
 ### Answers for the exercises
 
@@ -106,8 +108,8 @@ Storage is usually what will be most difficult to configure. Consider the follow
 - If you first start with a 512Gb disk you will see that the IOPS and throughput are not enough. You will need to choose a larger disk size. But when you go to 1TB you will see the IOPS and throughput are enough but you will see warnings about the VM size capping IOPS and throughput.
 - Change the transaction log to 128Gb. The IOPS and throughput are enough for that disk.
 - The warning still exists for the VM size but not for IOPS anymore but for throughput. We need a VM size that supports our throughput requirements for both disks.
-- So you need to cancel out of this and go back and choose a different VM size. **Note:**If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required.
-- Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. Our choices now become. So the **E4bds_v5** becomes a new choice that meets all of our requirements but is still cost effective. Change to this VM size then go back to the storage configuration assistant. You will see that there are no more warnings. You now have the storage performance you need for the workload
+- So you need to cancel out of this and go back and choose a different VM size. **Note:** If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required.
+- Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. So the **E4bds_v5** becomes a new choice that meets all of our requirements but is still cost effective. Change to this VM size then go back to the storage configuration assistant. You will see that there are no more warnings. You now have the storage performance you need for the workload
 
 ## Exercise 3.3 - Post deployment steps
 
@@ -129,7 +131,11 @@ Learn how to look at more details on your deployment of the virtual machine usin
 Use the following steps to connect to the VM with RDP and prepare for the next module.
 
 1. Use Remote Desktop to connect into the Virtual Machine.
-1. Copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
+    1. In the Azure Portal for your virtual machine select **Connect** from the left-hand menu.
+    1. Under Native RDP click on **Select**.
+    1. Scroll down to Download and open the RDP file and click on Download RDP file.
+    1. Select the RDP file to open it and click on **Connect**.
+1. Inside the virtual machine, copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
 1. Copy the **restore_tpch.sql** script from this folder into the f:\data folder.
 1. Load the **restore_tpch.sql** script into SSMS to restore the database. Should only take about 10-15 seconds to restore.
 
