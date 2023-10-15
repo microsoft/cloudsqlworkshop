@@ -64,16 +64,16 @@ You do not need to use any Tags.
 
 ## Exercise 7.1: Deploy an Azure SQL Database
 
-## Steps for the exercise
+### Deployment Steps
 
 1. Use the Azure Portal to deploy a new Azure SQL Managed Instance that meets the requirements of the scenario.
 1. After the deployment completes take note in the Azure Portal of the Managed Instance hostname.
 
-## Post deployment steps
+### Post deployment steps
 
 Perform the following steps after the deployment completes to perform a basic validation of the deployment by connecting to the Azure SQL Managed Instance. You will also examine in the Deployments for the resource group the duration of the Managed Instance deployment.
 
-### Connect to the Azure SQL Managed Instance
+### Connect to the Azure SQL Database
 
 1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. A recommended method is to use this QuickStart guide at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure.
 1. Use Remote Desktop to connect into the Virtual Machine.
