@@ -4,7 +4,7 @@ This is a pre-production version of exercises to verify your SQL Server deployme
 
 ## Prerequisites
 
-- You must have completed Exercise 3.1 to deploy a SQL Server on Azure Virtual Machine.
+- You must have completed exercises in Module 3 to deploy a SQL Server on Azure Virtual Machine.
 - You will need a client computer that can use the Remote Desktop Protocol(RDP)
 - You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
 
@@ -47,7 +47,7 @@ You will use a combination of Windows perfmon and a workload script and query to
     - **Logical Disk F: Disk Bytes/Sec**: This is your measure for I/O throughput.
     - **Logical Disk F: Disk Transfer/Sec**: This is your measure for IOPS.
 
-2. Run **workload.cmd** from a Powershell prompt from the cloudsqlworkshop folder to run the workload which will take about a minute.
+2. Run **workload.cmd** from a Powershell prompt from the cloudsqlworkshop\optimizevm folder to run the workload which will take about a minute.
 3. During the workload run observe the values for the perfmon counters. Verify this meets the requirements for storage performance.
 
 ### Answers for the exercise
@@ -68,7 +68,7 @@ When you run the workload test to **verify I/O performance**, you should see Dis
 
 Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Extension. You can find the documentation at https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-vm-resource-provider-overview.
 
-1. Find your virtual machine in the Azure Portal as a SQL Server Virtual Machine by searching in the top of the Azure Portal for "SQL Virtual Machines". Select SQL Virtual Machines from the list of Services.
+1. Find your virtual machine in the Azure Portal (https://portal.azure.com) as a SQL Server Virtual Machine by searching in the top of the Azure Portal for "SQL Virtual Machines". Select SQL Virtual Machines from the list of Services.
 2. Select your virtual machine from the list of SQL Server Virtual Machines.
 3. Look at the properties in the main pane including SQL Server version, and edition.
 4. On the left hand menu, select **Configure**

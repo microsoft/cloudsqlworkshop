@@ -66,7 +66,7 @@ You do not need to use any Tags.
 
 In this exercise, you will go through the process of deploying SQL Server on an Azure Virtual Machine using the Azure Portal.
 
-1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above.
+1. Use the Azure Portal (https://portal.azure.com) to deploy a new Azure Virtual Machine that meets the requirements above.
 
 2. To help you get started in the Azure Portal type in Azure SQL in the search box and choose **Azure SQL** and then choose **Azure SQL** from the Marketplace section.
 

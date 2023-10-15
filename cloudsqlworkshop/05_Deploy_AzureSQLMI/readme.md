@@ -57,7 +57,7 @@ You do not need to use any Tags.
 
 ## Exercise 5.2 - Deploy the Azure SQL Managed Instance
 
-1. Use the Azure Portal to deploy a new Azure SQL Managed Instance that meets the requirements of the scenario.
+1. Use the Azure Portal (https://portal.azure.com) to deploy a new Azure SQL Managed Instance that meets the requirements of the scenario.
 1. After the deployment completes take note in the Azure Portal of the Managed Instance hostname.
 
 ## Exercise 5.3 - Post deployment steps
@@ -68,9 +68,7 @@ Perform the following steps after the deployment completes to perform a basic va
 
 Connect to the Azure SQL Managed instance using a client and SQL tools.
 
-1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. A recommended method is to use this QuickStart guide at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure. Instructor led labs may use the VM deployed in Exercise 3.1.
-1. Use Remote Desktop to connect into the Virtual Machine. If you already have an RDP file downloaded for the virtual machine you can use that. Otherwise use the following steps:
-    1. Use Remote Desktop to connect into the Virtual Machine.
+1. Use Remote Desktop to connect into the *jumpbox* Virtual Machine. If you already have an RDP file downloaded for the virtual machine you can use that. Otherwise use the following steps:
     1. In the Azure Portal for your virtual machine select **Connect** from the left-hand menu.
     1. Under Native RDP click on **Select**.
     1. Scroll down to Download and open the RDP file and click on Download RDP file.

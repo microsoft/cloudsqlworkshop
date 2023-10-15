@@ -4,14 +4,12 @@ This is a pre-production version of exercises to manage and optimize Azure SQL M
 
 ## Prerequisites
 
-- You must have completed Exercise 5.1 to deploy an Azure SQL Managed Instance.
-- You will need a client computer that can use the Remote Desktop Protocol(RDP) and web browser to use the Azure Portal. Any client computer of any Operating System can be used provided it can use RDP.
-- You will use RDP to connect into the *jumpbox* virtual machine in Azure you deployed in Exercise 5.1.
-- You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
+- You must have completed Exercises in Module 5 to deploy an Azure SQL Managed Instance.
+- You will use RDP to connect into the *jumpbox* virtual machine in Azure you deployed in Module 5.
 
 ## Exercise 6.1 - Explore the Azure SQL Managed Instance deployment
 
-In this exercise, you will use the Azure Portal and Azure Cloud Shell to explore various aspects of the Azure SQL Managed Instance deployment.
+In this exercise, you will use the Azure Portal (https://portal.azure.com) and Azure Cloud Shell to explore various aspects of the Azure SQL Managed Instance deployment.
 
 ### Explore your deployment in the Azure Portal
 
