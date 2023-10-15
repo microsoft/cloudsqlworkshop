@@ -4,11 +4,12 @@ These are exercises to deploy an Azure SQL Managed Instance. These exercises are
 
 ## Prerequisites
 
-**Important Note:** Some instructor led labs may already have deployed an Azure SQL Managed Instance for you to use which meets all the requirements in this Exercise. IIn addition, some instructor led labs will use the Azure VM from Exercise 3.1 as the *jumpbox* virtual machine as listed in these prerequisites. If so, you can skip the deployment steps and go to the Post deployment steps. 
+**Important Note:** Some instructor led labs may already have deployed an Azure SQL Managed Instance for you to use which meets all the requirements in this Exercise. In addition, some instructor led labs will use the Azure VM from Exercise 3.1 as the *jumpbox* virtual machine as listed in these prerequisites. If this is the case, read through Exercise 5.1 but you can skip 5.2 and go right to Exercise 5.3. 
 
 - You must have an Azure subscription with the ability to create an Azure SQL Managed Instance. You must have the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor as the Azure SQL Managed Instance might be pre-deployed.
 - The Azure SQL Managed Instance will use the Business Critical service tier Standard-series Hardware generation with 4 vCores and 256GB of storage.
 - You will need to have access to a virtual machine that can connect to the Azure SQL Managed Instance without a public endpoint. The most common method is to create a *jumpbox* virtual machine in the same virtual network (but different subnet) as the Azure SQL Managed Instance. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure.
+
     - The virtual machine must have SQL Server 2022 Developer Edition installed.
     - The virtual machine must have SQL Server Management Studio installed (https://aka.ms/ssms). Use version 19.X or later.
     - The virtual machine should have 4 vCores. A VM size such as **D4ds_v5** is recommended.<br><br>
@@ -65,9 +66,16 @@ Perform the following steps after the deployment completes to perform a basic va
 
 ### Connect to the Azure SQL Managed Instance
 
-1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. A recommended method is to use this QuickStart guide at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure.
-1. Use Remote Desktop to connect into the Virtual Machine.
-1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment. Tip: In the top right hand search edit box type in **PresentOn** to increase fonts and make it easier to see.
+Connect to the Azure SQL Managed instance using a client and SQL tools.
+
+1. Deploy a *jumpbox* virtual machine in the same virtual network as the Azure SQL Managed Instance. A recommended method is to use this QuickStart guide at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure. Instructor led labs may use the VM deployed in Exercise 3.1.
+1. Use Remote Desktop to connect into the Virtual Machine. If you already have an RDP file downloaded for the virtual machine you can use that. Otherwise use the following steps:
+    1. Use Remote Desktop to connect into the Virtual Machine.
+    1. In the Azure Portal for your virtual machine select **Connect** from the left-hand menu.
+    1. Under Native RDP click on **Select**.
+    1. Scroll down to Download and open the RDP file and click on Download RDP file.
+    1. Select the RDP file to open it and click on **Connect**.
+1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment. **Tip:**  In the top right hand search edit box in SSMS, type in **PresentOn** to increase fonts and make it easier to see.
 
 ### View the deployment duration
 
@@ -77,4 +85,4 @@ Perform the following steps after the deployment completes to perform a basic va
 
 ## Next Steps
 
-In Module 6, you will learn how to explore the capabilities of Azure SQL Managed Instance and to learn how to manage and optimize your deployment using your skills and knowledge of SQL Server.
+In Module 6, you will learn how to explore the capabilities of Azure SQL Managed Instance and to learn how to manage and optimize your deployment using your skills and knowledge of SQL Server while learning new skills with Azure SQL Managed Instance.
