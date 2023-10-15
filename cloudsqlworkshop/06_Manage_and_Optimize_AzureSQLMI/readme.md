@@ -221,9 +221,10 @@ Like SQL Server, Azure SQL Managed Instance allows you to create and schedule SQ
 3. Click New and fill out the name of the step as "CheckDB" and select the database you created in Exercise 6.2. Click OK.
 4. Type in the following T-SQL command for the step:
 
-```tsql
-DBCC CHECKDB;
-```
+    ```tsql
+    DBCC CHECKDB;
+    ```
+
 5. Click OK to save the step and then OK to save the job.
 6. Right-click on the new job and select Start Job at Step. You will see the job run and complete successfully.
 7. Select Close.
