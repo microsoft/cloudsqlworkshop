@@ -21,20 +21,20 @@ You have a requirement to verify the deployment of SQL Server on Azure Virtual M
 
 You will use a stress test workload to verify the I/O performance of the storage system. This workload is based on a TPC-H benchmark SQL query and executed using the ostress program to simulate multiple concurrent users running the query repeatedly.
 
-#### Setup
+### Setup
 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI.
 - Create a folder called **cloudsqlworkshop** on the c: drive. Inside the folder create another folder called **optimizevm**.
 - Copy the **workload.cmd** and **tpch_query3.sql** files from the GitHub clone or download to the cloudsqlworkshop\optimizevm folder.
 
-#### Verify SQL Server instance settings
+### Verify SQL Server instance settings
 
 1. Use SQL system procedures and/or catalog views to verify MAXDOP, Instant File Initialization, and Locked Pages in Memory are set correctly.
 2. Use SSMS or catalog views to verify tempdb is configured correctly per the requirements.
 
 Use any web searches, documentation, or other resources to help you complete this step.
 
-#### Check I/O performance
+### Check I/O performance
 
 You will use a combination of Windows perfmon and a workload script and query to verify the I/O performance requirements for database files. As a reminder the requirement is
 
