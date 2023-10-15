@@ -24,8 +24,8 @@ You will use a stress test workload to verify the I/O performance of the storage
 ### Setup
 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI.
-- Create a folder called **cloudsqlworkshop** on the c: drive.
-- Copy the **workload.cmd** and **tpch_query3.sql** files from the GitHub clone or download to the cloudsqlworkshop folder.
+- Create a folder called **cloudsqlworkshop** on the c: drive. Inside the folder create another called **optimizevm**.
+- Copy the **workload.cmd** and **tpch_query3.sql** files from the GitHub clone or download to the cloudsqlworkshop\optimizevm folder.
 
 ### Steps for the exercise
 
