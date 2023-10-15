@@ -148,12 +148,12 @@ Look at common SQL diagnostics you also use for SQL Server.
 
     Notice the results are the same as you might see in SQL Server with a few interesting differences:
 
-- The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
-- The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Note: Azure SQL Managed Instance can change the default dbcompat in the future.
-- **Query store** is ON by default for your user database.
-- Your database is encrypted with **TDE** by default.
-- **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
-
+    - The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
+    - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Note: Azure SQL Managed Instance can change the default dbcompat in the future.
+    - **Query store** is ON by default for your user database.
+    - Your database is encrypted with **TDE** by default.
+    - **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
+    
 2. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
 
     ```tsql
@@ -306,7 +306,7 @@ Since Microsoft is managing the replicas for you, you don't have to worry about 
 
 You will need the name of the resource group and managed instance name (not the full hostname) for this exercise. You can get this information from the Azure Portal. You this documentation page for reference: https://learn.microsoft.com/azure/azure-sql/managed-instance/user-initiated-failover.
 
-1. Disconnect any connections in SSMS on your jumpstart VM to your Azure SQL Managed Instance.
+1. Disconnect any connections in SSMS on your *jumpstart* VM to your Azure SQL Managed Instance.
 2. Open the Azure Cloud Shell in the Azure Portal (refer to this documentation page for a quick start: https://learn.microsoft.com/azure/cloud-shell/quickstart?tabs=azurecli#start-cloud-shell). You can use the search bar at the top of the Azure Portal to search for "Cloud Shell" or you can find it in the top right-hand corner of the Azure Portal.
 3. The default is the Bash shell which works just fine for us to use Azure CLI.
 4. Run the following command to manually failover your Azure SQL Managed Instance:
@@ -316,7 +316,7 @@ You will need the name of the resource group and managed instance name (not the 
     ```
 
     You will see a status or Starting and then Running and then you will be put back to the bash shell prompt. You can close the cloud shell.
-5. Go back to SSMS on your jumpstart VM and try to connect to the Azure SQL Managed Instance. **Important:** Be sure to remove any Additional Properties you had for read only connections. You should be able to connect within less than a minute.
+5. Go back to SSMS on your *jumpstart* VM and try to connect to the Azure SQL Managed Instance. **Important:** Be sure to remove any Additional Properties you had for read only connections. You should be able to connect within less than a minute.
 6. Using SSMS in Object Explorer notice your user database and SQL Server Agent Job you created earlier in this module are still there. 
 7. You can also run the following query to see the state of replicas:
 
@@ -333,6 +333,6 @@ You will need the name of the resource group and managed instance name (not the 
     The results should look similar to what you saw earlier except for the last result set notice the replication_endpoint_url for the REPLICA_ROLE_PRIMARY is different indicating you have failed over to a previous secondary.
 8. In the Azure Portal find your Azure SQL Managed Instance and click on Activity log from the left-hand menu. You should see an event that a failover was issued.
 
-## Bonus Exercise 6.5 - Backup and restore to SQL Server 2022
+## Exercise 6.5 - Backup and restore to SQL Server 2022
 
 *Coming soon!*
