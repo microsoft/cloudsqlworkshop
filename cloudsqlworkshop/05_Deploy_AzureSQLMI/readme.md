@@ -57,8 +57,8 @@ You do not need to use any Tags.
 
 ## Exercise 5.2 - Deploy the Azure SQL Managed Instance
 
-1. Use the Azure Portal (https://portal.azure.com) to deploy a new Azure SQL Managed Instance that meets the requirements of the scenario.
-1. After the deployment completes take note in the Azure Portal of the Managed Instance hostname.
+1. Use the Azure Portal (https://portal.azure.com) to deploy a new Azure SQL Managed Instance that meets the requirements of the scenario. Consult the quick start guide for a walkthrough at https://learn.microsoft.com/azure/azure-sql/managed-instance/instance-create-quickstart.
+1. After the deployment completes take note in the Azure Portal of the Managed Instance **hostname**. Be sure to save your admin and password you used.
 
 ## Exercise 5.3 - Post deployment steps
 
