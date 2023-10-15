@@ -137,7 +137,7 @@ Use the following steps to connect to the VM with RDP and prepare for the next m
     1. Select the RDP file to open it and click on **Connect**.
 1. Inside the virtual machine, copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
 1. Copy the **restore_tpch.sql** script from this folder into the f:\data folder.
-1. Load the **restore_tpch.sql** script into SSMS to restore the database. Should only take about 10-15 seconds to restore.
+1. Load the **restore_tpch.sql** script into SSMS (which will be installed in your VM as part of the marketplace image) to restore the database. Should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
 
 ## Next Steps
 
