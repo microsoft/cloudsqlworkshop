@@ -1,6 +1,6 @@
-# Exercise 3.1 - Deploying SQL Server on Azure Virtual Machines
+# Exercises to Deploy SQL Server on Azure Virtual Machines
 
-This is a pre-production version for the exercise to deploy SQL Server on Azure Virtual Machine. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
+This is a pre-production version for exercises to deploy SQL Server on Azure Virtual Machine. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ This is a pre-production version for the exercise to deploy SQL Server on Azure 
 - You will need a client computer that can use the Remote Desktop Protocol(RDP)
 - You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
 
-## Scenario
+## Exercise 3.1 - Study the scenario and requirements
 
 You have a requirement to deploy a new SQL Server on Azure Virtual Machine to migrate a SQL Server database to perform a proof of concept (PoC) test. You are trying to save costs so you want to use deployment options that meet the requirements of your PoC with the *minimal costs possible*. You also need to try and minimize the amount of time it takes to deploy the solution so try to configure as many requirements during deployment.
 
@@ -62,7 +62,7 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 You do not need to use any Tags.
 
-## Steps for the exercise
+## Exercise 3.2 - Deploy the Virtual Machine
 
 1. Use the Azure Portal to deploy a new Azure Virtual Machine that meets the requirements above.
 
@@ -90,16 +90,16 @@ You do not need to use any Tags.
 
 1. When you are ready, click on **Review + Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (mileage can vary).
 
-## Answers for the exercise
+### Answers for the exercises
 
 The requirements and steps should give you enough information to complete the exercise but choosing the right storage and VM size to meet the requirements can be tricky. Here are some answers to help you should you get stuck or want to verify your work.
 
-### Savings costs
+#### Savings costs
 
 - Choose SQL Server Developer Edition to save on licensing costs.
 - On the Basics tab choose to use an existing Windows license.
 
-### Storage configuration
+#### Storage configuration
 
 Storage is usually what will be most difficult to configure. Consider the following answers to help you if you get stuck or want to verify your work.
 
@@ -109,7 +109,7 @@ Storage is usually what will be most difficult to configure. Consider the follow
 - So you need to cancel out of this and go back and choose a different VM size. **Note:**If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required.
 - Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. Our choices now become. So the **E4bds_v5** becomes a new choice that meets all of our requirements but is still cost effective. Change to this VM size then go back to the storage configuration assistant. You will see that there are no more warnings. You now have the storage performance you need for the workload
 
-## Post deployment steps
+## Exercise 3.3 - Post deployment steps
 
 After your virtual machine is deployed, let's first look at Azure Resource Manager deployment details, make sure we can connect to the VM, and then prepare for the next module.
 
