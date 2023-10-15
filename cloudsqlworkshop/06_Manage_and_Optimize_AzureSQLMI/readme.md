@@ -206,6 +206,14 @@ Look at common SQL diagnostics you also use for SQL Server.
 
     In SSMS, expand your database you deployed earlier in this module. Right-click on **Query Store** and select **Top Resource Consuming Queries**. You will see a report showing the top resource consuming queries just like you can in SQL Server.
 
+6. Run the following query from SSMS:
+
+    ```tsql
+    EXEC sp_readerrorlog;
+    ```
+
+    You can read the SQL Server ERRORLOG just like SQL Server. Note: there are many events are may not be relevant to you and are events logged as part of managing the service.
+
 ### Create a SQL Agent Job
 
 Like SQL Server, Azure SQL Managed Instance allows you to create and schedule SQL Agent jobs. Let's create a SQL Agent job that runs CHECKDB on the database you created in Exercise 6.2.
@@ -329,4 +337,4 @@ You will need the name of the resource group and managed instance name (not the 
 
 ## Bonus Exercise 6.5 - Backup and restore to SQL Server 2022
 
-UNDER CONSTRUCTION
+*Coming soon!*

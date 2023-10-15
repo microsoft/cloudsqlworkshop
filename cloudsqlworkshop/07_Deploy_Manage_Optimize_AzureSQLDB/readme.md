@@ -7,6 +7,7 @@ This is a set of exercises to deploy, manage, and optimize an Azure SQL Database
 - You must have an Azure subscription with the ability to create an Azure SQL Database using the General Purpose Service Tier. You must have the ability to create an Azure SQL Database in the Azure region of your choice.
 - You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
 - You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
+- In your client computer you will **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** which you will also use in this module.
 
 **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
 
@@ -85,8 +86,49 @@ Perform the following steps after the deployment completes to perform a basic va
 1. On the left-hand menu select **Deployments**.
 1. The deployment name should start with "Microsoft.SQLDatabase.newDatabaseNewServer...". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Logical Server and Database. You can click on the deployment name to see more details about the deployment.
 
-## Exercise 7.2 - Configure and explore Azure SQL Database
+## Exercise 7.2 - Explore and connect to Azure SQL Database
 
+In this exercise you will explore your Azure SQL Database deployment and perform some basic configuration.
+
+### Explore Azure SQL Database in the Azure Portal
+
+1. Look at the **Essentials** pane In the Azure Portal for you database you can see various properties under Essentials including your resource group, Status, Region (Location), and Subscription. One of the most important properties if Server name. This is the name of the logical server that hosts your database. This is the name of the SQL Server you will use to connect with tools like Azure Data Studio or SSMS. You can also see the Earliest restore point for the database based on automatic backups.
+1. Under Essentials you can see options for Getting Started, Monitoring, Properties, Features, Notifications, Integrations, and Tutorials. A very rich set of options for your database.
+1. On the left-hand menu, there is an option to open up a **Query Editor **to run queries from the Azure Portal. While you won't use the editor in this module you can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/database/query-editor.
+1. Under this on the left-hand menu, under **Settings** there are options to change Compute + Storage, view Connection Strings for applications, and change the default Maintenance Window.
+1. Scrolling down on the left-hand menu is the section on **Security**. Here from the Azure Portal you can configure various options to configure Security. Click on **Auditing**. From here you can enable Azure SQL Auditing which is based on SQL Server Audit. You can learn about how to configure other security features for Azure SQL Database at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#enable-security-features.
+
+### Connect to Azure SQL Database
+
+In this section, you will connect Azure SQL Database and explore more about your deployment of the logical server and database.
+
+1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connection from a client computer not inside Azure, you can create a server- level firewall rule as documented at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
+1. Connect on your client computer using SSMS with the Server Name as listed in the Azure Portal for the database, SQL admin, and password.
+1. Notice Object Explorer differences
+    1. Right-click on logical server and notice no options to configure or even properties
+    1. Notice only master listed as system database
+    1. No other instance features are listed and explain.
+1. Right-click on Logical Server and select New Query.
+1. SELECT @@VERSION and explain
+1. Try USE <db> and explain why it fails.
+
+### Use Azure Data Studio with Azure SQL Database
+
+1. Connect
+1. Run DMV and catalog view queries
+    1. sys.databases
+    1. DMV basics - Comment that this will be different for each database in the logical server
+    1. New DMVs - sys.event_log
+    1. sp_configure - Fails
+1. Use Profiler
+
+### Configure and connect with Microsoft Entra
+
+1. Use Azure Portal to add a Microsoft Entry admin.
+1. Connect to SSMS with the Entry admin
+1. Add another Entry account a user of the database
+1. Disconnect in SSMS and try the new Entry login.
+1. Notice you are only in the context of the db. You can't see the logical server or other databases.
 
 ## Exercise 7.3 - Scale Azure SQL Database
 
@@ -97,6 +139,5 @@ You might have already performed some of these steps if you completed Module 04 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI.
 - Create a folder called **cloudsqlworkshop** on the c: drive. Inside this folder create another one called **scaleazuresqldb**
 - Copy the **workload.cmd** and **xXXXXXX** files from the GitHub clone or download to the cloudsqlworkshop\scaleazuresqldb folder.
-
 
 ## Exercise 7.4 - Explore built-in HADR capabilities
