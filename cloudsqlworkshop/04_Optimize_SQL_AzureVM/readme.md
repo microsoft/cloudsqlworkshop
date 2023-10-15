@@ -66,7 +66,7 @@ When you run the workload test to **verify I/O performance**, you should see Dis
 
 ## Exercise 4.2 - Explore the SQL IaaS Agent Extension
 
-In the bonus exercise if you have time, use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Extension. You can find the documentation at https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-vm-resource-provider-overview.
+Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Extension. You can find the documentation at https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-vm-resource-provider-overview.
 
 1. Find your virtual machine in the Azure Portal as a SQL Server Virtual Machine by searching in the top of the Azure Portal for "SQL Virtual Machines". Select SQL Virtual Machines from the list of Services.
 2. Select your virtual machine from the list of SQL Server Virtual Machines.
