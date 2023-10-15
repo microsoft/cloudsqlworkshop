@@ -4,7 +4,7 @@ This is a pre-production version of exercises to manage and optimize Azure SQL M
 
 ## Prerequisites
 
-- You must have completed Exercises in Module 5 to deploy an Azure SQL Managed Instance.
+- You must have completed exercises in Module 5 to deploy an Azure SQL Managed Instance.
 - You will use RDP to connect into the *jumpbox* virtual machine in Azure you deployed in Module 5.
 
 ## Exercise 6.1 - Explore the Azure SQL Managed Instance deployment
@@ -27,7 +27,7 @@ In this exercise, you will use the Azure Portal (https://portal.azure.com) and A
 
 Learn how to use Azure CLI to explore your deployment. You can use the Azure Cloud Shell in the Azure Portal. You will need the name of the resource group for your deployment and the instance name (not the full hostname).
 
-1. Open the Azure Cloud Shell in the Azure Portal (refer to this documentation page for a quick start: https://learn.microsoft.com/azure/cloud-shell/quickstart?tabs=azurecli#start-cloud-shell). You can use the search bar at the top of the Azure Portal to search for "Cloud Shell" or you can find it in the top right-hand corner of the Azure Portal.
+1. Open the Azure Cloud Shell in the Azure Portal (https://portal.azure.com) (refer to this documentation page for a quick start: https://learn.microsoft.com/azure/cloud-shell/quickstart?tabs=azurecli#start-cloud-shell). **Tip:** The website https://shell.azure.com is a shortcut just to the cloud shell. You can use the search bar at the top of the Azure Portal to search for "Cloud Shell" or you can find it in the top right-hand corner of the Azure Portal.
 2. The default is the Bash shell which works just fine for us to use Azure CLI.
 3. Run the following command to see what is possible for az CLI for Managed Instances:
 
@@ -47,7 +47,7 @@ In this exercise you will create a new database, create a table, populate it wit
 
 1. Using the following documentation page: https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/resource-limits?view=azuresql#service-tier-characteristics, calculate the **Log write throughput limit** for your deployment.
 
-3. Create a new database, table, and populate data in your Azure SQL Managed Instance. Use the following T-SQL to create the database. This will take about 1 minute to execute:
+2. Create a new database, table, and populate data in your Azure SQL Managed Instance. Use the following T-SQL to create the database. This will take about 1 minute to execute:
 
     ```tsql
     -- Create a new database
@@ -78,7 +78,7 @@ In this exercise you will create a new database, create a table, populate it wit
     GO
     ```
 
-2. To observe I/O performance we can use built in Dynamic Management Views (DMV) in SQL Server such as **sys.dm_io_virtual_file_stats**. To assist you in using these DMVs we will use the QPI library set of scripts.
+3. To observe I/O performance we can use built in Dynamic Management Views (DMV) in SQL Server such as **sys.dm_io_virtual_file_stats**. To assist you in using these DMVs we will use the QPI library set of scripts.
 
     Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste all the code into a new query window in the context of the customersdb database. Execute the query to create the QPI library
 
