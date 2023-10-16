@@ -1,4 +1,4 @@
-# Exercises to Deploy, Manage, and Optimize Azure SQL Database
+# UNDER CONSTRUCTION: Exercises to Deploy, Manage, and Optimize Azure SQL Database
 
 This is a set of exercises to deploy, manage, and optimize an Azure SQL Database. The exercises are designed to be completed in order as each exercise builds on the previous exercise. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources. This Module is completely independent of previous modules and can be completed on its own.
 
@@ -102,19 +102,64 @@ In this exercise you will explore your Azure SQL Database deployment and perform
 
 In this section, you will connect Azure SQL Database and explore more about your deployment of the logical server and database.
 
-1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connection from a client computer not inside Azure, you can create a server- level firewall rule as documented at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
+1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connection from a client computer not inside Azure, you can create a server-level firewall rule as documented at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
 1. Connect on your client computer using SSMS with the Server Name as listed in the Azure Portal for the database, SQL admin, and password.
 1. Notice Object Explorer differences
-    1. Right-click on logical server and notice no options to configure or even properties
-    1. Notice only master listed as system database
-    1. No other instance features are listed and explain.
+    1. Right-click on logical server and notice there no options to configure the logical server or see properties. This is because a Logical Server is not the same as a SQL Server instance. It is a logical construct that hosts one or more databases.
+    1. Notice only master is listed as a system database.
+    1. No other instance features are available in Object Explorer.
 1. Right-click on Logical Server and select New Query.
-1. SELECT @@VERSION and explain
-1. Try USE <db> and explain why it fails.
+1. Execute the following query:
+
+    ```tsql
+    SELECT @@VERSION;
+    ```    
+
+    You should results that look smilar to the following:
+
+    `Microsoft SQL Azure (RTM) - 12.0.2000.8   Sep 18 2023 12:22:37   Copyright (C) 2022 Microsoft Corporation`
+
+    Notice the "edition" is called SQL Azure. This is the name of the edition of Azure SQL Database. The version number is 12.0.2000.8. This version never changes for *versionless* Azure SQL but it doesn't mean that your database doesn't contain all the latest features of SQL Server. The datetime in the version stamp indicates the last time the SQL Server instance for the database was updated.
+
+1. Try executing the following query:
+
+```tsql
+USE <dbname>;
+```
+
+where <dbname> is the name of your Azure SQL Database. You should encounter the following errpr:
+
+`Msg 40508, Level 16, State 1, Line 1
+USE statement is not supported to switch between databases. Use a new connection to connect to a different database.`
+
+This is because there is no way to switch context to your database since it is not physically associated with the logical server. To connect to the database you must make a direction connection in the context of the user database.
+
+You can do this in SSMS in your current connection, by using the drop-down in the upper left-hand corner and selecting your database. When you do this notice in the bottom right-hand corner of SSMS the connection string changes to include the database name.
 
 ### Use Azure Data Studio with Azure SQL Database
 
-1. Connect
+Let's use a tool that may not be as familiar to many called Azure Data Studio to connect to Azure SQL Database.
+
+#### Connect with Azure Data Studio
+
+1. Launch Azure Data Studio. You may get a prompt to update to the latest version. If so, update to the latest version.
+1. To connect, click on the icon Connections on the left-hand menu and then click on **New Connection**.
+1. Fill in the following Connection details:
+    1. Connection type: Microsoft SQL Server
+    1. Input type: Parameters
+    1. Server: The name of your logical server
+    1. Authentication type: SQL Login
+    1. User name: The SQL admin user name
+    1. Password: The SQL admin password. Click Remember password.
+    1. Database: The name of your database
+    1. Encrypt: Mandatory (True)
+    1. Trust Server Certificate: True
+1. Click **Connect**
+
+#### Explore your database with Azure Data Studio
+
+
+
 1. Run DMV and catalog view queries
     1. sys.databases
     1. DMV basics - Comment that this will be different for each database in the logical server
