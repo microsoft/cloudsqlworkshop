@@ -142,17 +142,18 @@ Look at common SQL diagnostics you also use for SQL Server.
 1. Open a new query in SSMS and run the following query in the context of the master database so you can see a common ***catalog view*** you use in SQL Server is supported:
 
     ```tsql
-    SELECT name, database_id, compatibility_level, is_query_store_on, is_encrypted, is_accelerated_database_recovery_on, * FROM sys.databases;
+    SELECT name, database_id, recovery_model_desc, compatibility_level, is_query_store_on, is_encrypted, is_accelerated_database_recovery_on, is_read_committed_snapshot_on FROM sys.databases;
     GO
     ```
 
     Notice the results are the same as you might see in SQL Server with a few interesting differences:
 
     - The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
-    - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Note: Azure SQL Managed Instance can change the default dbcompat in the future.
+    - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Azure SQL Managed Instance supports dbcompat from older SQL Server versions. **Note:** Azure SQL Managed Instance can change the default dbcompat in the future.
     - **Query store** is ON by default for your user database.
     - Your database is encrypted with **TDE** by default.
     - **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
+    - **Read Committed Snapshot Isolation** is ON by default.
     
 2. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
 

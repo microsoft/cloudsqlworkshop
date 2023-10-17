@@ -127,7 +127,7 @@ In this section, you will connect Azure SQL Database and explore more about your
 USE <dbname>;
 ```
 
-where <dbname> is the name of your Azure SQL Database. You should encounter the following errpr:
+where <dbname> is the name of your Azure SQL Database. You should encounter the following error:
 
 `Msg 40508, Level 16, State 1, Line 1
 USE statement is not supported to switch between databases. Use a new connection to connect to a different database.`
@@ -158,24 +158,110 @@ Let's use a tool that may not be as familiar to many called Azure Data Studio to
 
 #### Explore your database with Azure Data Studio
 
+Let's use ADS to explore the database and look at various features to compare and contrast with SQL Server and Azure SQL Managed Instance.
 
+1. Use the Object Explorer interface to browse tables from the sample database AdventureWorksLT.
+2. Right-click on the connection and select **New Query**. Use `<Ctrl>+<+>` to increase the font size.
+3. Execute the following query to view database properties:
 
-1. Run DMV and catalog view queries
-    1. sys.databases
-    1. DMV basics - Comment that this will be different for each database in the logical server
-    1. New DMVs - sys.event_log
-    1. sp_configure - Fails
-1. Use Profiler
+    ```tsql
+    SELECT name, database_id, recovery_model_desc, compatibility_level, is_query_store_on, is_encrypted, is_accelerated_database_recovery_on, is_read_committed_snapshot_on FROM sys.databases;
+    GO
+    ```
+    There are a few things you can observe from the results:
+
+    First you can see that only master from the logical server and your user database are listed. These properties are also set by default for your database.
+
+     - The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
+    - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Azure SQL Database supports dbcompat from older SQL Server versions. **Note:** Azure SQL Database can change the default dbcompat for new databases in the future.
+    - **Query store** is ON by default for your user database.
+    - Your database is encrypted with **TDE** by default.
+    - **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
+    - **Read Committed Snapshot Isolation** is ON by default.
+
+4. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
+
+    ```tsql
+    SELECT * FROM sys.dm_exec_sessions;
+    GO
+    SELECT * FROM sys.dm_exec_requests;
+    GO
+    SELECT * FROM sys.dm_os_wait_stats;
+    GO
+    SELECT * FROM sys.dm_os_schedulers;
+    GO
+    ```
+
+    Since an Azure SQL Database runs on its own instance you can still use common DMVs from SQL Server. Note that each database even if on the same logical server will have its own set of metrics.
+
+5. Now let's see some DMVS that is unique to Azure SQL Database: Run the following query:
+
+    ```tsql
+    SELECT * FROM sys.dm_db_wait_stats;
+    GO
+    SELECT * FROM sys.dm_resource_governor_workload_groups_history_ex;
+    GO
+    ```
+    
+    For the first result set, you will see the are far fewer results because these are waits only from user requests and only wait types with waiting_tasks_count > 0.
+
+    The 2nd DMV can be used to see snapshots of resource usage for the database. You can learn more about this DMV at https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-resource-governor-workload-groups-history-ex-azure-sql-database
+
+6. Let's see another DMV that can be used for troubleshooting connectivity issues with Azure SQL Database. At the top of the query window change the database context in the dropdown back to master. Now execute the following query:
+
+    ```tsql
+    SELECT * FROM sys.event_log ORDER BY start_time DESC;
+    ```
+
+    This DMV shows an aggregation of successful and failed connections to the logical server.
+
+7. Now let's look at a query that does not work with Azure SQL Database due to the nature of the service. Run the following query:
+
+    ```tsql
+    EXEC sp_configure;
+    GO
+    ```
+
+    You should get the following error:
+
+    `Msg 2812, Level 16, State 62, Line 1
+    Could not find stored procedure 'sp_configure'.`
+
+    Even with a logical server, the SQL Server instance is managed by Microsoft and you cannot change instance level settings.
+
+8. Use SQL Profiler with Azure SQL Database
+
+   Use the SQL Server Profile extension of Azure Data Studio to  trace queries against your database. Use the following documentation to learn how to install and use the extension: https://learn.microsoft.com/azure-data-studio/extensions/sql-server-profiler-extension.
+
+    This extension uses Extended Events to help you trace queries. You can learn more about Extended Events at https://docs.microsoft.com/sql/relational-databases/extended-events/extended-events.
+
+    Background events are not shown so you can use Object Explorer in Azure Data Studio to see some events show up.
 
 ### Configure and connect with Microsoft Entra
 
-1. Use Azure Portal to add a Microsoft Entry admin.
-1. Connect to SSMS with the Entry admin
-1. Add another Entry account a user of the database
-1. Disconnect in SSMS and try the new Entry login.
-1. Notice you are only in the context of the db. You can't see the logical server or other databases.
+Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to connect as users of the database. You will need access to a Microsoft Entry account to use in this exercise. For instructor led workshops, your instructor will provide this information for you.
 
-## Exercise 7.3 - Scale Azure SQL Database
+1. Find the logical server in the Azure Portal.
+1. Select **Microsoft Entra ID** on the left-hand menu in the portal.
+1. Select **Set Admin** on the right hand page in the portal.
+1. Search and find your Microsoft Entra account. Select your user and click Select.
+1. Click Save. This operation will take a few seconds to complete.
+1. In SSMS, connect using this new Microsoft Entra account similar to the documentation at https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-setup-tutorial?view=sql-server-ver16#authentication-example-using-ssms. Your choice of authentication method depend on your your Entra account has been setup. Often you wil use Active Directory - Universal with MFA support. For instructor lead workshops, your instructor will provide this information for you.
+1. Find another Microsoft Entra account to add as a user. For instructor led workshops, your instructor will provide this information for you.
+1. In a query window, execute the following query:
+
+    ```tsql
+        CREATE USER [<Microsoft Entra account>] FROM EXTERNAL PROVIDER;
+        GO
+    ```
+
+    Where <Microsoft Entra Account> is the name of the other Microsoft Entra account.
+
+1. Disconnect with SSMS and connect with the 2nd Microsoft Entry Account. Notice you only have access to the user database. This is an example of using Microsoft Entra to provide a user access to a database without creating a login.
+
+## Exercise 7.3 - Scale Azure SQL Database with Serverless
+
+In this exercise, you will learn how to run a workload against Azure SQL Database and scale the database using Serverless to meet the workload requirements.
 
 ### Setup
 
@@ -183,6 +269,45 @@ You might have already performed some of these steps if you completed Module 04 
 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI.
 - Create a folder called **cloudsqlworkshop** on the c: drive. Inside this folder create another one called **scaleazuresqldb**
-- Copy the **workload.cmd** and **xXXXXXX** files from the GitHub clone or download to the cloudsqlworkshop\scaleazuresqldb folder.
+- Copy the **workload.cmd**, **topcustomersales.sql**, **dmdbresourcestats.sql**, and **dmexecrequests.sql** files from the GitHub clone (in this folder) or download to the cloudsqlworkshop\scaleazuresqldb folder.
+- Edit the **workload.cmd** to put in your logical server and database name.
+- In SSMS load the script files dbdbresourcestats.sql and dmexecrequests.sql in separate query windows under the context of the database. You will use these scripts to monitor performance.
+
+## Run the workload and observe performance
+
+1. From a Powershell command window run the workload.cmd.
+1. While this command is running execute the T-SQL queries from the script dmexecrequests.sql in SSMS to see the workload running. You will observe several requests with a status of runnable and last_wait_type of SOS_SCHEDULER_YIELD. This script uses common DMVs such as **sys.dm_exec_requests** to see what queries are actively running or waiting. SOS_SCHEDULER_YIELD is a common symptom of a CPU bound workload and lack of CPU resources.
+1. Execute the T-SQL queries from the script dmdbresourcestats.sql in SSMS to see the resource usage of the database. This script uses the DMV sys.**dm_db_resource_stats** which is unique to Azure SQL Database. This DMV shows on a polling interval every 15 seconds. If you run this query repeatedly you will see several intervals where the avg_cpu_percent is 99%+. This is an indication that the database is CPU bound and is being limited by CPU resources.
+1. You can continue to run these queries until the workload completes which will take around 1 minute 25 seconds.
+1. Using the Azure Portal for your database scroll down and select Monitoring. From there scroll down and look at compute utilization. You will see a period of 100% CPU utilization for the database.
+1. In SSMS, under Object Explorer under the database context expand Query Store, and select Top Resource Consuming Queries. You will see the top query is the one you ran from the workload. Change the Metric to Wait Time (ms). You will see the top query is the one you ran from the workload. If you hover over the bar chart you will see the query is mostly waiting on CPU. This lines up with the SOS_SCHEDULER_YIELD waits you have seen.
+1. Close out the Query Store reports. Leave the query windows open for monitoring performance.
+
+## Scale the database with Serverless
+
+If you look at the Azure Portal, the database is provisioned with only 2 vCores. This is not enough to handle the workload. We could try to add more vCores and keep it as a Provisioned compute tier. But what if the application doesn't always need more than 2 vCores. This is where Serverless can help.
+
+1. In the Azure Portal for your database select **Compute + Storage** from the left-hand menu.
+1. Under Compute tier select **Serverless**.
+1. Scroll down and use the slider to change Max vCores to 12. Leave Min vCores at 1.
+1. Click **Apply**.
+1. Your database is still online while a scaling deployment is taking place. A small amount of downtime can occur at the end of the deployment. In the Azure Portal you can click the Notification icon to see the progress. The operation should take a few minutes.
+
+**Tip:** You can also use the T-SQL ALTER DATABASE command to change properties like Serverless. Read more at https://learn.microsoft.com/sql/t-sql/statements/alter-database-transact-sql?view=azuresqldb-current
+
+## Run the workload again to observe performance
+
+Now that you have changed the database to Serverless, let's run the workload again and see how it performs.
+
+1. From a Powershell command window run the workload.cmd
+1. Use SSMS to run queries for dmexecrequests.sql and dmdbresourcestats.sql to monitor performance.
+
+You will still see some runnable requests with SOS_SCHEDULER_YIELD (but less) but notice the avg_cpu_percent is much lower. This is because Serverless allows your workload to autoscale to 12 vCores as needed.
+
+The workload should finish in no more than 15 seconds.
+
+If you look back at Monitoring in the Azure Portal you will also see far less CPU utilization.
 
 ## Exercise 7.4 - Explore built-in HADR capabilities
+
+Note: Point out this DMV sys.dm_database_backups
