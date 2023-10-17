@@ -138,7 +138,7 @@ You can do this in SSMS in your current connection, by using the drop-down in th
 
 ### Use Azure Data Studio with Azure SQL Database
 
-Let's use a tool that may not be as familiar to many called Azure Data Studio to connect to Azure SQL Database.
+Let's use a tool that you may not be as familiar with called Azure Data Studio (ADS) to connect to Azure SQL Database.
 
 #### Connect with Azure Data Studio
 
@@ -251,8 +251,8 @@ Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to 
 1. In a query window, execute the following query:
 
     ```tsql
-        CREATE USER [<Microsoft Entra account>] FROM EXTERNAL PROVIDER;
-        GO
+    CREATE USER [<Microsoft Entra account>] FROM EXTERNAL PROVIDER;
+    GO
     ```
 
     Where <Microsoft Entra Account> is the name of the other Microsoft Entra account.
@@ -273,9 +273,9 @@ You might have already performed some of these steps if you completed Module 04 
 - Edit the **workload.cmd** to put in your logical server and database name.
 - In SSMS load the script files dbdbresourcestats.sql and dmexecrequests.sql in separate query windows under the context of the database. You will use these scripts to monitor performance.
 
-## Run the workload and observe performance
+### Run the workload and observe performance
 
-1. From a Powershell command window run the workload.cmd.
+1. From a Powershell command window run **workload.cmd**.
 1. While this command is running execute the T-SQL queries from the script dmexecrequests.sql in SSMS to see the workload running. You will observe several requests with a status of runnable and last_wait_type of SOS_SCHEDULER_YIELD. This script uses common DMVs such as **sys.dm_exec_requests** to see what queries are actively running or waiting. SOS_SCHEDULER_YIELD is a common symptom of a CPU bound workload and lack of CPU resources.
 1. Execute the T-SQL queries from the script dmdbresourcestats.sql in SSMS to see the resource usage of the database. This script uses the DMV sys.**dm_db_resource_stats** which is unique to Azure SQL Database. This DMV shows on a polling interval every 15 seconds. If you run this query repeatedly you will see several intervals where the avg_cpu_percent is 99%+. This is an indication that the database is CPU bound and is being limited by CPU resources.
 1. You can continue to run these queries until the workload completes which will take around 1 minute 25 seconds.
@@ -283,7 +283,7 @@ You might have already performed some of these steps if you completed Module 04 
 1. In SSMS, under Object Explorer under the database context expand Query Store, and select Top Resource Consuming Queries. You will see the top query is the one you ran from the workload. Change the Metric to Wait Time (ms). You will see the top query is the one you ran from the workload. If you hover over the bar chart you will see the query is mostly waiting on CPU. This lines up with the SOS_SCHEDULER_YIELD waits you have seen.
 1. Close out the Query Store reports. Leave the query windows open for monitoring performance.
 
-## Scale the database with Serverless
+### Scale the database with Serverless
 
 If you look at the Azure Portal, the database is provisioned with only 2 vCores. This is not enough to handle the workload. We could try to add more vCores and keep it as a Provisioned compute tier. But what if the application doesn't always need more than 2 vCores. This is where Serverless can help.
 
@@ -295,11 +295,11 @@ If you look at the Azure Portal, the database is provisioned with only 2 vCores.
 
 **Tip:** You can also use the T-SQL ALTER DATABASE command to change properties like Serverless. Read more at https://learn.microsoft.com/sql/t-sql/statements/alter-database-transact-sql?view=azuresqldb-current
 
-## Run the workload again to observe performance
+### Run the workload again to observe performance
 
 Now that you have changed the database to Serverless, let's run the workload again and see how it performs.
 
-1. From a Powershell command window run the workload.cmd
+1. From a Powershell command window run **workload.cmd**
 1. Use SSMS to run queries for dmexecrequests.sql and dmdbresourcestats.sql to monitor performance.
 
 You will still see some runnable requests with SOS_SCHEDULER_YIELD (but less) but notice the avg_cpu_percent is much lower. This is because Serverless allows your workload to autoscale to 12 vCores as needed.
@@ -310,4 +310,11 @@ If you look back at Monitoring in the Azure Portal you will also see far less CP
 
 ## Exercise 7.4 - Explore built-in HADR capabilities
 
+Explore the built-in HADR capabilities of Azure SQL Database by looking at insights for automatic backups. Then you will perform a restore of the database after accidentally dropping the database.
+
+### Explore automatic backups
+
 Note: Point out this DMV sys.dm_database_backups
+
+### Perform a restore of a dropped database
+
