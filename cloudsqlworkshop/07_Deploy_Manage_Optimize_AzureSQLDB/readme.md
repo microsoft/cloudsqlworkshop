@@ -94,7 +94,7 @@ In this exercise you will explore your Azure SQL Database deployment and perform
 
 1. Look at the **Essentials** pane In the Azure Portal for you database you can see various properties under Essentials including your resource group, Status, Region (Location), and Subscription. One of the most important properties if Server name. This is the name of the logical server that hosts your database. This is the name of the SQL Server you will use to connect with tools like Azure Data Studio or SSMS. You can also see the Earliest restore point for the database based on automatic backups.
 1. Under Essentials you can see options for Getting Started, Monitoring, Properties, Features, Notifications, Integrations, and Tutorials. A very rich set of options for your database.
-1. On the left-hand menu, there is an option to open up a **Query Editor **to run queries from the Azure Portal. While you won't use the editor in this module you can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/database/query-editor.
+1. On the left-hand menu, there is an option to open up a **Query Editor** to run queries from the Azure Portal. While you won't use the editor in this module you can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/database/query-editor.
 1. Under this on the left-hand menu, under **Settings** there are options to change Compute + Storage, view Connection Strings for applications, and change the default Maintenance Window.
 1. Scrolling down on the left-hand menu is the section on **Security**. Here from the Azure Portal you can configure various options to configure Security. Click on **Auditing**. From here you can enable Azure SQL Auditing which is based on SQL Server Audit. You can learn about how to configure other security features for Azure SQL Database at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#enable-security-features.
 
@@ -115,7 +115,7 @@ In this section, you will connect Azure SQL Database and explore more about your
     SELECT @@VERSION;
     ```    
 
-    You should results that look smilar to the following:
+    You should results that look similar to the following:
 
     `Microsoft SQL Azure (RTM) - 12.0.2000.8   Sep 18 2023 12:22:37   Copyright (C) 2022 Microsoft Corporation`
 
@@ -127,7 +127,7 @@ In this section, you will connect Azure SQL Database and explore more about your
 USE <dbname>;
 ```
 
-where <dbname> is the name of your Azure SQL Database. You should encounter the following error:
+where `<dbname>` is the name of your Azure SQL Database. You should encounter the following error:
 
 `Msg 40508, Level 16, State 1, Line 1
 USE statement is not supported to switch between databases. Use a new connection to connect to a different database.`
@@ -194,7 +194,7 @@ Let's use ADS to explore the database and look at various features to compare an
 
     Since an Azure SQL Database runs on its own instance you can still use common DMVs from SQL Server. Note that each database even if on the same logical server will have its own set of metrics.
 
-5. Now let's see some DMVS that is unique to Azure SQL Database: Run the following query:
+5. Now let's see some DMVs that are unique to Azure SQL Database: Run the following query:
 
     ```tsql
     SELECT * FROM sys.dm_db_wait_stats;
