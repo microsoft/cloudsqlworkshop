@@ -128,19 +128,19 @@ In this section, you will connect Azure SQL Database and explore more about your
 
 1. Try executing the following query:
 
-```tsql
-USE <dbname>;
-```
+    ```tsql
+    USE <dbname>;
+    ```
 
-where `<dbname>` is the name of your Azure SQL Database. You should encounter the following error:
-
-`Msg 40508, Level 16, State 1, Line 1
-USE statement is not supported to switch between databases. Use a new connection to connect to a different database.`
-
-This is because there is no way to switch context to your database since it is not physically associated with the logical server. To connect to the database you must make a direction connection in the context of the user database.
-
-You can do this in SSMS in your current connection, by using the drop-down in the upper left-hand corner and selecting your database. When you do this notice in the bottom right-hand corner of SSMS the connection string changes to include the database name.
-
+    where `<dbname>` is the name of your Azure SQL Database. You should encounter the following error:
+    
+    `Msg 40508, Level 16, State 1, Line 1
+    USE statement is not supported to switch between databases. Use a new connection to connect to a different database.`
+    
+    This is because there is no way to switch context to your database since it is not physically associated with the logical server. To connect to the database you must make a direction connection in the context of the user database.
+    
+    You can do this in SSMS in your current connection, by using the drop-down in the upper left-hand corner and selecting your database. When you do this notice in the bottom right-hand corner of SSMS the connection string changes to include the database name.
+    
 1. Create a basic table with data
 
     Let's create a simple data and populate it with data. You will use this table later in this module as part of a disaster recovery situation. In the context of the user database execute this query:
