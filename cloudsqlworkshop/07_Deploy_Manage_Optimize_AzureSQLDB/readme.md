@@ -141,6 +141,19 @@ This is because there is no way to switch context to your database since it is n
 
 You can do this in SSMS in your current connection, by using the drop-down in the upper left-hand corner and selecting your database. When you do this notice in the bottom right-hand corner of SSMS the connection string changes to include the database name.
 
+1. Create a basic table with data
+
+    Let's create a simple data and populate it with data. You will use this table later in this module as part of a disaster recovery situation. In the context of the user database execute this query:
+
+    ```tsql
+    DROP TABLE IF EXISTS dontdropme;
+    GO
+    CREATE TABLE dontdropme (col1 int);
+    GO
+    INSERT INTO dontdropme VALUES (1);
+    GO
+    ```
+
 ### Use Azure Data Studio with Azure SQL Database
 
 Let's use a tool that you may not be as familiar with called Azure Data Studio (ADS) to connect to Azure SQL Database.
@@ -336,21 +349,29 @@ Let's use a DMV unique to Azure SQL Database to explore the automatic backups fo
 
     You can see a series of Full, Log, and in some cases Differential backups for the database. Depending on when you query this DMV, some backups may have fallen out of the retention period which is by default 7 days. Learn more about this DMV at https://learn.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-database-backups-azure-sql-database.
 
-### Perform a restore of a dropped database
+    **TODO: Why does the full show not in retention?**
+
+### Perform a Point in Time Restore
+
+**TODO: Change this to take an existing db and do a PITR restore. Put in some code to drop a table from a table created earlier and then do a PITR to get it back.**
 
 Let's use a great feature of a managed database service by using automatic backups to restore a database that was accidentally dropped.
 
+1. In the Azure Portal go to the Overview page for the database. Take note of the **Earliest restore point**. This is the earliest time you can restore the database to. This is populated typically within 5 minutes after deploying the database.
 1. In SSMS, close all query windows and disconnect from the logical server.
 1. Connect back with SSMS to the logical server (don't connect to the context of the database).
 1. In SSMS Object Explorer, right-click your database and select **Delete**.
 1. In the Azure Portal, change context to the logical server.
 1. On the left-hand menu under Data Management, select **Deleted databases**.
 1. Select the database you dropped.
-1. Review the various options but leave the defaults.
+1. Review the various options. You can see the earliest restore time is the same as the one you noted in step 1.
 1. Click **Review + Create** and the click on **Create**.
 1. Depending on how long you dropped the database before starting this module, the restore operation may take a few minutes. You can click on the notification icon to see the progress. The duration of this operation depends on the date and time you chose for the restore and the amount of transaction log backups that need to be restored between the full backup and/or differential backups. If you have gone through all the steps in this module the restore could take several minutes.
 1. While the restore is taking place, in SSMS in the context of master of your logical server, execute the following query:
 
 ```tsql
-SELECT * FROM sys.dm_operation_status
+SELECT resource_type_desc, major_resource_id, operation, state_desc, percent_complete
+FROM sys.dm_operation_status;
+GO
 ```
+
