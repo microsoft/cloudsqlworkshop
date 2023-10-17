@@ -13,7 +13,7 @@ This is a set of exercises to deploy, manage, and optimize an Azure SQL Database
 
 ## Scenario
 
-You are deploying a new Azure SQL Database for a proof of concept. 
+You are deploying a new Azure SQL Database for a proof of concept. You need to learn how to deploy, explore, manage, and optimize the deployment. The deployment must meet the following requirements:
 
 ### Logical Server requirements
 
