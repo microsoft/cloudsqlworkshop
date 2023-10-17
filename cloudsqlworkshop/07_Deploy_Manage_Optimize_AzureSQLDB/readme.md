@@ -70,13 +70,17 @@ In this exercise you will deploy an Azure SQL Logical Server and Database per th
 ### Deployment Steps
 
 1. Use the Azure Portal to deploy a new Azure SQL Logical Server and Database that meets the requirements of the scenario listed above in this module.
-1. To help you get started in the Azure Portal type in Azure SQL in the search box and choose **Azure SQL** and then choose **Azure SQL** from the Marketplace section.
+2. To help you get started in the Azure Portal type in Azure SQL in the search box and choose **Azure SQL** and then choose **Azure SQL** from the Marketplace section.
 3. You should see three choices for Azure SQL. Use the choice called **SQL databases,** leave the default Single database, and click Create.
-1. Now go through Basics through Additional Settings based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.
-    1. For Server, select Create new and use the options listed in the scenario requirements above in this module.
-    1. For Networking, select Public Endpoint, Check Allow Azure services and resources to access this server and all other options should be left as default.
-    1. When you are done with your choices, click Review + Create. A brief validation will occur and then you can click Create to start the deployment. Your screen will change to say Deployment in progress. You can leave this screen up or change context as this is an async operation. If you stay on this screen click on **Go to Resource**.
-1. After the deployment completes take note in the Azure Portal of the Server Name and the database name.
+4. Now go through Basics through Additional Settings based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.<br>
+    <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;">
+    <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database. You can learn more at https://azure.microsoft.com/free/services/sql-database/.
+    </div>
+
+    - For Server, select Create new and use the options listed in the scenario requirements above in this module.
+    - For Networking, select Public Endpoint, Check Allow Azure services and resources to access this server and all other options should be left as default.
+    - When you are done with your choices, click Review + Create. A brief validation will occur and then you can click Create to start the deployment. Your screen will change to say Deployment in progress. You can leave this screen up or change context as this is an async operation. If you stay on this screen click on **Go to Resource**.
+5. After the deployment completes take note in the Azure Portal of the Server Name and the database name.
 
 ### Post deployment steps
 
@@ -314,7 +318,20 @@ Explore the built-in HADR capabilities of Azure SQL Database by looking at insig
 
 ### Explore automatic backups
 
-Note: Point out this DMV sys.dm_database_backups
+Let's use a DMV unique to Azure SQL Database to explore the automatic backups for the database.
+
+1. Connect with SSMS to the logical server.
+1. Open a new query in the context of your database.
+1. Execute the following query:
+
+    ```tsql
+    SELECT logical_database_name, case when backup_type = 'D' then 'Full' when backup_type = 'I' then 'Differential' when backup_type = 'L' then 'Log' end as backup_type_desc, backup_start_date, backup_finish_date, in_retention
+    FROM sys.dm_database_backups
+    ORDER BY backup_finish_date DESC;
+    GO
+    ```
+
+    You can see a series of Full, Log, and in some cases Differential backups for the database. Depending on when you query this DMV, some backups may have fallen out of the retention period which is by default 7 days. Learn more about this DMV at https://learn.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-database-backups-azure-sql-database.
 
 ### Perform a restore of a dropped database
 
