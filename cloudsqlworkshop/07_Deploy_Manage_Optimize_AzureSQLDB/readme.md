@@ -347,31 +347,48 @@ Let's use a DMV unique to Azure SQL Database to explore the automatic backups fo
     GO
     ```
 
-    You can see a series of Full, Log, and in some cases Differential backups for the database. Depending on when you query this DMV, some backups may have fallen out of the retention period which is by default 7 days. Learn more about this DMV at https://learn.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-database-backups-azure-sql-database.
+    You can see a series of Full, Log, and in some cases Differential backups for the database. Depending on when you query this DMV, some backups may have fallen out of the retention period which is by default 7 days. Learn more about this DMV at https://learn.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-database-backups-azure-sql-database. In order to allow point-in-time restore, some backups may be kept even if out of retention.
 
-    **TODO: Why does the full show not in retention?**
+    > **Note:** This DMV is in preview. There may be an issue where some backups like Full show up as out of retention but are not. This is a known issue.
 
 ### Perform a Point in Time Restore
 
-**TODO: Change this to take an existing db and do a PITR restore. Put in some code to drop a table from a table created earlier and then do a PITR to get it back.**
+Let's use a great feature of a managed database service by using automatic backups to restore the database to a new name after a table was accidentally dropped. Consider a situation where you accidentally drop a table so need to restore the database to a new name to recover the table. You can use the backup history to decide at which point in time to restore the database to recover the table.
 
-Let's use a great feature of a managed database service by using automatic backups to restore a database that was accidentally dropped.
+1. In SSMS, connect to the logical server in the context of the database and execute the following query:
 
-1. In the Azure Portal go to the Overview page for the database. Take note of the **Earliest restore point**. This is the earliest time you can restore the database to. This is populated typically within 5 minutes after deploying the database.
-1. In SSMS, close all query windows and disconnect from the logical server.
-1. Connect back with SSMS to the logical server (don't connect to the context of the database).
-1. In SSMS Object Explorer, right-click your database and select **Delete**.
+    ```tsql
+    SELECT GETDATE();
+    GO
+    DROP TABLE IF EXISTS dontdropme;
+    GO
+    ```
+    Take note of the datetime returned;
+
+2. Using what you learned in the previous exercise to look up the backup history, choose a backup datetime before the drop table was executed based on the datetime returned. Use the backup_finish_date as the time.
 1. In the Azure Portal, change context to the logical server.
-1. On the left-hand menu under Data Management, select **Deleted databases**.
-1. Select the database you dropped.
-1. Review the various options. You can see the earliest restore time is the same as the one you noted in step 1.
+1. On the left-hand menu under Data Management, select **Backups**.
+1. Select **Restore**.
+1. Fill in the restore time from your choice of the automatic backups. Leave the other options as default.
 1. Click **Review + Create** and the click on **Create**.
-1. Depending on how long you dropped the database before starting this module, the restore operation may take a few minutes. You can click on the notification icon to see the progress. The duration of this operation depends on the date and time you chose for the restore and the amount of transaction log backups that need to be restored between the full backup and/or differential backups. If you have gone through all the steps in this module the restore could take several minutes.
 1. While the restore is taking place, in SSMS in the context of master of your logical server, execute the following query:
 
-```tsql
-SELECT resource_type_desc, major_resource_id, operation, state_desc, percent_complete
-FROM sys.dm_operation_status;
-GO
-```
+    ```tsql
+    SELECT resource_type_desc, major_resource_id, operation, state_desc, percent_complete
+    FROM sys.dm_operation_status;
+    GO
+    ```
 
+    You can use this to monitor the status of progress of the restore. You can also use the Azure Portal to monitor the status of the restore.
+
+    It may take up to 5-6 to complete the restore.
+
+1. In SSMS, refresh Object Explore to see if the new database is listed.
+1. Open up a new query window in the context of the new database. Execute the following query:
+
+    ```tsql
+    SELECT * FROM dontdropme;
+    GO
+    ```
+    
+    You can see the table has been recovered. Now that your table is recovered if you want to keep this verison of the database you would drop the existing database and rename this one. Or you could use other methods to copy this table into the existing database. One is to use external tables. Learn more at https://learn.microsoft.com/sql/t-sql/statements/create-external-table-transact-sql?view=azuresqldb-current
