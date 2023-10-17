@@ -72,7 +72,7 @@ In this exercise you will deploy an Azure SQL Logical Server and Database per th
 1. Use the Azure Portal to deploy a new Azure SQL Logical Server and Database that meets the requirements of the scenario listed above in this module.
 2. To help you get started in the Azure Portal type in Azure SQL in the search box and choose **Azure SQL** and then choose **Azure SQL** from the Marketplace section.
 3. You should see three choices for Azure SQL. Use the choice called **SQL databases,** leave the default Single database, and click Create.
-4. Now go through Basics through Additional Settings based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.<br>
+4. Now go through Basics through Additional Settings based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.<br> 
     <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;">
     <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database. You can learn more at https://azure.microsoft.com/free/services/sql-database/.
     </div>
