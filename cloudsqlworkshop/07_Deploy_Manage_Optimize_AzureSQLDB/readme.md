@@ -89,6 +89,7 @@ Perform the following steps after the deployment completes to perform a basic va
 1. First let's look at the deployment from the perspective of the resource group. If you are looking at your SQL database in the Azure Portal you can click on your resource group or it may be listed in Resources on your home page. You can also search for your resource group in the search box at the top of the Azure Portal by typing in your resource group name and selecting it.
 1. On the left-hand menu select **Deployments**.
 1. The deployment name should start with "Microsoft.SQLDatabase.newDatabaseNewServer...". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Logical Server and Database. You can click on the deployment name to see more details about the deployment.
+1. **TODO: How Azure template that could be use to deploy others.**
 
 ## Exercise 7.2 - Explore and connect to Azure SQL Database
 
@@ -109,7 +110,7 @@ In this section, you will connect Azure SQL Database and explore more about your
 1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connection from a client computer not inside Azure, you can create a server-level firewall rule as documented at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
 1. Connect on your client computer using SSMS with the Server Name as listed in the Azure Portal for the database, SQL admin, and password.
 1. Notice Object Explorer differences
-    1. Right-click on logical server and notice there no options to configure the logical server or see properties. This is because a Logical Server is not the same as a SQL Server instance. It is a logical construct that hosts one or more databases.
+    1. Right-click on logical server and notice there are no options to configure the logical server or see properties. This is because a Logical Server is not the same as a SQL Server instance. It is a logical construct that hosts one or more databases.
     1. Notice only master is listed as a system database.
     1. No other instance features are available in Object Explorer.
 1. Right-click on Logical Server and select New Query.
@@ -209,7 +210,9 @@ Let's use ADS to explore the database and look at various features to compare an
     
     For the first result set, you will see the are far fewer results because these are waits only from user requests and only wait types with waiting_tasks_count > 0.
 
-    The 2nd DMV can be used to see snapshots of resource usage for the database. You can learn more about this DMV at https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-resource-governor-workload-groups-history-ex-azure-sql-database
+    The 2nd DMV can be used to see snapshots of resource usage for the database per resource governor workload groups. You can see several internal groups are deployed to manage the database. You can learn more about this DMV at https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-resource-governor-workload-groups-history-ex-azure-sql-database.
+
+    > **Note:** Most of the data surfaced by this DMV is intended for internal consumption and is subject to change.
 
 6. Let's see another DMV that can be used for troubleshooting connectivity issues with Azure SQL Database. At the top of the query window change the database context in the dropdown back to master. Now execute the following query:
 
@@ -293,7 +296,7 @@ If you look at the Azure Portal, the database is provisioned with only 2 vCores.
 
 1. In the Azure Portal for your database select **Compute + Storage** from the left-hand menu.
 1. Under Compute tier select **Serverless**.
-1. Scroll down and use the slider to change Max vCores to 12. Leave Min vCores at 1.
+1. Scroll down and use the slider to change Max vCores to 12. Leave Min vCores at 1.5.
 1. Click **Apply**.
 1. Your database is still online while a scaling deployment is taking place. A small amount of downtime can occur at the end of the deployment. In the Azure Portal you can click the Notification icon to see the progress. The operation should take a few minutes.
 
@@ -321,7 +324,7 @@ Explore the built-in HADR capabilities of Azure SQL Database by looking at insig
 Let's use a DMV unique to Azure SQL Database to explore the automatic backups for the database.
 
 1. Connect with SSMS to the logical server.
-1. Open a new query in the context of your database.
+1. Open a new query in the *context of your database*.
 1. Execute the following query:
 
     ```tsql
@@ -335,3 +338,19 @@ Let's use a DMV unique to Azure SQL Database to explore the automatic backups fo
 
 ### Perform a restore of a dropped database
 
+Let's use a great feature of a managed database service by using automatic backups to restore a database that was accidentally dropped.
+
+1. In SSMS, close all query windows and disconnect from the logical server.
+1. Connect back with SSMS to the logical server (don't connect to the context of the database).
+1. In SSMS Object Explorer, right-click your database and select **Delete**.
+1. In the Azure Portal, change context to the logical server.
+1. On the left-hand menu under Data Management, select **Deleted databases**.
+1. Select the database you dropped.
+1. Review the various options but leave the defaults.
+1. Click **Review + Create** and the click on **Create**.
+1. Depending on how long you dropped the database before starting this module, the restore operation may take a few minutes. You can click on the notification icon to see the progress. The duration of this operation depends on the date and time you chose for the restore and the amount of transaction log backups that need to be restored between the full backup and/or differential backups. If you have gone through all the steps in this module the restore could take several minutes.
+1. While the restore is taking place, in SSMS in the context of master of your logical server, execute the following query:
+
+```tsql
+SELECT * FROM sys.dm_operation_status
+```
