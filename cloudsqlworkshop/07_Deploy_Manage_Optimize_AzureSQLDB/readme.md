@@ -22,7 +22,7 @@ You have a requirement to deploy a new Azure SQL Database Logical Server with th
 - Use the logical server name of your choice
 - Use the resource group of your choice. You can use an existing resource group from previous modules. Your instructor may also indicate a specific resource group to use.
 - You can deploy in the region of your choice. For instructor led workshops, check with you instructor as the Azure SQL Database may require a specific region.
-- For your initial deployment for Authentication method use the option called Use SQL Authentication and provide and admin and password. If you have access to a Microsoft Entry directory you will change this option later in the module.
+- For your initial deployment for Authentication method use the option called Use SQL Authentication and provide an admin and password. If you have access to a Microsoft Entra account you will change this option later in the module.
 
 ### Database requirements
 
@@ -30,8 +30,8 @@ You have a requirement to deploy a new Azure SQL Database with the following req
 
 #### Basic options
 
-- Create a new resource group of the name of your choosing or use an existing resource group. For instructor led workshops yo
-- Create a new logical server and use a database name of your choice.
+- Use the same resource group as your logical server.
+- Create a new logical server based on the requirements above and use a database name of your choice.
 - You will not be using elastic pools.
 - Use the following Compute+Storage options:
     - Use the General Purpose service tier and Provisioned Compute Tier.
@@ -73,11 +73,13 @@ In this exercise you will deploy an Azure SQL Logical Server and Database per th
 3. You should see three choices for Azure SQL. Use the choice called **SQL databases,** leave the default Single database, and click **Create**.
 4. Now go to Basics through Additional Settings tabs based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.
 
-    > <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database. You can learn more at https://azure.microsoft.com/free/services/sql-database/.
+    > <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database so consider this for the future. You can learn more at https://azure.microsoft.com/free/services/sql-database/.
 
-    - For Server, select Create new and use the options listed in the scenario requirements above in this module.
+    - For Server, select **Create new** and use the options listed in the scenario requirements above in this module.
     - For Networking, select Public Endpoint, Check Allow Azure services and resources to access this server and all other options should be left as default.
-    - When you are done with your choices, click **Review + Create**. A brief validation will occur and then you can click Create to start the deployment. Your screen will change to say Deployment in progress. You can leave this screen up or change context as this is an async operation. If you stay on this screen click on **Go to Resource**.
+    - When you are done with your choices, click **Review + Create**. A brief validation will occur and then you can click **Create** to start the deployment. Your screen will change to say Deployment in progress. You can leave this screen up or change context as this is an async operation. If you stay on this screen click on **Go to Resource**.
+    
+    Most deployments of this size complete in a matter of minutes.
 
 5. After the deployment completes take note in the Azure Portal of the Server Name and the database name. You can go back and find these at any time using the home page in the portal or through search.
 
@@ -95,17 +97,17 @@ In this exercise you will explore your Azure SQL Database deployment and perform
 
 ### Explore Azure SQL Database in the Azure Portal
 
-1. Look at the **Essentials** pane In the Azure Portal for you database you can see various properties under Essentials including your resource group, Status, Region (Location), and Subscription. One of the most important properties if Server name. This is the name of the logical server that hosts your database. This is the name of the SQL Server you will use to connect with tools like Azure Data Studio or SSMS. You can also see the Earliest restore point for the database based on automatic backups.
+1. If look at the **Essentials** pane In the Azure Portal for you database you can see various properties under Essentials including your resource group, Status, Region (Location), and Subscription. One of the most important properties is Server name. This is the name of the logical server that hosts your database. This is the name of the SQL Server you will use to connect with tools like Azure Data Studio or SSMS. You can also see the Earliest restore point for the database based on automatic backups.
 1. Under Essentials you can see options for Getting Started, Monitoring, Properties, Features, Notifications, Integrations, and Tutorials. A very rich set of options for your database.
-1. On the left-hand menu, there is an option to open up a **Query Editor** to run queries from the Azure Portal. While you won't use the editor in this module you can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/database/query-editor.
-1. Under this on the left-hand menu, under **Settings** there are options to change Compute + Storage, view Connection Strings for applications, and change the default Maintenance Window.
-1. Scrolling down on the left-hand menu is the section on **Security**. Here from the Azure Portal you can configure various options to configure Security. Click on **Auditing**. From here you can enable Azure SQL Auditing which is based on SQL Server Audit. You can learn about how to configure other security features for Azure SQL Database at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#enable-security-features.
+1. On the left-hand menu, there is an option to open up a **Query Editor** to run queries from the Azure Portal. While you won't use the editor in this module you can learn more at https://learn.microsoft.com/azure/azure-sql/database/query-editor.
+1. Under this on the left-hand menu, under **Settings** there are options to change Compute + Storage, view Connection Strings for applications, and change the default Maintenance Window. You will change Compute + Storage in a later exercise but you can click on each of these to explore how to use them.
+1. Scrolling down on the left-hand menu is the section on **Security**. Here from the Azure Portal you can configure various options to configure Security. Click on **Auditing**. From here you can enable Azure SQL Auditing which is based on SQL Server Audit. You can learn about how to configure other security features for Azure SQL Database at https://learn.microsoft.com/azure/azure-sql/database/secure-database-tutorial?view=azuresql#enable-security-features.
 
 ### Connect to Azure SQL Database
 
 In this section, you will connect Azure SQL Database and explore more about your deployment of the logical server and database.
 
-1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connection from a client computer not inside Azure, you can create a server-level firewall rule as documented at https://learn.microsoft.com/en-us/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
+1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connecting from a client computer not inside Azure, you can create a server-level firewall rule as documented at https://learn.microsoft.com/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
 1. Connect on your client computer using SSMS with the Server Name as listed in the Azure Portal for the database, SQL admin, and password.
 1. Notice Object Explorer differences
     1. Right-click on logical server and notice there are no options to configure the logical server or see properties. This is because a Logical Server is not the same as a SQL Server instance. It is a logical construct that hosts one or more databases.
@@ -188,7 +190,7 @@ Let's use ADS to explore the database and look at various features to compare an
 
     First you can see that only master from the logical server and your user database are listed. These properties are also set by default for your database.
 
-     - The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
+     - The **recovery model** is FULL for all databases and cannot be modified.
     - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Azure SQL Database supports dbcompat from older SQL Server versions. **Note:** Azure SQL Database can change the default dbcompat for new databases in the future.
     - **Query store** is ON by default for your user database.
     - Your database is encrypted with **TDE** by default.
@@ -219,9 +221,9 @@ Let's use ADS to explore the database and look at various features to compare an
     GO
     ```
     
-    For the first result set, you will see the are far fewer results because these are waits only from user requests and only wait types with waiting_tasks_count > 0.
+    For the first result set, you will see there are far fewer results because these are waits only from user requests and only wait types with waiting_tasks_count > 0.
 
-    The 2nd DMV can be used to see snapshots of resource usage for the database per resource governor workload groups. You can see several internal groups are deployed to manage the database. You can learn more about this DMV at https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-resource-governor-workload-groups-history-ex-azure-sql-database.
+    The 2nd DMV can be used to see snapshots of resource usage for the database per resource governor workload groups. You can see several internal groups are deployed to manage the database. You can learn more about this DMV at https://learn.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-resource-governor-workload-groups-history-ex-azure-sql-database.
 
     > **Note:** Most of the data surfaced by this DMV is intended for internal consumption and is subject to change.
 
@@ -245,15 +247,15 @@ Let's use ADS to explore the database and look at various features to compare an
     `Msg 2812, Level 16, State 62, Line 1
     Could not find stored procedure 'sp_configure'.`
 
-    Even with a logical server, the SQL Server instance is managed by Microsoft and you cannot change instance level settings.
+    Even with a logical server, the SQL Server instance is managed by Microsoft and you cannot change instance level settings but that is a benefit of having a managed database service.
 
 8. Use SQL Profiler with Azure SQL Database
 
-   Use the SQL Server Profile extension of Azure Data Studio to  trace queries against your database. Use the following documentation to learn how to install and use the extension: https://learn.microsoft.com/azure-data-studio/extensions/sql-server-profiler-extension.
+   Use the SQL Server Profiler extension of Azure Data Studio to  trace queries against your database. Use the following documentation to learn how to install and use the extension: https://learn.microsoft.com/azure-data-studio/extensions/sql-server-profiler-extension.
 
     This extension uses Extended Events to help you trace queries. You can learn more about Extended Events at https://docs.microsoft.com/sql/relational-databases/extended-events/extended-events.
 
-    Background events are not shown so you can use Object Explorer in Azure Data Studio to see some events show up.
+    Background events are not shown. You can use Object Explorer to expand and refresh in Azure Data Studio to see some events show up.
 
 ### Configure and connect with Microsoft Entra
 
@@ -262,9 +264,9 @@ Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to 
 1. Find the logical server in the Azure Portal.
 1. Select **Microsoft Entra ID** on the left-hand menu in the portal.
 1. Select **Set Admin** on the right hand page in the portal.
-1. Search and find your Microsoft Entra account. Select your user and click Select.
-1. Click Save. This operation will take a few seconds to complete.
-1. In SSMS, connect using this new Microsoft Entra account similar to the documentation at https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-setup-tutorial?view=sql-server-ver16#authentication-example-using-ssms. Your choice of authentication method depend on your your Entra account has been setup. Often you wil use Active Directory - Universal with MFA support. For instructor lead workshops, your instructor will provide this information for you.
+1. Search and find your Microsoft Entra account. Select your user and click **Select**.
+1. Click **Save**. This operation will take a few seconds to complete.
+1. In SSMS, connect using this new Microsoft Entra account similar to the documentation at https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-setup-tutorial?view=sql-server-ver16#authentication-example-using-ssms. Your choice of authentication method depends on how your Entra account has been setup. Often you will use *Active Directory - Universal with MFA support*. For instructor led workshops, your instructor will provide this information for you.
 1. Find another Microsoft Entra account to add as a user. For instructor led workshops, your instructor will provide this information for you.
 1. In a query window, execute the following query:
 
