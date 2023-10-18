@@ -9,7 +9,7 @@ This is a set of exercises                                deploy, manage, and op
 - You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
 - In your client computer you will **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** *(https://aka.ms/azuredatastudio) which you will also use in this module.
 
- > **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
+    > **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
 
 ## Scenario
 
