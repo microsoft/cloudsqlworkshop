@@ -1,13 +1,13 @@
 # UNDER CONSTRUCTION: Exercises to Deploy, Manage, and Optimize Azure SQL Database
 
-This is a set of exercises to deploy, manage, and optimize an Azure SQL Database. The exercises are designed to be completed in order as each exercise builds on the previous exercise. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources. This Module is completely independent of previous modules and can be completed on its own.
+This is a set of exercises                                deploy, manage, and optimize an Azure SQL Database. The exercises are designed to be completed in order as each exercise builds on the previous exercise. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources. This Module is completely independent of previous modules and can be completed on its own.
 
 ## Prerequisites
 
 - You must have an Azure subscription with the ability to create an Azure SQL Database using the General Purpose Service Tier. You must have the ability to create an Azure SQL Database in the Azure region of your choice.
 - You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
 - You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
-- In your client computer you will **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** which you will also use in this module.
+- In your client computer you will **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** *(https://aka.ms/azuredatastudio) which you will also use in this module.
 
 **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
 
@@ -58,8 +58,7 @@ Leave the default options as listed in the Azure portal security options.
 
 Use the following Additional settings options for the deployment:
 
-- Since you are deploying a database for a proof of concept use the **Sample** option for existing data.
-- Use the default collation of SQL_Latin1_CP1_CI_AS.
+- Since you are deploying a database for a proof of concept use the **Sample** option for existing data. This will force the use of the default collation of SQL_Latin1_CP1_CI_AS. The Sample option creates the database based on the AdventureWorksLT sample database. Learn more at https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks.
 
 You do not need to use any Tags.
 
@@ -71,16 +70,16 @@ In this exercise you will deploy an Azure SQL Logical Server and Database per th
 
 1. Use the Azure Portal to deploy a new Azure SQL Logical Server and Database that meets the requirements of the scenario listed above in this module.
 2. To help you get started in the Azure Portal type in Azure SQL in the search box and choose **Azure SQL** and then choose **Azure SQL** from the Marketplace section.
-3. You should see three choices for Azure SQL. Use the choice called **SQL databases,** leave the default Single database, and click Create.
-4. Now go through Basics through Additional Settings based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.
+3. You should see three choices for Azure SQL. Use the choice called **SQL databases,** leave the default Single database, and click **Create**.
+4. Now go to Basics through Additional Settings tabs based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.
 
     > <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database. You can learn more at https://azure.microsoft.com/free/services/sql-database/.
 
     - For Server, select Create new and use the options listed in the scenario requirements above in this module.
     - For Networking, select Public Endpoint, Check Allow Azure services and resources to access this server and all other options should be left as default.
-    - When you are done with your choices, click Review + Create. A brief validation will occur and then you can click Create to start the deployment. Your screen will change to say Deployment in progress. You can leave this screen up or change context as this is an async operation. If you stay on this screen click on **Go to Resource**.
+    - When you are done with your choices, click **Review + Create**. A brief validation will occur and then you can click Create to start the deployment. Your screen will change to say Deployment in progress. You can leave this screen up or change context as this is an async operation. If you stay on this screen click on **Go to Resource**.
 
-5. After the deployment completes take note in the Azure Portal of the Server Name and the database name.
+5. After the deployment completes take note in the Azure Portal of the Server Name and the database name. You can go back and find these at any time using the home page in the portal or through search.
 
 ### Post deployment steps
 
@@ -89,7 +88,6 @@ Perform the following steps after the deployment completes to perform a basic va
 1. First let's look at the deployment from the perspective of the resource group. If you are looking at your SQL database in the Azure Portal you can click on your resource group or it may be listed in Resources on your home page. You can also search for your resource group in the search box at the top of the Azure Portal by typing in your resource group name and selecting it.
 1. On the left-hand menu select **Deployments**.
 1. The deployment name should start with "Microsoft.SQLDatabase.newDatabaseNewServer...". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Logical Server and Database. You can click on the deployment name to see more details about the deployment.
-1. **TODO: How Azure template that could be use to deploy others.**
 
 ## Exercise 7.2 - Explore and connect to Azure SQL Database
 
