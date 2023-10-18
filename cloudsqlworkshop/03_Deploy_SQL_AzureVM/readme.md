@@ -7,7 +7,7 @@ This is a pre-production version for exercises to deploy SQL Server on Azure Vir
 - You must have an Azure subscription with the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor on a provided subscription.
 - You must have permissions to deploy a SQL Server on Azure Virtual Machine from the Azure Marketplace.
 - You will need a client computer that can use the Remote Desktop Protocol(RDP)
-- You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
+- You will need access to the files and scripts associated to the workshop which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles.
 
 ## Exercise 3.1 - Study the scenario and requirements
 
@@ -135,9 +135,8 @@ Use the following steps to connect to the VM with RDP and prepare for the next m
     1. Under Native RDP click on **Select**.
     1. Scroll down to Download and open the RDP file and click on Download RDP file.
     1. Select the RDP file to open it and click on **Connect**.
-1. Inside the virtual machine, copy the **tpch.bak** SQL Server backup file from the GitHub repo release (https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.0-alpha) that contains the backup of the database to the "f:\data" drive folder.
-1. Copy the [**restore_tpch.sql** script](https://github.com/microsoft/cloudsqlworkshop/blob/bw/cloudsqlworkshop/03_Deploy_SQL_AzureVM/restore_tpch.sql) (or copy the contents of the script and paste them into a query window in SSMS) from this folder (the folder where this file exists) in the GitHub repo into the f:\data folder.
-1. Load the **restore_tpch.sql** script into SSMS (which will be installed in your VM as part of the marketplace image) to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
+1. Inside the virtual machine, download the **tpch.bak** SQL Server backup file and source files from https://aka.ms/cloudsqlworkshopfiles. Move the tpch.bak file into the f:\data folder. *Extract* out the source files zip file.
+1. From the extracted workshop source files load the **restore_tpch.sql** script from the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\03_Deploy_SQL_AzureVM** folder into SSMS to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
 
 ## Next Steps
 

@@ -6,7 +6,7 @@ This is a pre-production version of exercises to verify your SQL Server deployme
 
 - You must have completed exercises in Module 3 to deploy a SQL Server on Azure Virtual Machine.
 - You will need a client computer that can use the Remote Desktop Protocol(RDP)
-- You will need access to files from the workshop at https://aka.ms/cloudsqlworkshop.
+- You will need access to the files and scripts associated to the workshop which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. No further action is needed if you downloaded these in Module 3.
 
 ## Exercise 4.1 - Verifying the SQL Server on Azure Virtual Machine deployment.
 
@@ -24,8 +24,6 @@ You will use a stress test workload to verify the I/O performance of the storage
 ### Setup
 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI.
-- Create a folder called **cloudsqlworkshop** on the c: drive. Inside the folder create another folder called **optimizevm**.
-- Copy the **workload.cmd** and **tpch_query3.sql** files from the GitHub clone of this folder or download to the cloudsqlworkshop\optimizevm folder.
 
 ### Verify SQL Server instance settings
 
@@ -47,8 +45,9 @@ You will use a combination of Windows perfmon and a workload script and query to
     - **Logical Disk F: Disk Bytes/Sec**: This is your measure for I/O throughput.
     - **Logical Disk F: Disk Transfer/Sec**: This is your measure for IOPS.
 
-2. Run **workload.cmd** from a Powershell prompt from the cloudsqlworkshop\optimizevm folder to run the workload which will take about a minute.
-3. During the workload run observe the values for the perfmon counters. Verify this meets the requirements for storage performance.
+2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\04_Optimize_SQL_AzureVM** folder
+1. Run **workload.cmd** from a Powershell prompt to run the workload which will take about a minute.
+1. During the workload run observe the values for the perfmon counters. Verify this meets the requirements for storage performance.
 
 ### Answers for the exercise
 
