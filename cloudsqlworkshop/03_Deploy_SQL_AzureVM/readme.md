@@ -135,7 +135,8 @@ Use the following steps to connect to the VM with RDP and prepare for the next m
     1. Under Native RDP click on **Select**.
     1. Scroll down to Download and open the RDP file and click on Download RDP file.
     1. Select the RDP file to open it and click on **Connect**.
-1. Inside the virtual machine, download the **tpch.bak** SQL Server backup file and source files from https://aka.ms/cloudsqlworkshopfiles. Move the tpch.bak file into the f:\data folder. *Extract* out the source files zip file.
+1. Inside the virtual machine, download the **tpch.bak** SQL Server backup file and **Source code** zip file from https://aka.ms/cloudsqlworkshopfiles. Move the tpch.bak file into the f:\data folder.
+1. *Extract* out the Source code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta** folder.
 1. From the extracted workshop source files load the **restore_tpch.sql** script from the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\03_Deploy_SQL_AzureVM** folder into SSMS to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
 
 ## Next Steps
