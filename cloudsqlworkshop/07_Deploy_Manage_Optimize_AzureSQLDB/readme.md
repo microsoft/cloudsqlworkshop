@@ -313,7 +313,7 @@ If you look at the Azure Portal, the database is provisioned with only 2 vCores.
 1. Click **Apply**.
 1. Your database is still online while a scaling deployment is taking place. A small amount of downtime can occur at the end of the deployment. In the Azure Portal you can click the Notification icon to see the progress. The operation should take a few minutes.
 
-**Tip:** You can also use the T-SQL ALTER DATABASE command to change properties like Serverless. Read more at https://learn.microsoft.com/sql/t-sql/statements/alter-database-transact-sql?view=azuresqldb-current
+    > **Tip:** You can also use the T-SQL ALTER DATABASE command to change properties like Serverless. Read more at https://learn.microsoft.com/sql/t-sql/statements/alter-database-transact-sql?view=azuresqldb-current
 
 ### Run the workload again to observe performance
 
