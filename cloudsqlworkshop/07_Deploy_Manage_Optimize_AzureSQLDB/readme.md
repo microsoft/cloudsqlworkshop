@@ -33,6 +33,7 @@ You have a requirement to deploy a new Azure SQL Database with the following req
 - Use the same resource group as your logical server.
 - Create a new logical server based on the requirements above and use a database name of your choice.
 - You will not be using elastic pools.
+- Choose the Production Workload environment. **Note:** For a PoC you might normally choose the Development option here but in our workshop we want to show the difference when changing to Serverless. Choosing the Development option will default to the Serverless compute tier which is a good choice for development projects.
 - Use the following Compute+Storage options:
     - Use the General Purpose service tier and Provisioned Compute Tier.
     - Use the Standard-series (Gen5) hardware
@@ -43,7 +44,7 @@ You have a requirement to deploy a new Azure SQL Database with the following req
 
 #### Networking options
 
-You will use the following Networking options for the deployment. You will not choose these during deployment but during a later exercise on configuration.
+You will use the following Networking options for the deployment.
 
 - You will enable Public endpoint access to the Azure SQL Database and enable Allow Azure services and resources to access this server.
 - If you are connecting from a client computer not in Azure you will enable a firewall rule for your client computer later in this module.
