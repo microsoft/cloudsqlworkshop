@@ -319,7 +319,7 @@ If you look at the Azure Portal, the database is provisioned with only 2 vCores.
 
 Now that you have changed the database to Serverless, let's run the workload again and see how it performs.
 
-1. From a Powershell command window run **workload.cmd**
+1. From a Powershell command window run **workload.cmd**.
 1. Use SSMS to run queries for dmexecrequests.sql and dmdbresourcestats.sql to monitor performance.
 
 You will still see some runnable requests with SOS_SCHEDULER_YIELD (but less) but notice the avg_cpu_percent is much lower. This is because Serverless allows your workload to autoscale to 12 vCores as needed.
@@ -330,7 +330,7 @@ If you look back at Monitoring in the Azure Portal you will also see far less CP
 
 ## Exercise 7.4 - Explore built-in HADR capabilities
 
-Explore the built-in HADR capabilities of Azure SQL Database by looking at insights for automatic backups. Then you will perform a restore of the database after accidentally dropping the database.
+Explore the built-in HADR capabilities of Azure SQL Database by looking at insights for automatic backups. Then you will perform a restore of the database after accidentally dropping a table
 
 ### Explore automatic backups
 
@@ -391,4 +391,4 @@ Let's use a great feature of a managed database service by using automatic backu
     GO
     ```
     
-    You can see the table has been recovered. Now that your table is recovered if you want to keep this verison of the database you would drop the existing database and rename this one. Or you could use other methods to copy this table into the existing database. One is to use external tables. Learn more at https://learn.microsoft.com/sql/t-sql/statements/create-external-table-transact-sql?view=azuresqldb-current
+    You can see the table has been recovered. Now that your table is recovered if you want to keep this version of the database you could drop the existing database and rename this one. Or you could use other methods to copy this table into the existing database. One is to use external tables. Learn more at https://learn.microsoft.com/sql/t-sql/statements/create-external-table-transact-sql?view=azuresqldb-current
