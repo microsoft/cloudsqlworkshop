@@ -6,7 +6,7 @@ This is a set of exercises                                deploy, manage, and op
 
 - You must have an Azure subscription with the ability to create an Azure SQL Database using the General Purpose Service Tier. You must have the ability to create an Azure SQL Database in the Azure region of your choice.
 - You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
-- You will need access to files from the workshop at https://github.com/microsoft/cloudsqlworkshop/releases/tag/v1.1-alpha. You can download the files from the release page or clone the repo. If you clone the repo, make sure you are on the **bw** branch.
+- You will need access to the files and scripts associated to the workshop which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. You can skip this step if you have already downloaded these files into your VM as part of a previous module.
 - In your client computer you will **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** *(https://aka.ms/azuredatastudio) which you will also use in this module.
 
     > **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
@@ -289,14 +289,13 @@ In this exercise, you will learn how to run a workload against Azure SQL Databas
 You might have already performed some of these steps if you completed Module 04 of this workshop.
 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI.
-- Create a folder called **cloudsqlworkshop** on the c: drive. Inside this folder create another one called **scaleazuresqldb**
-- Copy the **workload.cmd**, **topcustomersales.sql**, **dmdbresourcestats.sql**, and **dmexecrequests.sql** files from the GitHub clone (in this folder) or download to the cloudsqlworkshop\scaleazuresqldb folder.
+2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder
 - Edit the **workload.cmd** to put in your logical server and database name.
-- In SSMS load the script files dbdbresourcestats.sql and dmexecrequests.sql in separate query windows under the context of the database. You will use these scripts to monitor performance.
+- In SSMS load the script files dbdbresourcestats.sql and dmexecrequests.sql from the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder in separate query windows under the context of the database. You will use these scripts to monitor performance.
 
 ### Run the workload and observe performance
 
-1. From a Powershell command window run **workload.cmd**.
+1. From the current Powershell command window run **workload.cmd**.
 1. While this command is running execute the T-SQL queries from the script dmexecrequests.sql in SSMS to see the workload running. You will observe several requests with a status of runnable and last_wait_type of SOS_SCHEDULER_YIELD. This script uses common DMVs such as **sys.dm_exec_requests** to see what queries are actively running or waiting. SOS_SCHEDULER_YIELD is a common symptom of a CPU bound workload and lack of CPU resources.
 1. Execute the T-SQL queries from the script dmdbresourcestats.sql in SSMS to see the resource usage of the database. This script uses the DMV sys.**dm_db_resource_stats** which is unique to Azure SQL Database. This DMV shows on a polling interval every 15 seconds. If you run this query repeatedly you will see several intervals where the avg_cpu_percent is 99%+. This is an indication that the database is CPU bound and is being limited by CPU resources.
 1. You can continue to run these queries until the workload completes which will take around 1 minute 25 seconds.
