@@ -4,7 +4,7 @@ This is a set of exercises to manage and optimize Azure SQL Managed Instance. Ex
 
 In this exercise you will learn new skills unique to Azure while using your existing skills with SQL Server. You will go through a set of exercises to:
 
-- Explore the Azure SQL Managed Instance deployment
+- Explore the Azure SQL Managed Instance deployment using the Azure Portal and az CLI
 - Test transaction log I/O performance
 - Look at SQL Server compatibility
 - Create a SQL Agent Job
