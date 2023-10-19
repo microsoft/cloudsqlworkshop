@@ -1,6 +1,17 @@
-# UNDER CONSTRUCTION: Exercises to Deploy, Manage, and Optimize Azure SQL Database
+# DRAFT: Exercises to Deploy, Manage, and Optimize Azure SQL Database
 
 This is a set of exercises                                deploy, manage, and optimize an Azure SQL Database. The exercises are designed to be completed in order as each exercise builds on the previous exercise. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources. This Module is completely independent of previous modules and can be completed on its own.
+
+In these exercises you will:
+
+- Learn how to deploy an Azure SQL Database using the Azure Portal.
+- Learn how to connect to an Azure SQL Database using SQL Server Management Studio.
+- Learn how to view the deployment of an Azure SQL Database.
+- Learn how to explore and configure an Azure SQL Database including Microsoft Entra authentication.
+- Learn similarities and differences between SQL Server and Azure SQL Database.
+- Learn how to connect and use Azure SQL Database with Azure Data Studio.
+- Learn how to scale an Azure SQL Database using Serverless.
+- Learn how to explore built-in HADR capabilities of Azure SQL Database.
 
 ## Prerequisites
 

@@ -1,6 +1,15 @@
 # Exercises to Deploy SQL Server on Azure Virtual Machines
 
-This is a pre-production version for exercises to deploy SQL Server on Azure Virtual Machine. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
+This is a set of exercises to deploy SQL Server on Azure Virtual Machine. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
+
+In these exercises, you will be given a scenario and set of requirements to deploy SQL Server on Azure Virtual. You will learn new skills unique to Azure as well as using your existing SQL Server skills to achieve a successful deployment.
+
+In these exercises you will:
+
+- Learn how to deploy SQL Server on Azure Virtual Machine using the Azure Portal.
+- Learn how to configure storage for SQL Server on Azure Virtual Machine.
+- Learn how to connect to the Azure Virtual Machine and prepare for the next module.
+- Learn how to look at deployment details of the Azure Virtual Machine.
 
 ## Prerequisites
 

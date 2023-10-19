@@ -2,6 +2,14 @@
 
 These are exercises to deploy an Azure SQL Managed Instance. These exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources. Exercises in this module are completely independent of previous modules and can be completed on their own.
 
+In these exercises you will deploy an Azure SQL Managed Instance based on a set of requirements. You will learn new skills unique to Azure combined with using your existing SQL Server knowledge.
+
+In these exercises you will:
+
+- Learn how to deploy an Azure SQL Managed Instance using the Azure Portal.
+- Learn how to connect to an Azure SQL Managed Instance using SQL Server Management Studio.
+- Learn how to view the deployment duration of an Azure SQL Managed Instance.
+
 ## Prerequisites
 
 **Important Note:** Some instructor led labs may already have deployed an Azure SQL Managed Instance for you to use which meets all the requirements in this Exercise. In addition, some instructor led labs will use the Azure VM from Exercise 3.1 as the *jumpbox* virtual machine as listed in these prerequisites. If this is the case, read through Exercise 5.1 but you can skip 5.2 and go right to Exercise 5.3. 

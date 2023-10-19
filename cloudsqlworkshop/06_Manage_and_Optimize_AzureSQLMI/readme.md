@@ -1,6 +1,14 @@
 # Exercises for Managing and Optimizing Azure SQL Managed Instance
 
-This is a pre-production version of exercises to manage and optimize Azure SQL Managed Instance. Exercises in this Module are dependent on exercises in Module 5 but are independent of other modules in this workshop.
+This is a set of exercises to manage and optimize Azure SQL Managed Instance. Exercises in this Module are dependent on exercises in Module 5 but are independent of other modules in this workshop.
+
+In this exercise you will learn new skills unique to Azure while using your existing skills with SQL Server. You will go through a set of exercises to:
+
+- Explore the Azure SQL Managed Instance deployment
+- Test transaction log I/O performance
+- Look at SQL Server compatibility
+- Create a SQL Agent Job
+- Explore built-in HADR with Azure SQL Managed Instance
 
 ## Prerequisites
 
