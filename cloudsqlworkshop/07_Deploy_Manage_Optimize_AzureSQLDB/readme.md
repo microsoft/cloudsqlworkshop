@@ -405,6 +405,8 @@ Let's use a great feature of a managed database service by using automatic backu
 
     It may take up to 5-6 to complete the restore.
 
+    **Note:** The new database may appear in SSMS in Object Explorer but may not be ready to be accessed.
+
 1. In SSMS, refresh Object Explore to see if the new database is listed.
 1. Open up a new query window in the context of the new database. Execute the following query:
 
