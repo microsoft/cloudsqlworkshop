@@ -1,1 +1,1 @@
-"C:\Program Files\Microsoft Corporation\RMLUtils\ostress" -S<logical server>.database.windows.net -d<database> -Q"exec getcustomer 1" -r20000 -n5 -q -U<admin user> -P<password> -T146
+"C:\Program Files\Microsoft Corporation\RMLUtils\ostress" -S<logical server>.database.windows.net -d<database> -itopcustomersales.sql -r2 -n10 -q -U<admin login> -P<password> -T146
