@@ -22,7 +22,7 @@ In these exercises you will:
 
     > **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
 
-## Scenario
+## Exercise 7.1 - Study the Scenario and Requirements
 
 You are deploying a new Azure SQL Database for a proof of concept. You need to learn how to deploy, explore, manage, and optimize the deployment. The deployment must meet the following requirements:
 
@@ -74,7 +74,7 @@ Use the following Additional settings options for the deployment:
 
 You do not need to use any Tags.
 
-## Exercise 7.1: Deploy an Azure SQL Database
+## Exercise 7.2: Deploy an Azure SQL Database
 
 In this exercise you will deploy an Azure SQL Logical Server and Database per the scenario requirements listed above in this module. You will then perform a basic validation of the deployment by examining the Deployments for the resource group the duration of the Database deployment.
 
@@ -103,7 +103,7 @@ Perform the following steps after the deployment completes to perform a basic va
 1. On the left-hand menu select **Deployments**.
 1. The deployment name should start with "Microsoft.SQLDatabase.newDatabaseNewServer...". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Logical Server and Database. You can click on the deployment name to see more details about the deployment.
 
-## Exercise 7.2 - Explore and connect to Azure SQL Database
+## Exercise 7.3 - Explore and connect to Azure SQL Database
 
 In this exercise you will explore your Azure SQL Database deployment and perform some basic configuration.
 
@@ -297,7 +297,7 @@ Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to 
 1. Disconnect with SSMS and connect with the 2nd Microsoft Entry Account. Notice you only have access to the user database. This is an example of using Microsoft Entra to provide a user access to a database without creating a login.
 1. Disconnect with SSMS the new connection.
 
-## Exercise 7.3 - Scale Azure SQL Database with Serverless
+## Exercise 7.4 - Scale Azure SQL Database with Serverless
 
 In this exercise, you will learn how to run a workload against Azure SQL Database and scale the database using Serverless to meet the workload requirements.
 
@@ -349,7 +349,7 @@ If you look back at Monitoring in the Azure Portal you will also see far less CP
 
 Close out the existing query windows.
 
-## Exercise 7.4 - Explore built-in HADR capabilities
+## Exercise 7.5 - Explore built-in HADR capabilities
 
 Explore the built-in HADR capabilities of Azure SQL Database by looking at insights for automatic backups. Then you will perform a restore of the database after accidentally dropping a table
 

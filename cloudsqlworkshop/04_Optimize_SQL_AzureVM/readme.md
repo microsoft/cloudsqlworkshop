@@ -1,4 +1,4 @@
-# Exercises for Verifying and Optimizing SQL Server on Azure Virtual Machine
+# Exercises for Optimizing and Managing SQL Server on Azure Virtual Machine
 
 This is a set of exercises to verify your SQL Server deployment based on requirements provided in Module 3, therefore you must complete exercises in Module 3 first. In addition there is an exercise to explore the capabilities of the SQL Server IaaS Agent Extension. There is also an advanced exercise to explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks.
 
@@ -14,7 +14,7 @@ In these exercises you will:
 - You will need a client computer that can use the Remote Desktop Protocol(RDP)
 - You will need access to the files and scripts associated to the workshop which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. No further action is needed if you downloaded these in Module 3.
 
-## Exercise 4.1 - Verifying the SQL Server on Azure Virtual Machine deployment.
+## Exercise 4.1 - Verify the SQL Server on Azure Virtual Machine deployment.
 
 In this exercise you will verify the deployment of SQL Server on Azure Virtual Machine you did in Module 3 of this workshop. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
 
@@ -116,7 +116,7 @@ Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Ext
 
     Learn more at https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-usage
 
-## Exercise 4.3 - Advanced Exercise with Premium SSD v2 disks
+## Exercise 4.3 - Bonus Exercise with Premium SSD v2 disks
 
 Using the following documentation https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd-v2-performance determine how you could use a Premium SSD v2 disk for storage for database files to save cost and minimize the needed size of the managed disks. You will also need the pricing chart at https://azure.microsoft.com/en-us/pricing/details/managed-disks/.
 
