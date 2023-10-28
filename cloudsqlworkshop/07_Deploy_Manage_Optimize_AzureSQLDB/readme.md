@@ -30,7 +30,7 @@ You are deploying a new Azure SQL Database for a proof of concept. You need to l
 
 You have a requirement to deploy a new Azure SQL Database Logical Server with the following requirements:
 
-- Use the logical server name of your choice
+- Use the logical server name of your choice. **It must be a unique name across Azure.** Your instructor may also indicate a specific logical server name to use.
 - Use the resource group of your choice. You can use an existing resource group from previous modules. Your instructor may also indicate a specific resource group to use.
 - You can deploy in the region of your choice. For instructor led workshops, check with you instructor as the Azure SQL Database may require a specific region.
 - For your initial deployment for Authentication method use the option called Use SQL Authentication and provide an admin and password. If you have access to a Microsoft Entra account you will change this option later in the module.
