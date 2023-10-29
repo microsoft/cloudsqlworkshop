@@ -1,4 +1,4 @@
-# Exercises for Optimizing and Managing SQL Server on Azure Virtual Machine
+# Exercises to Manage and Optimize SQL Server on Azure Virtual Machine
 
 This is a set of exercises to verify your SQL Server deployment based on requirements provided in Module 3, therefore you must complete exercises in Module 3 first. In addition there is an exercise to explore the capabilities of the SQL Server IaaS Agent Extension. There is also an advanced exercise to explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks.
 

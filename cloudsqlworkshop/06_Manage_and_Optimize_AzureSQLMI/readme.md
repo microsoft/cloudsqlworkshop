@@ -1,4 +1,4 @@
-# Exercises for Managing and Optimizing Azure SQL Managed Instance
+# Exercises to Manage and Optimize Azure SQL Managed Instance
 
 This is a set of exercises to manage and optimize Azure SQL Managed Instance. Exercises in this Module are dependent on exercises in Module 5 but are independent of other modules in this workshop.
 
