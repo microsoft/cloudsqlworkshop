@@ -128,12 +128,18 @@ In this section, you will connect Azure SQL Database and explore more about your
     1. There are two options for the logical server besides databases:
         - **Security** allows you to create other logins for the logical server. Read more at https://learn.microsoft.com/azure/azure-sql/database/logins-create-manage.
         - **Integration Services Catalog** is an option to allow you to configure SSIS with Azure Data Factory. You can learn more at https://docs.microsoft.com/azure/data-factory/tutorial-deploy-ssis-packages-azure.
-1. Right-click on Logical Server and select New Query. This places you in the context of the master database of the logical server. You have permissions to do this because you are the sysadmin of the logical server.
-1. Execute the following query:
+        
+1. Exploring the database through T-SQL
+
+    Right-click on Logical Server and select New Query. This places you in the context of the master database of the logical server. You have permissions to do this because you are the sysadmin of the logical server.
+
+1. Looking at the version
+ 
+    Execute the following query:
 
     ```tsql
     SELECT @@VERSION;
-    ```    
+     ```    
 
     You should see results that look similar to the following:
 
@@ -141,7 +147,9 @@ In this section, you will connect Azure SQL Database and explore more about your
 
     Notice the "edition" is called SQL Azure. This is the name of the edition of Azure SQL Database. The version number is 12.0.2000.8. This version never changes for *versionless* Azure SQL but it doesn't mean that your database doesn't contain all the latest features of SQL Server. The datetime in the version stamp indicates the last time the SQL Server instance for the database was updated.
 
-1. Try executing the following query:
+1. Changing database context
+
+    Try executing the following query:
 
     ```tsql
     USE <dbname>;
@@ -155,6 +163,16 @@ In this section, you will connect Azure SQL Database and explore more about your
     This is because there is no way to switch context to your database since it is not physically associated with the logical server. To connect to the database you must make a direction connection in the context of the user database.
     
     You can do this in SSMS in your current connection, by using the drop-down in the upper left-hand corner and selecting your database. When you do this notice in the bottom right-hand corner of SSMS the connection string changes to include the database name. **Change the context now for the next step**.
+
+1. Examine resource limits of your database
+
+    Try executing the following query:
+
+    ```tsql
+    SELECT * FROM sys.dm_user_db_resource_governance;
+    ```
+    
+    Examine the columns from the result set. This allows you to view limits without always having to look at the documentation. You can learn more about this DMV at https://docs.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-user-db-resource-governance-azure-sql-database. You can also read more about limits at https://docs.microsoft.com/azure/azure-sql/database/resource-limits.
     
 1. Create a basic table with data
 
