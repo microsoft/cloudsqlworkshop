@@ -13,7 +13,7 @@ In these exercises you will:
 
 ## Prerequisites
 
-- You must have an Azure subscription with the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor on a provided subscription.
+- You must have an Azure subscription with the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with your instructor on a provided subscription.
 - You must have permissions to deploy a SQL Server on Azure Virtual Machine from the Azure Marketplace.
 - You will need a client computer that can use the Remote Desktop Protocol(RDP)
 - You will need access to the files and scripts associated to the workshop which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles.
