@@ -18,7 +18,7 @@ In these exercises you will:
 - You must have an Azure subscription with the ability to create an Azure SQL Database using the General Purpose Service Tier. You must have the ability to create an Azure SQL Database in the Azure region of your choice.
 - You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
 - You will need access to the **Source Code** zip file which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. *Extract* out the Source Code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta** folder. You can skip this step if you have already downloaded these files into your VM as part of a previous module. You do not need the tpch.bak file for this module.
-- In your client computer you will **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** (https://aka.ms/azuredatastudio) which you will also use in this module.
+- In your client computer you will use **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** (https://aka.ms/azuredatastudio) which you will also use in this module.
 
     > **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
 
@@ -85,7 +85,7 @@ In this exercise you will deploy an Azure SQL Logical Server and Database per th
 3. You should see three choices for Azure SQL. Use the choice called **SQL databases,** leave the default Single database, and click **Create**.
 4. Now go to Basics through Additional Settings tabs based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.
 
-    > <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database so consider this for the future. You can learn more at https://azure.microsoft.com/free/services/sql-database/.
+    > <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database so consider this for the future. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/database/free-offer.
 
     - For Server, select **Create new** and use the options listed in the scenario requirements above in this module.
     - For Networking, select Public Endpoint, Check Allow Azure services and resources to access this server and all other options should be left as default.
@@ -160,7 +160,7 @@ In this section, you will connect Azure SQL Database and explore more about your
     `Msg 40508, Level 16, State 1, Line 1
     USE statement is not supported to switch between databases. Use a new connection to connect to a different database.`
     
-    This is because there is no way to switch context to your database since it is not physically associated with the logical server. To connect to the database you must make a direction connection in the context of the user database.
+    This is because there is no way to switch context to your database since it is not physically associated with the logical server. To connect to the database you must make a direct connection in the context of the user database.
     
     You can do this in SSMS in your current connection, by using the drop-down in the upper left-hand corner and selecting your database. When you do this notice in the bottom right-hand corner of SSMS the connection string changes to include the database name. **Change the context now for the next step**.
 
@@ -172,11 +172,11 @@ In this section, you will connect Azure SQL Database and explore more about your
     SELECT * FROM sys.dm_user_db_resource_governance;
     ```
     
-    Examine the columns from the result set. This allows you to view limits without always having to look at the documentation. You can learn more about this DMV at https://docs.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-user-db-resource-governance-azure-sql-database. You can also read more about limits at https://docs.microsoft.com/azure/azure-sql/database/resource-limits.
+    Examine the columns from the result set. This allows you to view limits without always having to look at the documentation. You can learn more about this DMV at https://learn.microsoft.com/sql/relational-databases/system-dynamic-management-views/sys-dm-user-db-resource-governor-azure-sql-database. You can also read more about limits at https://learn.microsoft.com/azure/azure-sql/database/resource-limits-vcore-single-databases.
     
 1. Create a basic table with data
 
-    Let's create a simple data and populate it with data. You will use this table later in this module as part of a disaster recovery situation. In the context of the user database execute this query:
+    Let's create a simple table and populate it with data. You will use this table later in this module as part of a disaster recovery situation. In the context of the user database execute this query:
 
     ```tsql
     DROP TABLE IF EXISTS dontdropme;
@@ -209,7 +209,7 @@ Let's use a tool that you may not be as familiar with called Azure Data Studio (
 
 #### Explore your database with Azure Data Studio (ADS)
 
-Let's use ADS to explore the database and look at various features to compare and contrast with SQL Server and Azure SQL Managed Instance.
+Let's use ADS to explore the database and look at various features to compare and contrast with SQL Server and Azure SQL Database.
 
 1. Use the Object Explorer interface to browse tables from the sample database AdventureWorksLT.
 2. Right-click on the connection and select **New Query**. Use `<Ctrl>+<+>` to increase the font size.
@@ -421,11 +421,11 @@ Let's use a great feature of a managed database service by using automatic backu
 
     You can use this to monitor the status of progress of the restore. You can also use the Azure Portal to monitor the status of the restore.
 
-    It may take up to 5-6 to complete the restore.
+    It may take up to 5-6 minutes to complete the restore.
 
     **Note:** The new database may appear in SSMS in Object Explorer but may not be ready to be accessed.
 
-1. In SSMS, refresh Object Explore to see if the new database is listed.
+1. In SSMS, refresh Object Explorer to see if the new database is listed.
 1. Open up a new query window in the context of the new database. Execute the following query:
 
     ```tsql
