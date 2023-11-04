@@ -27,7 +27,7 @@ You must meet the following requirements:
 ### Software and Virtual Machine requirements
 
 - Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Serve including any free edition.
-- The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. You must deploy the virtual machine using the Azure Portal. For the purposes of this exercise, use VM sizes with Intel processors.
+- The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. So for example, the **E4ds_v5** VM Size could be a good starting point. You must deploy the virtual machine using the Azure Portal. For the purposes of this exercise, use VM sizes with Intel processors.
 - The Virtual Machine has these other requirements:
     - Create a new resource group of the name of your choosing.
     - Choose a VM name of your choosing.
@@ -35,16 +35,17 @@ You must meet the following requirements:
     - The VM has No Infrastructure Redundancy requirements
     - The VM can use the Standard security type
     - The VM cannot run with Azure Spot discounts
-    - You are free to choose any admin and password that meet requirements for complexity.
+    - You are free to choose any admin and password that meet requirements for complexity. **Note:** Keep track of the admin and password you choose as you will need it later.
     - The public inbound port 3389 for RDP can be left open to the public internet for this PoC.
     - You do have existing Windows Server licenses that you can use for this PoC.
-    - There are no special requirements for the OS disk, Networking, Management, Advanced, or Monitoring sections when deploying the VM.
-        - **Important Note:** For instructor led labs your instruction may ask you to deploy the Azure Virtual Machine in a specific virtual network and subnet that allows it to easily connect to Azure SQL Managed Instance for other modules.
+    - There are no special requirements for the OS disk,  Management, Advanced, or Monitoring sections when deploying the VM.
+    - For Networking, choose the default virtual network and subnet that is created for you. You do not need to create a new virtual network or subnet. You need to make sure you use a **Basic** NIC networking security group.
+        - **Important Note:** For instructor led labs your instruction may ask you to deploy the Azure Virtual Machine in a *specific virtual network and subnet* that allows it to easily connect to Azure SQL Managed Instance for other modules.
     - You do not have to specify any tags for the VM.
 - The SQL Server instance should be configured as follows:
     - MAXDOP for the server = # of cores from the VM
-    - Instant File Initialization enabled.
     - Locked Pages in Memory enabled.
+    - Instant File Initialization enabled.
     - All other instance configuration choices can be left to their defaults.
     
 ### Storage requirements
@@ -99,7 +100,7 @@ In this exercise, you will go through the process of deploying SQL Server on an 
 
     1. Leave all other settings to their defaults.
 
-1. When you are ready, click on **Review + Create** and then **Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (mileage can vary).
+1. When you are ready, click on **Review + Create** and then **Create** to start the deployment. Monitor the deployment until it is successful. It should finish in around 8-10 minutes (the exact time can vary).
 
 ### Answers for the exercises
 
@@ -142,11 +143,11 @@ Use the following steps to connect to the VM with RDP and prepare for the next m
 1. Use Remote Desktop to connect into the Virtual Machine.
     1. In the Azure Portal for your virtual machine select **Connect** from the left-hand menu.
     1. Under Native RDP click on **Select**.
-    1. Scroll down to Download and open the RDP file and click on Download RDP file.
+    1. Scroll down to **Download and open the RDP file** and click on Download RDP file.
     1. Select the RDP file to open it and click on **Connect**.
 1. Inside the virtual machine, download the **tpch.bak** SQL Server backup file and **Source code** zip file from https://aka.ms/cloudsqlworkshopfiles. Move the tpch.bak file into the f:\data folder.
-1. *Extract* out the Source code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta** folder.
-1. From the extracted workshop source files load the **restore_tpch.sql** script from the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\03_Deploy_SQL_AzureVM** folder into SSMS to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
+1. *Extract* out the Source code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-2.0-beta** folder.
+1. From the extracted workshop source files load the **restore_tpch.sql** script from the **`<user>`\Downloads\cloudsqlworkshop-2.0-beta\cloudsqlworkshop-2.0-beta\cloudsqlworkshop\03_Deploy_SQL_AzureVM** folder into SSMS to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
 
 ## Next Steps
 
