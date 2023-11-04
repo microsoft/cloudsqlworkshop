@@ -48,7 +48,7 @@ You have a requirement to deploy a new Azure SQL Database with the following req
 - Use the following Compute+Storage options:
     - Use the General Purpose service tier and Provisioned Compute Tier.
     - Use the Standard-series (Gen5) hardware
-    - Use Azure Hybrid Benefit to Save Money.
+    - Use Azure Hybrid Benefit to Save Money. (i.e. I have a SQL Server License)
     - Use 2 vCores and 32GB Data Max size.
     - You do not have to make the database zone redundant.
 - Use Geo-redundant backup storage.
@@ -263,7 +263,7 @@ Let's use ADS to explore the database and look at various features to compare an
 6. Let's see another DMV that can be used for troubleshooting connectivity issues with Azure SQL Database. At the top of the query window change the database context in the dropdown back to master. Now execute the following query:
 
     ```tsql
-    SELECT * FROM sys.event_log ORDER BY start_time DESC;
+    SELECT * FROM sys.event_log_ex ORDER BY start_time DESC;
     GO
     ```
 
@@ -285,6 +285,8 @@ Let's use ADS to explore the database and look at various features to compare an
 
 8. Use SQL Profiler with Azure SQL Database
 
+   **Note:** This extension requires Azure Data Studio version 1.46 later. If you have not updated and restarted Azure Data Studio, do so now.
+
    Use the SQL Server Profiler extension of Azure Data Studio to  trace queries against your database. Use the following documentation to learn how to install and use the extension: https://learn.microsoft.com/azure-data-studio/extensions/sql-server-profiler-extension.
 
     This extension uses Extended Events to help you trace queries. You can learn more about Extended Events at https://docs.microsoft.com/sql/relational-databases/extended-events/extended-events.
@@ -303,7 +305,7 @@ Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to 
 1. In SSMS, disconnect the current session for the logical server.
 1. In SSMS, connect using this new Microsoft Entra account similar to the documentation at https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-setup-tutorial?view=sql-server-ver16#authentication-example-using-ssms. Your choice of authentication method depends on how your Entra account has been setup. Often you will use *Active Directory - Universal with MFA support*. For instructor led workshops, your instructor will provide this information for you.
 1. Find another Microsoft Entra account to add as a user. For instructor led workshops, your instructor will provide this information for you.
-1. In a query window, execute the following query:
+1. In a query window, execute the following query in the *context of your user database*:
 
     ```tsql
     CREATE USER [<Microsoft Entra account>] FROM EXTERNAL PROVIDER;
@@ -313,6 +315,11 @@ Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to 
     Where `<Microsoft Entra Account>` is the name of the other Microsoft Entra account.
 
 1. Disconnect with SSMS and connect with the 2nd Microsoft Entry Account. Notice you only have access to the user database. This is an example of using Microsoft Entra to provide a user access to a database without creating a login.
+
+    **Important:** When you connect with this 2nd user you must specify the user database name in the Connection Properties tab. If you get this error check the database context
+
+    `Login failed for user '<token-identified principal>'. (Microsoft SQL Server, Error: 18456)`
+
 1. Disconnect with SSMS the new connection.
 
 ## Exercise 7.4 - Scale Azure SQL Database with Serverless
@@ -326,11 +333,12 @@ You might have already performed some of these steps if you completed Module 04 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI with all the defaults.
 2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder
 - Edit the **workload.cmd** to put in your `<logical server>`, `<database>`, `<admin login>`, and `<password>`.
-- Connect with SSMS with the SQL admin account using SQL Authentication (You could also use the Microsoft Entra admin account if you prefer).
+- Connect with SSMS with the SQL admin account using SQL Authentication (You could also use the Microsoft Entra admin account if you prefer). **Note:** Make sure to clear the Additional connection properties for read-only if that is still there from previous modules.
 - In SSMS load the script files dbdbresourcestats.sql and dmexecrequests.sql from the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder in separate query windows under the context of the database. You will use these scripts to monitor performance.
 
 ### Run the workload and observe performance
 
+1. Load the scripts **dmexecrequests.sql** and **dmdbresourcestats.sq**l from the **`<user>`\Downloads\cloudsqlworkshop-2.0-beta\cloudsqlworkshop-2.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder in separate query windows *under the context of the user database*. You will use these scripts to monitor performance.
 1. From the current Powershell command window run **workload.cmd**.
 1. While this command is running execute the T-SQL queries from the script dmexecrequests.sql in SSMS to see the workload running. You will observe several requests with a status of runnable and last_wait_type of SOS_SCHEDULER_YIELD. This script uses common DMVs such as **sys.dm_exec_requests** to see what queries are actively running or waiting. SOS_SCHEDULER_YIELD is a common symptom of a CPU bound workload and lack of CPU resources.
 1. Execute the T-SQL queries from the script dmdbresourcestats.sql in SSMS to see the resource usage of the database. This script uses the DMV sys.**dm_db_resource_stats** which is unique to Azure SQL Database. This DMV shows on a polling interval every 15 seconds. If you run this query repeatedly you will see several intervals where the avg_cpu_percent is 99%+. This is an indication that the database is CPU bound and is being limited by CPU resources.
@@ -363,7 +371,7 @@ You will still see some runnable requests with SOS_SCHEDULER_YIELD (far less) bu
 
 The workload should finish in no more than 15 seconds.
 
-If you look back at Monitoring in the Azure Portal you will also see far less CPU utilization. Note that by default Monitoring the portal is not refreshed on a low frequency so it make take a few minutes to see the new numbers. You can come back and look at this later if you want to proceed with further exercises.
+If you look back at Monitoring in the Azure Portal you will also see  less CPU utilization. Note that by default Monitoring the portal is not refreshed on a low frequency so it make take a few minutes to see the new numbers. You can come back and look at this later if you want to proceed with further exercises.
 
 Close out the existing query windows.
 

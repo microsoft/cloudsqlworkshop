@@ -12,7 +12,7 @@ In these exercises you will:
 
 ## Prerequisites
 
-**Important Note:** Some instructor led labs may already have deployed an Azure SQL Managed Instance for you to use which meets all the requirements in this Exercise. In addition, some instructor led labs will use the Azure VM from Exercise 3.1 as the *jumpbox* virtual machine as listed in these prerequisites. If this is the case, read through Exercise 5.1 but you can skip 5.2 and go right to Exercise 5.3. 
+**Important Note:** Some instructor led labs may already have deployed an Azure SQL Managed Instance for you to use which meets all the requirements in this Exercise. In addition, some instructor led labs will use the Azure VM from Exercise 3.2 as the *jumpbox* virtual machine as listed in these prerequisites. If this is the case, read through Exercise 5.1 but you can skip 5.2 and go right to Exercise 5.3. 
 
 - You must have an Azure subscription with the ability to create an Azure SQL Managed Instance. You must have the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor as the Azure SQL Managed Instance might be pre-deployed.
 - The Azure SQL Managed Instance will use the Business Critical service tier Standard-series Hardware generation with 4 vCores and 256GB of storage.

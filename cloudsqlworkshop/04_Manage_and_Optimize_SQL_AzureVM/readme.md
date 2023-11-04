@@ -29,7 +29,7 @@ You will use a stress test workload to verify the I/O performance of the storage
 
 ### Setup
 
-- Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI.
+- Download the ostress program for the workload from https://aka.ms/ostress. Run the install program using all the defaults.
 
 ### Verify SQL Server instance settings
 
@@ -67,7 +67,7 @@ To **verify SQL Server instance settings** you can:
 
 To **verify tempdb is configured correctly** you can use SSMS to look at the file properties for tempdb to ensure the right number of files and autogrow settings are configured.
 
-When you run the workload test to **verify I/O performance**, you should see Disk Bytes/Sec range between 3000 to 4000 and throughput should easily exceed 200Mb/sec.
+When you run the workload test to **verify I/O performance**, you should see Disk Bytes/Sec range between 3000 to 4000 (with some dips) and throughput should easily exceed 200Mb/sec.
 
 ## Exercise 4.2 - Explore the SQL IaaS Agent Extension
 
