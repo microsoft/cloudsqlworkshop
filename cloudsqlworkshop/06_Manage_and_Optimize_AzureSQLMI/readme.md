@@ -90,7 +90,7 @@ In this exercise you will create a new database, create a table, populate it wit
 
     Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste all the code into a new query window in the context of the customersdb database. Execute the query to create the QPI library.
 
-4. In a new query window load this query to take a snapshot for I/O and wait statistics:
+4. In a new query window execute this query to take a snapshot for I/O and wait statistics:
 
     ```tsql
     USE customersdb;
@@ -101,7 +101,7 @@ In this exercise you will create a new database, create a table, populate it wit
     GO
     ```
 
-5. In a new query window execute this query to create a new table from the existing table. This will use DOP to populate the new table and put pressure on transaction log I/O.
+1. In a new query window execute this query to create a new table from the existing table. This will use DOP to populate the new table and put pressure on transaction log I/O. *While this query is running go to the next step*.
 
     ```tsql
     USE customersdb;
@@ -112,7 +112,7 @@ In this exercise you will create a new database, create a table, populate it wit
     GO
     ```
 
-6. In a new query window run the following queries to monitor I/O performance and waits **while the SELECT INTO is running**.
+1. In a new query window execute following queries to monitor I/O performance and waits. *You will execute this query repeatedly while the SELECT INTO is running*.
 
     ```tsql
     USE customersdb;
