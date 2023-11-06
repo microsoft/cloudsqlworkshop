@@ -66,7 +66,7 @@ You do not need to use any Tags.
 ## Exercise 5.2 - Deploy the Azure SQL Managed Instance
 
 1. Use the Azure Portal (https://portal.azure.com) to deploy a new Azure SQL Managed Instance that meets the requirements of the scenario. Consult the quick start guide for a walkthrough at https://learn.microsoft.com/azure/azure-sql/managed-instance/instance-create-quickstart.
-1. After the deployment completes take note in the Azure Portal of the Managed Instance **hostname**. Be sure to save your admin and password you used.
+1. After the deployment completes take note in the Azure Portal of the Managed Instance **hostname**. Be sure to save your admin login and password you used.
 
 ## Exercise 5.3 - Post deployment steps
 
@@ -79,7 +79,7 @@ Connect to the Azure SQL Managed instance using a client and SQL tools.
 1. Use Remote Desktop to connect into the *jumpbox* Virtual Machine. If you already have an RDP file downloaded for the virtual machine you can use that. Otherwise use the following steps:
     1. In the Azure Portal for your virtual machine select **Connect** from the left-hand menu.
     1. Under Native RDP click on **Select**.
-    1. Scroll down to Download and open the RDP file and click on Download RDP file.
+    1. Scroll down to **Download and open the RDP file** and click on Download RDP file.
     1. Select the RDP file to open it and click on **Connect**.
 1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment. **Tip:**  In the top right hand search edit box in SSMS, type in **PresentOn** to increase fonts and make it easier to see.
 
@@ -91,4 +91,4 @@ Connect to the Azure SQL Managed instance using a client and SQL tools.
 
 ## Next Steps
 
-In Module 6, you will learn how to explore the capabilities of Azure SQL Managed Instance and to learn how to manage and optimize your deployment using your skills and knowledge of SQL Server while learning new skills with Azure SQL Managed Instance.
+In Module 6, you will learn how to explore the capabilities of Azure SQL Managed Instance and learn how to manage and optimize your deployment using your skills and knowledge of SQL Server while learning new skills with Azure SQL Managed Instance.

@@ -24,7 +24,7 @@ In this exercise, you will use the Azure Portal (https://portal.azure.com) and A
 1. Find your Azure SQL Managed Instance in the Azure Portal. You can use the search bar at the top of the Azure Portal to search for the name of your Azure SQL Managed Instance or you can find it in the resource group you deployed it to.
 1. Select **November 2022 Feature Wave** from the left-hand menu and review the new innovations that are in the feature wave.
 1. Select **Compute + Storage** from the left-hand menu. Review the various choices you have for service-tiers, Zone Redundancy, Hardware generation, vCores, and storage.
-    1. Scroll down to the **Compute + Storage** section and select **View pricing details** and take note of the cost. Scroll back up to SQL Server License and select **Azure Hybrid Benefit (AHB)** and check the "I confirm..." option. Scroll down and see the Cost Savings.
+    1. Scroll down to view the pricing details at the bottom of the page. Take note of the cost. Scroll back up to SQL Server License and select **Azure Hybrid Benefit (AHB)** and check the "I confirm..." option. Scroll down and see the Cost Savings.
     1. Scroll back up and Review the Backup Storage Redundancy options.
     1. Click on Apply to apply the AHB option. This will take a few minutes to apply.
 1. Select **Maintenance** from the left-hand menu. Select the Maintenance drop-down and **review only** the options for Maintenance schedule and Maintenance window. The option for SQL Service health alerts are to setup notifications for maintenance events.
@@ -88,9 +88,9 @@ In this exercise you will create a new database, create a table, populate it wit
 
 3. To observe I/O performance we can use built in Dynamic Management Views (DMV) in SQL Server such as **sys.dm_io_virtual_file_stats**. To assist you in using these DMVs we will use the QPI library set of scripts.
 
-    Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste all the code into a new query window in the context of the customersdb database. Execute the query to create the QPI library
+    Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste all the code into a new query window in the context of the customersdb database. Execute the query to create the QPI library.
 
-4. In a new query window load his query to take a snapshot for I/O and wait statistics:
+4. In a new query window load this query to take a snapshot for I/O and wait statistics:
 
     ```tsql
     USE customersdb;
@@ -112,7 +112,7 @@ In this exercise you will create a new database, create a table, populate it wit
     GO
     ```
 
-6. In a new query window run the following queries to monitor I/O performance and waits while the SELECT INTO is running.
+6. In a new query window run the following queries to monitor I/O performance and waits **while the SELECT INTO is running**.
 
     ```tsql
     USE customersdb;
@@ -156,7 +156,7 @@ Look at common SQL diagnostics you also use for SQL Server.
 
     Notice the results are the same as you might see in SQL Server with a few interesting differences:
 
-    - The **recovery model** is FULL for all databases (event system databases) and cannot be modified.
+    - The **recovery model** is FULL for all databases (even system databases) and cannot be modified.
     - The default **compatibility level** is 150 (SQL Server 2019) but you can change this for your user database. Azure SQL Managed Instance supports dbcompat from older SQL Server versions. **Note:** Azure SQL Managed Instance can change the default dbcompat in the future.
     - **Query store** is ON by default for your user database.
     - Your database is encrypted with **TDE** by default.
@@ -180,7 +180,7 @@ Look at common SQL diagnostics you also use for SQL Server.
 
 3. See how you can run live **Extended Events sessions**.
  
-    In SSMS in Object Explorer, expand **XEProfiler** and right-click on Standard. Select Launch Session. You will see a new window showing a live Extended Events session. Even though you are not running queries you can see activity of various background services that support Azure SQL Managed Instance and observe the activity.
+    In SSMS in Object Explorer, expand **XEvent Profiler** and right-click on Standard. Select Launch Session. You will see a new window showing a live Extended Events session. Even though you are not running queries you can see activity of various background services that support Azure SQL Managed Instance and observe the activity.
 
     **Note:** Any Extended Event session you want to persist to disk must be done to Azure Storage since you don't have access to the underlying filesystem of the VM. 
 
@@ -209,7 +209,7 @@ Look at common SQL diagnostics you also use for SQL Server.
 
     This is because memory limits are managed by Azure SQL Managed Instance and this configuration option is not needed.
 
-5. As you have already seen the Query Store in on by default. Let's look at **Query Store reports** in SSMS.
+5. As you have already seen the Query Store is on by default. Let's look at **Query Store reports** in SSMS.
 
     In SSMS, expand your database you deployed earlier in this module. Right-click on **Query Store** and select **Top Resource Consuming Queries**. You will see a report showing the top resource consuming queries just like you can in SQL Server.
 
@@ -219,7 +219,7 @@ Look at common SQL diagnostics you also use for SQL Server.
     EXEC sp_readerrorlog;
     ```
 
-    You can read the SQL Server ERRORLOG just like SQL Server. Note: there are many events are may not be relevant to you and are events logged as part of managing the service.
+    You can read the SQL Server ERRORLOG just like SQL Server. Note: there are many events that may not be relevant to you and are events logged as part of managing the service.
 
 ### Create a SQL Agent Job
 
