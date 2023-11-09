@@ -53,7 +53,7 @@ Learn how to use Azure CLI to explore your deployment. You can use the Azure Clo
 
 In this exercise you will create a new database, create a table, populate it with data, and then perform a test to observe transaction log I/O performance and possible limits. Like SQL Server, when you deploy an Azure SQL Managed Instance only system databases exist. You will need to create a new database to perform this exercise.
 
-1. Using the following documentation page: https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/resource-limits?view=azuresql#service-tier-characteristics, calculate the **Log write throughput limit** for your deployment.
+1. Using the following documentation page: https://learn.microsoft.com/azure/azure-sql/managed-instance/resource-limits?view=azuresql#service-tier-characteristics, calculate the **Log write throughput limit** for your deployment.
 
 2. Create a new database, table, and populate data in your Azure SQL Managed Instance. Use the following T-SQL to create the database. This will take about 1 minute to execute:
 
@@ -88,7 +88,7 @@ In this exercise you will create a new database, create a table, populate it wit
 
 3. To observe I/O performance we can use built in Dynamic Management Views (DMV) in SQL Server such as **sys.dm_io_virtual_file_stats**. To assist you in using these DMVs we will use the QPI library set of scripts.
 
-    Pull up this site https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste all the code into a new query window in the context of the customersdb database. Execute the query to create the QPI library.
+    Pull up this URL https://raw.githubusercontent.com/JocaPC/qpi/master/src/qpi.sql. Select all the contents of the file and copy it to your clipboard. Connect with SSMS to your Managed Instance and paste all the code into a new query window in the context of the customersdb database. Execute the query to create the QPI library.
 
 4. In a new query window execute this query to take a snapshot for I/O and wait statistics:
 
@@ -194,6 +194,7 @@ Look at common SQL diagnostics you also use for SQL Server.
     sp_configure;
     GO
     ```
+
     Notice the options pretty much look the same as what is available in SQL Server. However, now try to run this query:
 
     ```tsql

@@ -16,7 +16,7 @@ In these exercises you will:
 
 - You must have an Azure subscription with the ability to create an Azure SQL Managed Instance. You must have the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor as the Azure SQL Managed Instance might be pre-deployed.
 - The Azure SQL Managed Instance will use the Business Critical service tier Standard-series Hardware generation with 4 vCores and 256GB of storage.
-- You will need to have access to a virtual machine that can connect to the Azure SQL Managed Instance without a public endpoint. The most common method is to create a *jumpbox* virtual machine in the same virtual network (but different subnet) as the Azure SQL Managed Instance. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/connect-vm-instance-configure.
+- You will need to have access to a virtual machine that can connect to the Azure SQL Managed Instance without a public endpoint. The most common method is to create a *jumpbox* virtual machine in the same virtual network (but different subnet) as the Azure SQL Managed Instance. You can learn more at https://learn.microsoft.com/azure/azure-sql/managed-instance/connect-vm-instance-configure.
 
     - The virtual machine must have SQL Server 2022 Developer Edition installed.
     - The virtual machine must have SQL Server Management Studio installed (https://aka.ms/ssms). Use version 19.X or later.

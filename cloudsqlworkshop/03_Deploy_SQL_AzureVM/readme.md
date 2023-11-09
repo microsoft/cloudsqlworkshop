@@ -94,7 +94,7 @@ In this exercise, you will go through the process of deploying SQL Server on an 
 
     **Tips:** You may need to provision more storage than you need to meet the IOPS and throughput requirements. You may also need to choose a different VM size to meet the IOPS and throughput requirements. Look for any warnings on the Configure Storage screen. Go directly back to the Basics tab to change the VM size if necessary.
 
-    The portal alone may not show you all the information you need so you may need to consult these documentation pages: https://learn.microsoft.com/azure/virtual-machines/ebdsv5-ebsv5-series and https://learn.microsoft.com/en-us/azure/virtual-machines/edv5-edsv5-series. Use the **Max uncached Premium SSD disk throughput: IOPS/MBps column** to help you choose the right VM size. You may also need to consult this documentation page: https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd.
+    The portal alone may not show you all the information you need so you may need to consult these documentation pages: https://learn.microsoft.com/azure/virtual-machines/ebdsv5-ebsv5-series and https://learn.microsoft.com/azure/virtual-machines/edv5-edsv5-series. Use the **Max uncached Premium SSD disk throughput: IOPS/MBps column** to help you choose the right VM size. You may also need to consult this documentation page: https://learn.microsoft.com/azure/virtual-machines/disks-types#premium-ssd.
 
     1. Click on the *Change SQL instance settings* to change SQL Server instance settings per the requirements.
 
@@ -146,8 +146,8 @@ Use the following steps to connect to the VM with RDP and prepare for the next m
     1. Scroll down to **Download and open the RDP file** and click on Download RDP file.
     1. Select the RDP file to open it and click on **Connect**.
 1. Inside the virtual machine, download the **tpch.bak** SQL Server backup file and **Source code** zip file from https://aka.ms/cloudsqlworkshopfiles. Move the tpch.bak file into the f:\data folder.
-1. *Extract* out the Source code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-2.0-beta** folder.
-1. From the extracted workshop source files load the **restore_tpch.sql** script from the **`<user>`\Downloads\cloudsqlworkshop-2.0-beta\cloudsqlworkshop-2.0-beta\cloudsqlworkshop\03_Deploy_SQL_AzureVM** folder into SSMS to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
+1. *Extract* out the Source code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-release** folder.
+1. From the extracted workshop source files load the **restore_tpch.sql** script from the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\03_Deploy_SQL_AzureVM** folder into SSMS to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.
 
 ## Next Steps
 

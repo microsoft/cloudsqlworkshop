@@ -17,7 +17,7 @@ In these exercises you will:
 
 - You must have an Azure subscription with the ability to create an Azure SQL Database using the General Purpose Service Tier. You must have the ability to create an Azure SQL Database in the Azure region of your choice.
 - You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
-- You will need access to the **Source Code** zip file which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. *Extract* out the Source Code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta** folder. You can skip this step if you have already downloaded these files into your VM as part of a previous module. You do not need the tpch.bak file for this module.
+- You will need access to the **Source Code** zip file which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. *Extract* out the Source Code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-release** folder. You can skip this step if you have already downloaded these files into your VM as part of a previous module. You do not need the tpch.bak file for this module.
 - In your client computer you will use **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** (https://aka.ms/azuredatastudio) which you will also use in this module.
 
     > **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
@@ -85,7 +85,7 @@ In this exercise you will deploy an Azure SQL Logical Server and Database per th
 3. You should see three choices for Azure SQL. Use the choice called **SQL databases,** leave the default Single database, and click **Create**.
 4. Now go to Basics through Additional Settings tabs based on the scenario requirements listed above in this module. Here are a few tips as you use the portal to deploy the database.
 
-    > <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database so consider this for the future. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/database/free-offer.
+    > <strong>Tip</strong>: Notice in the Azure Portal the new option to create an Azure Database for free. You could use this offer during the workshop but may run out of free vCore usage based on the exercises in this module. This is a great way to get started with Azure SQL Database so consider this for the future. You can learn more at https://learn.microsoft.com/azure/azure-sql/database/free-offer.
 
     - For Server, select **Create new** and use the options listed in the scenario requirements above in this module.
     - For Networking, select Public Endpoint, Check Allow Azure services and resources to access this server and all other options should be left as default.
@@ -331,14 +331,14 @@ In this exercise, you will learn how to run a workload against Azure SQL Databas
 You might have already performed some of these steps if you completed Module 04 of this workshop.
 
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program from the GUI with all the defaults.
-2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder
+2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder
 - Edit the **workload.cmd** to put in your `<logical server>`, `<database>`, `<admin login>`, and `<password>`.
 - Connect with SSMS with the SQL admin account using SQL Authentication (You could also use the Microsoft Entra admin account if you prefer). **Note:** Make sure to clear the Additional connection properties for read-only if that is still there from previous modules.
-- In SSMS load the script files dbdbresourcestats.sql and dmexecrequests.sql from the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder in separate query windows under the context of the database. You will use these scripts to monitor performance.
+- In SSMS load the script files dbdbresourcestats.sql and dmexecrequests.sql from the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder in separate query windows under the context of the database. You will use these scripts to monitor performance.
 
 ### Run the workload and observe performance
 
-1. Load the scripts **dmexecrequests.sql** and **dmdbresourcestats.sq**l from the **`<user>`\Downloads\cloudsqlworkshop-2.0-beta\cloudsqlworkshop-2.0-beta\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder in separate query windows *under the context of the user database*. You will use these scripts to monitor performance.
+1. Load the scripts **dmexecrequests.sql** and **dmdbresourcestats.sq**l from the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\07_Deploy_Manage_Optimize_AzureSQLDB** folder in separate query windows *under the context of the user database*. You will use these scripts to monitor performance.
 1. From the current Powershell command window run **workload.cmd**.
 1. While this command is running execute the T-SQL queries from the script dmexecrequests.sql in SSMS to see the workload running. You will observe several requests with a status of runnable and last_wait_type of SOS_SCHEDULER_YIELD. This script uses common DMVs such as **sys.dm_exec_requests** to see what queries are actively running or waiting. SOS_SCHEDULER_YIELD is a common symptom of a CPU bound workload and lack of CPU resources.
 1. Execute the T-SQL queries from the script dmdbresourcestats.sql in SSMS to see the resource usage of the database. This script uses the DMV sys.**dm_db_resource_stats** which is unique to Azure SQL Database. This DMV shows on a polling interval every 15 seconds. If you run this query repeatedly you will see several intervals where the avg_cpu_percent is 99%+. This is an indication that the database is CPU bound and is being limited by CPU resources.

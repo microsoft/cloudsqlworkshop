@@ -51,7 +51,7 @@ You will use a combination of Windows perfmon and a workload script and query to
     - **Logical Disk F: Disk Bytes/Sec**: This is your measure for I/O throughput.
     - **Logical Disk F: Disk Transfer/Sec**: This is your measure for IOPS.
 
-2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-beta\cloudsqlworkshop-1.0-beta\cloudsqlworkshop\04_Optimize_SQL_AzureVM** folder
+2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\04_Optimize_SQL_AzureVM** folder
 1. Run **workload.cmd** from a Powershell prompt to run the workload which will take about a minute.
 1. During the workload run observe the values for the perfmon counters. Verify this meets the requirements for storage performance.
 
@@ -71,30 +71,30 @@ When you run the workload test to **verify I/O performance**, you should see Dis
 
 ## Exercise 4.2 - Explore the SQL IaaS Agent Extension
 
-Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Extension. You can find the documentation at https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-vm-resource-provider-overview.
+Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Extension. You can find the documentation at https://docs.microsoft.com/azure/azure-sql/virtual-machines/windows/sql-vm-resource-provider-overview.
 
 1. Find your virtual machine in the Azure Portal (https://portal.azure.com) as a SQL Server Virtual Machine by searching in the top of the Azure Portal for "SQL Virtual Machines". Select SQL Virtual Machines from the list of Services.
 2. Select your virtual machine from the list of SQL Server Virtual Machines.
 3. Look at the properties in the main pane including SQL Server version, and edition.
 4. On the left hand menu, select **Configure**
 
-    Notice your different license types and the ability to change the license type. The default is Pay As You Go since we used the Marketplace but you could also select Azure Hybrid Benefit to use an existing SQL Server license. In addition, if this VM was used for DR purposes from an on-premises SQL Server you could select Disaster Recovery and not pay any SQL license costs. You an learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/licensing-model-azure-hybrid-benefit-ahb-change.
+    Notice your different license types and the ability to change the license type. The default is Pay As You Go since we used the Marketplace but you could also select Azure Hybrid Benefit to use an existing SQL Server license. In addition, if this VM was used for DR purposes from an on-premises SQL Server you could select Disaster Recovery and not pay any SQL license costs. You an learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/licensing-model-azure-hybrid-benefit-ahb-change.
 
 5. On the left hand menu select **Storage Configuration**. 
  
-    There is where you can expand storage for data or transaction log disks. You can also change the storage configuration of tempdb. You can also add additional disks for data or log files. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/storage-configuration?view=azuresql&tabs=windows2016#existing-vms.
+    There is where you can expand storage for data or transaction log disks. You can also change the storage configuration of tempdb. You can also add additional disks for data or log files. You can learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/storage-configuration?view=azuresql&tabs=windows2016#existing-vms.
 
 6. On the left hand menu select **Updates**.
 
-    This is the Microsoft update experience for Azure virtual machines. You can use this option to enable Microsoft updates inside your VM including cumulative updates for SQL Server. You can check for updates, perform updates, and schedule updates. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/azure-update-manager-sql-vm?view=azuresql&tabs=windows.
+    This is the Microsoft update experience for Azure virtual machines. You can use this option to enable Microsoft updates inside your VM including cumulative updates for SQL Server. You can check for updates, perform updates, and schedule updates. You can learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/azure-update-manager-sql-vm?view=azuresql&tabs=windows.
 
 7. On the left hand menu select **Backups**.
 
-    This is an option for you to schedule automatic backups to Azure Storage. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/automated-backup?view=azuresql.
+    This is an option for you to schedule automatic backups to Azure Storage. You can learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/automated-backup?view=azuresql.
 
 8. On the left hand menu select **Best Practices Assessment**.
 
-    This is an option for you to run best practice assessments to get advice on how to configure your virtual machine and SQL Server for optimal performance and execution. You can get advice specifically based on your configuration on topics like SQL Server and database configurations, Index management, Deprecated features, Enabled or missing trace flags, Statistics, and more You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/best-practices-assessment?view=azuresql.
+    This is an option for you to run best practice assessments to get advice on how to configure your virtual machine and SQL Server for optimal performance and execution. You can get advice specifically based on your configuration on topics like SQL Server and database configurations, Index management, Deprecated features, Enabled or missing trace flags, Statistics, and more You can learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/best-practices-assessment?view=azuresql.
 
 9. On the left hand menu select **Security Configuration**.
 
@@ -102,11 +102,11 @@ Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Ext
 
     **Azure Key Vault**
 
-    Enabling this option allows you to store and manage keys for features like transparent data encryption (TDE), column level encryption (CLE), and backup encryption in Azure Key Vault. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/azure-key-vault-integration-configure.
+    Enabling this option allows you to store and manage keys for features like transparent data encryption (TDE), column level encryption (CLE), and backup encryption in Azure Key Vault. You can learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/azure-key-vault-integration-configure.
 
     **Microsoft Entry Authentication**
 
-    This option allows you to enable Microsoft Entry Authentication (formerly known as Azure Active Directory) for SQL Server running in the virtual machine (only supported for SQL Server 2022 and later) This provides a method for you to use more secure authentication methods than SQL Authentication but does not require a Windows domain. It also provides new secure login methods such as Multi-Factor Authentication (MFA). Learn more at https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm
+    This option allows you to enable Microsoft Entry Authentication (formerly known as Azure Active Directory) for SQL Server running in the virtual machine (only supported for SQL Server 2022 and later) This provides a method for you to use more secure authentication methods than SQL Authentication but does not require a Windows domain. It also provides new secure login methods such as Multi-Factor Authentication (MFA). Learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm
 
 10. On the left hand menu select **Microsoft Defender for the Cloud**
 
@@ -114,11 +114,11 @@ Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Ext
 
     Microsoft Defender for the Cloud can be enabled on Azure subscription by default so may provide immediate results for you to review.
 
-    Learn more at https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-usage
+    Learn more at https://learn.microsoft.com/azure/defender-for-cloud/defender-for-sql-usage
 
 ## Exercise 4.3 - Bonus Exercise with Premium SSD v2 disks
 
-Using the following documentation https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd-v2-performance determine how you could use a Premium SSD v2 disk for storage for database files to save cost and minimize the needed size of the managed disks. You will also need the pricing chart at https://azure.microsoft.com/en-us/pricing/details/managed-disks/.
+Using the following documentation https://learn.microsoft.com/azure/virtual-machines/disks-types#premium-ssd-v2-performance determine how you could use a Premium SSD v2 disk for storage for database files to save cost and minimize the needed size of the managed disks. You will also need the pricing chart at https://azure.microsoft.com/pricing/details/managed-disks/.
 
 ### Advanced Exercise Answers
 
