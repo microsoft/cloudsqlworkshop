@@ -51,7 +51,7 @@ You will use a combination of Windows perfmon and a workload script and query to
     - **Logical Disk F: Disk Bytes/Sec**: This is your measure for I/O throughput.
     - **Logical Disk F: Disk Transfer/Sec**: This is your measure for IOPS.
 
-2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\04_Optimize_SQL_AzureVM** folder
+2. From a Powershell command prompt change context to the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\04_Manage_and_Optimize_SQL_AzureVM** folder
 1. Run **workload.cmd** from a Powershell prompt to run the workload which will take about a minute.
 1. During the workload run observe the values for the perfmon counters. Verify this meets the requirements for storage performance.
 
