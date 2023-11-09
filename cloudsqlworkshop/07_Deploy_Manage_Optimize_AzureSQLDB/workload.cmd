@@ -1,0 +1,1 @@
+"C:\Program Files\Microsoft Corporation\RMLUtils\ostress" -S<logical server>.database.windows.net -d<database> -itopcustomersales.sql -r2 -n10 -q -U<admin login> -P<password> -T146
