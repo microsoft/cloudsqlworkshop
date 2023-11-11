@@ -24,9 +24,10 @@ In this exercise, you will use the Azure Portal (https://portal.azure.com) and A
 1. Find your Azure SQL Managed Instance in the Azure Portal. You can use the search bar at the top of the Azure Portal to search for the name of your Azure SQL Managed Instance or you can find it in the resource group you deployed it to.
 1. Select **November 2022 Feature Wave** from the left-hand menu and review the new innovations that are in the feature wave.
 1. Select **Compute + Storage** from the left-hand menu. Review the various choices you have for service-tiers, Zone Redundancy, Hardware generation, vCores, and storage.
-    1. Scroll down to view the pricing details at the bottom of the page. Take note of the cost. Scroll back up to SQL Server License and select **Azure Hybrid Benefit (AHB)** and check the "I confirm..." option. Scroll down and see the Cost Savings.
-    1. Scroll back up and Review the Backup Storage Redundancy options.
-    1. Click on Apply to apply the AHB option. This will take a few minutes to apply.
+    1. Learn how to reduce your cost. **Note: Your instructor may have you skip this section if prices are not shown for an instance that is already deployed. Instead, you can explore the Azure Pricing Calculator at https://azure.microsoft.com/pricing/calculator/ to see the possible cost savings.**
+    2. Scroll down to view the pricing details at the bottom of the page. Take note of the cost. Scroll back up to SQL Server License and select **Azure Hybrid Benefit (AHB)** and check the "I confirm..." option. Scroll down and see the Cost Savings.
+    3. Scroll back up and Review the Backup Storage Redundancy options.
+    4. Click on Apply to apply the AHB option. This will take a few minutes to apply.
 1. Select **Maintenance** from the left-hand menu. Select the Maintenance drop-down and **review only** the options for Maintenance schedule and Maintenance window. The option for SQL Service health alerts are to setup notifications for maintenance events.
 1. Scroll down and select **Private endpoint connections**. This is where you would create a private endpoint should it be needed for the security of your deployment.
 1. Scroll down and select **Resource Health**. This is where you can view a history of the health of your deployment including any failover events that have occurred.
@@ -36,8 +37,8 @@ In this exercise, you will use the Azure Portal (https://portal.azure.com) and A
 Learn how to use Azure CLI to explore your deployment. You can use the Azure Cloud Shell in the Azure Portal. You will need the name of the resource group for your deployment and the instance name (not the full hostname).
 
 1. Open the Azure Cloud Shell in the Azure Portal (https://portal.azure.com) (refer to this documentation page for a quick start: https://learn.microsoft.com/azure/cloud-shell/quickstart?tabs=azurecli#start-cloud-shell). **Tip:** The website https://shell.azure.com is a shortcut just to the cloud shell. You can use the search bar at the top of the Azure Portal to search for "Cloud Shell" or you can find it in the top right-hand corner of the Azure Portal.
-2. The default is the Bash shell which works just fine for us to use Azure CLI.
-3. Run the following command to see what is possible for az CLI for Managed Instances:
+1. If necessary choose the Bash shell and Create Storage. You will see a bash shell prompt.
+1. Run the following command to see what is possible for az CLI for Managed Instances:
 
     ```azurecli-interactive
     az sql mi --help
@@ -47,7 +48,12 @@ Learn how to use Azure CLI to explore your deployment. You can use the Azure Clo
     ```azurecli-interactive
     az sql mi show --name <your managed instance name> --resource-group <your resource group name>
     ```
+ 
+    The managed instance name is the name of the managed instance without the full hostname. The resource group name is the name of the resource group you deployed the managed instance to.
+
     Examine the JSON output of the deployment including all the properties of the deployment. **Tip:** You can add the **--output table** option to see the output in a table format.
+
+1. Close the Azure Cloud Shell by clicking on the X in the top right-hand corner of the window.
 
 ## Exercise 6.2 - Test transaction log I/O performance
 
@@ -134,7 +140,7 @@ Azure SQL Managed Instance is very compatible with SQL Server. Use this exercise
 
 ### Explore with SSMS
 
-1. Connect to your Azure SQL Managed Instance using SSMS. Use the **Host** in the Azure Portal main pane as the Server Name and the SQL admin and password you used to deploy the Azure SQL Managed Instance. Some instructor-led workshops may have the Azure SQL Managed Instance pre-deployed and you will be provided the connection information in these situations
+1. Connect to your Azure SQL Managed Instance using SSMS. Use the **Host** in the Azure Portal main pane as the Server Name and the SQL admin and password you used to deploy the Azure SQL Managed Instance. **Tip:** Select remember password to speed up future connections. **Note:** Some instructor-led workshops may have the Azure SQL Managed Instance pre-deployed and you will be provided the connection information in these situations.
 1. Use Object Explorer to browse the various options that look the same as SQL Server and some are missing or different:
     1. Right-click the *service* and see that the options to Start, Stop, or Restart are greyed out. This is because the service is managed by Azure.
     1. Right-click **Databases** and see that the options to Detach or Attach are not available. You don't have access to the filesystem in the underlying virtual machine so don't have access to detach or attach databases.
@@ -326,7 +332,7 @@ You will need the name of the resource group and managed instance name (not the 
     az sql mi failover -g <resource group> -n <instance name>
     ```
 
-    You will see a status or Starting and then Running and then you will be put back to the bash shell prompt. You can close the cloud shell.
+    You will see a status or Starting and then Running and then you will be put back to the bash shell prompt. You can close the cloud shell. **Tip:** You can only execute a manual failover every 15 minutes.
 5. Go back to SSMS on your *jumpstart* VM and try to connect to the Azure SQL Managed Instance. **Important:** Be sure to remove any Additional Properties you had for read only connections. You should be able to connect within less than a minute.
 6. Using SSMS in Object Explorer notice your user database and SQL Server Agent Job you created earlier in this module are still there. 
 7. You can also run the following query to see the state of replicas:

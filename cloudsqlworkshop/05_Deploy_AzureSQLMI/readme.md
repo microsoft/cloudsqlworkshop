@@ -87,7 +87,7 @@ Connect to the Azure SQL Managed instance using a client and SQL tools.
 
 1. First let's look at the deployment from the perspective of the resource group. If you are looking at your virtual machine in the Azure Portal you can click on your resource group or it may be listed in Resources on your home page. You can also search for your resource group in the search box at the top of the Azure Portal by typing in your resource group name and selecting it.
 1. On the left-hand menu select **Deployments**.
-1. The deployment name should start with "Microsoft.SQLManagedInstance....". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Managed Instance.
+1. The deployment name should start with "Microsoft.SQLManagedInstance....". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Managed Instance. **Note:** For some instructor led workshops if the Instance is already deployed the deployment name will not appear this way. Look at the deployments that are listed and find the one that has the longest duration. This is the deployment of the Azure SQL Managed Instance.
 
 ## Next Steps
 

@@ -35,6 +35,7 @@ You must meet the following requirements:
     - The VM has No Infrastructure Redundancy requirements
     - The VM can use the Standard security type
     - The VM cannot run with Azure Spot discounts
+    - Do not choose the Enable Hibernation option if it is available.
     - You are free to choose any admin and password that meet requirements for complexity. **Note:** Keep track of the admin and password you choose as you will need it later.
     - The public inbound port 3389 for RDP can be left open to the public internet for this PoC.
     - You do have existing Windows Server licenses that you can use for this PoC.
@@ -145,6 +146,7 @@ Use the following steps to connect to the VM with RDP and prepare for the next m
     1. Under Native RDP click on **Select**.
     1. Scroll down to **Download and open the RDP file** and click on Download RDP file.
     1. Select the RDP file to open it and click on **Connect**.
+    1. When you first connect into the VM you can select No for discovering your device on networks.
 1. Inside the virtual machine, download the **tpch.bak** SQL Server backup file and **Source code** zip file from https://aka.ms/cloudsqlworkshopfiles. Move the tpch.bak file into the f:\data folder.
 1. *Extract* out the Source code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-release** folder.
 1. From the extracted workshop source files load the **restore_tpch.sql** script from the **`<user>`\Downloads\cloudsqlworkshop-1.0-release\cloudsqlworkshop-1.0-release\cloudsqlworkshop\03_Deploy_SQL_AzureVM** folder into SSMS to restore the database. This should only take about 10-15 seconds to restore. You can connect with SSMS using the local server with Windows Authentication as the admin you configured during deployment is automatically setup as a sysadmin SQL Server login.

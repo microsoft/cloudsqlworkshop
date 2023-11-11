@@ -120,7 +120,7 @@ In this exercise you will explore your Azure SQL Database deployment and perform
 In this section, you will connect Azure SQL Database and explore more about your deployment of the logical server and database.
 
 1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connecting from a client computer not inside Azure, you can create a server-level firewall rule as documented at https://learn.microsoft.com/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
-1. Connect on your client computer using SSMS with the Server Name as listed in the Azure Portal for the database using SQL Authentication with the SQL admin and password you specified when creating the logical server. You can select Remember password to make it easier to connect again in the future.
+1. Connect on your client computer using SSMS with the Server Name as listed in the Azure Portal for the database using SQL Authentication with the SQL admin and password you specified when creating the logical server. You can select Remember password to make it easier to connect again in the future. **Tip:** Also connect with SSMS to the local SQL Server so you can compare and contrast.
 1. Notice Object Explorer differences
     1. Right-click on logical server and notice there are no options to configure the logical server or see properties. This is because a Logical Server is not the same as a SQL Server instance. It is a logical construct that hosts one or more databases.
     1. Notice only master is listed as a system database.
