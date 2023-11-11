@@ -35,6 +35,7 @@ You must meet the following requirements:
     - The VM has No Infrastructure Redundancy requirements
     - The VM can use the Standard security type
     - The VM cannot run with Azure Spot discounts
+    - Do not choose the Enable Hibernation option if it is available.
     - You are free to choose any admin and password that meet requirements for complexity. **Note:** Keep track of the admin and password you choose as you will need it later.
     - The public inbound port 3389 for RDP can be left open to the public internet for this PoC.
     - You do have existing Windows Server licenses that you can use for this PoC.
