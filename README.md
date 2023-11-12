@@ -34,27 +34,18 @@ In order to complete the exercises in this workshop you will need the following:
 - You will need rights to deploy a SQL Server 2022 virtual machine from the marketplace for Modules 3 and 4. You can use Developer Edition to save costs.
 - Module 7 requires the ability to use an additional Microsoft Entra ID account but you can skip that exercise in that module if you don't have this.
 
-<h3><img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/microsoft/sqlworkshops/blob/master/graphics/bulletlist.png?raw=true"> 
-<b>     Modules</b></h3>
+<p style="border-bottom: 1px solid lightgrey;"></p>
 
-All instructions for completing hands-on exercises for all modules can be found by navigating to the [workshop](https://github.com/microsoft/cloudworkshop/tree/master/cloudworkshop/) folder. Each module has a separate folder with exercise instructions and in some cases scripts to use.
+<h2><img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/microsoft/sqlworkshops/blob/master/graphics/bookpencil.png?raw=true"><b>     Workshop Modules</b></h2>
+
+All instructions for completing hands-on exercises for all modules can be found by navigating to the [workshop](https://github.com/microsoft/cloudsqlworkshop/tree/main/cloudsqlworkshop) folder. Each module has a separate folder with exercise instructions and in some cases scripts to use.
+
+## Contributing
 
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content
 in this repository under the Creative Commons Attribution 4.0 International Public License,
 see the LICENSE file, and grant you a license to any code in the repository under the MIT License, see the
 LICENSE-CODE file. All license files are found in the LICENSE directory.
-
-<p style="border-bottom: 1px solid lightgrey;"></p>
-
-<h2><img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/microsoft/sqlworkshops/blob/master/graphics/bookpencil.png?raw=true"><b>     Workshop Modules</b></h2>
-
-<p style="border-bottom: 1px solid lightgrey;"></p>
-
-<h2><img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/microsoft/sqlworkshops/blob/master/graphics/geopin.png?raw=true"><b>     Next Steps</b></h2>
-
-Next, Continue to <a href="./sql2022workshop/01_Introduction.md" target="_blank"><i>Introduction to SQL Server 2022</i></a>
-
-## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
