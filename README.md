@@ -13,7 +13,7 @@ Welcome to this Microsoft solutions workshop on *The Cloud Workshop for the SQL 
 
 In this course you will learn how to solve modern data challenges with Azure SQL using a hands-on lab approach.
 
-This course is intended to be taken as a self-paced or instructor-led workshop. A supplement slide deck is available for this course in the [slides](https://github.com/microsoft/cloudworkshop/tree/master/cloudworkshop/slides) folder.
+This course is intended to be taken as a self-paced or instructor-led workshop. A supplement slide deck is available for this course in the [slides](https://github.com/microsoft/cloudsqlworkshop/tree/main/cloudsqlworkshop/slides) folder.
 
 This course is designed for data professionals who have a basic working knowledge of SQL Server and the T-SQL language.
 
