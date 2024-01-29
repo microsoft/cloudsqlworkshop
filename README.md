@@ -38,7 +38,7 @@ In order to complete the exercises in this workshop you will need the following:
 
 <h2><img style="float: left; margin: 0px 15px 15px 0px;" src="https://github.com/microsoft/sqlworkshops/blob/master/graphics/bookpencil.png?raw=true"><b>     Workshop Modules</b></h2>
 
-All instructions for completing hands-on exercises for all modules can be found by navigating to the [workshop](https://github.com/microsoft/cloudsqlworkshop/tree/main/cloudsqlworkshop) folder. Each module has a separate folder with exercise instructions and in some cases scripts to use.
+All instructions for completing hands-on exercises for all modules can be found by navigating to the [workshop](https://github.com/microsoft/cloudsqlworkshop/tree/main/cloudsqlworkshop) folder. Each module has a separate folder with exercise instructions and in some cases scripts to use. Modules 1 and 2 are only presentations and do not have hands-on exercises.
 
 ## Contributing
 
