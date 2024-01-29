@@ -15,7 +15,7 @@ In these exercises you will:
 
 - You must have an Azure subscription with the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with your instructor on a provided subscription.
 - You must have permissions to deploy a SQL Server on Azure Virtual Machine from the Azure Marketplace.
-- You will need a client computer that can use the Remote Desktop Protocol(RDP)
+- You will need a client computer that can use the Remote Desktop Protocol(RDP). Some users may not be allowed to use RDP from their client computer. If you are not allowed to use RDP from your client computer you can use a Bastion service in Azure to connect to the Azure Virtual Machine. For instructor led workshops, check with your instructor on a provided Bastion service. Otherwise, later in this module you will get instructions on how to deploy a Bastion service.
 - You will need access to the files and scripts associated to the workshop which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles.
 
 ## Exercise 3.1 - Study the scenario and requirements
@@ -41,7 +41,8 @@ You must meet the following requirements:
     - You do have existing Windows Server licenses that you can use for this PoC.
     - There are no special requirements for the OS disk,  Management, Advanced, or Monitoring sections when deploying the VM.
     - For Networking, choose the default virtual network and subnet that is created for you. You do not need to create a new virtual network or subnet. You need to make sure you use a **Basic** NIC networking security group.
-        - **Important Note:** For instructor led labs your instruction may ask you to deploy the Azure Virtual Machine in a *specific virtual network and subnet* that allows it to easily connect to Azure SQL Managed Instance for other modules.
+        - **Important Notes:** For instructor led labs your instruction may ask you to deploy the Azure Virtual Machine in a *specific virtual network and subnet* that allows it to easily connect to Azure SQL Managed Instance for other modules.
+        - **Users who cannot use RDP** may need to deploy a Bastion service deployed with your virtual network in Azure to connect to the Azure Virtual Machine. For instructions to deploy a Bastion service see https://docs.microsoft.com/azure/bastion/bastion-create-host-portal. For instructor led labs your instructor may provide you with a Bastion service to use.
     - You do not have to specify any tags for the VM.
 - The SQL Server instance should be configured as follows:
     - MAXDOP for the server = # of cores from the VM
@@ -87,9 +88,9 @@ In this exercise, you will go through the process of deploying SQL Server on an 
 
 1. On the **Basics** tab, fill in all the information that meet the requirements from this exercise. To help you get started, use the **E4ds_v5** Azure VM size.
 
-1. Per the requirements use the defaults on the Disks, Networking, Management, Monitoring, and Advanced tabs.
+1. *Per the requirements* listed earlier in this module configure Disks, Networking, Management, Monitoring, and Advanced tabs.
 
-2. Use the **SQL Server settings** blade to configure SQL Server instance settings and storage requirements per the requirements. Use the defaults for Security and Networking section.
+2. Use the **SQL Server settings** blade to configure SQL Server instance settings and storage *per the requirements* listed earlier in this module. Use the defaults for Security and Networking section.
 
     1. Use the *Change configuration* link to use the Storage configuration assistant. Make choices based on the requirements for the scenario. Take your time and carefully review all options.
 
@@ -141,7 +142,7 @@ Learn how to look at more details on your deployment of the virtual machine usin
 
 Use the following steps to connect to the VM with RDP and prepare for the next module.
 
-1. Use Remote Desktop to connect into the Virtual Machine.
+1. Use Remote Desktop to connect into the Virtual Machine. Users who cannot use RDP and have deployed a Bastion service can connect to the VM. Read these instructions on how to connect to a VM with a Bastion service: https://docs.microsoft.com/azure/bastion/bastion-connect-vm-rdp.
     1. In the Azure Portal for your virtual machine select **Connect** from the left-hand menu.
     1. Under Native RDP click on **Select**.
     1. Scroll down to **Download and open the RDP file** and click on Download RDP file.

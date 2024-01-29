@@ -13,7 +13,7 @@ In this exercise you will learn new skills unique to Azure while using your exis
 ## Prerequisites
 
 - You must have completed exercises in Module 5 to deploy an Azure SQL Managed Instance.
-- You will use RDP to connect into the *jumpbox* virtual machine in Azure you deployed in Module 5.
+- You will use RDP to connect into the *jumpbox* virtual machine in Azure you deployed in Module 5. Users who cannot use RDP should use the Bastion Service they deployed in Module 3.
 
 ## Exercise 6.1 - Explore the Azure SQL Managed Instance deployment
 
@@ -59,9 +59,11 @@ Learn how to use Azure CLI to explore your deployment. You can use the Azure Clo
 
 In this exercise you will create a new database, create a table, populate it with data, and then perform a test to observe transaction log I/O performance and possible limits. Like SQL Server, when you deploy an Azure SQL Managed Instance only system databases exist. You will need to create a new database to perform this exercise.
 
+1. Connect to the jumpbox VM using RDP or the Bastion service.
+
 1. Using the following documentation page: https://learn.microsoft.com/azure/azure-sql/managed-instance/resource-limits?view=azuresql#service-tier-characteristics, calculate the **Log write throughput limit** for your deployment.
 
-2. Create a new database, table, and populate data in your Azure SQL Managed Instance. Use the following T-SQL to create the database. This will take about 1 minute to execute:
+2. Create a new database, table, and populate data in your Azure SQL Managed Instance using SSMS. Use the following T-SQL to create the database. This will take about 1 minute to execute:
 
     ```tsql
     -- Create a new database
