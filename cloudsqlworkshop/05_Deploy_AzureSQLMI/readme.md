@@ -12,7 +12,7 @@ In these exercises you will:
 
 ## Prerequisites
 
-**Important Note:** Some instructor led labs may already have deployed an Azure SQL Managed Instance for you to use which meets all the requirements in this Exercise. In addition, some instructor led labs will use the Azure VM from Exercise 3.2 as the *jumpbox* virtual machine as listed in these prerequisites. If this is the case, read through Exercise 5.1 but you can skip 5.2 and go right to Exercise 5.3. 
+**Important Note:** Some instructor led labs may already have deployed an Azure SQL Managed Instance for you to use which meets all the requirements in this Exercise. In addition, some instructor led labs will use the Azure VM from Exercise 3.2 as the *jumpbox* virtual machine as listed in these prerequisites. If this is the case, read through Exercise 5.1 but you can skip 5.2 and go right to Exercise 5.3.
 
 - You must have an Azure subscription with the ability to create an Azure SQL Managed Instance. You must have the ability to create Azure Virtual Machines in the Azure region of your choice. For instructor led workshops, check with you instructor as the Azure SQL Managed Instance might be pre-deployed.
 - The Azure SQL Managed Instance will use the Business Critical service tier Standard-series Hardware generation with 4 vCores and 256GB of storage.
@@ -76,7 +76,7 @@ Perform the following steps after the deployment completes to perform a basic va
 
 Connect to the Azure SQL Managed instance using a client and SQL tools.
 
-1. Use Remote Desktop to connect into the *jumpbox* Virtual Machine. If you already have an RDP file downloaded for the virtual machine you can use that. Otherwise use the following steps:
+1. Use Remote Desktop to connect into the *jumpbox* Virtual Machine. Users who cannot use RDP should use the Bastion Service they deployed in Module 3. If you already have an RDP file downloaded for the virtual machine you can use that. Otherwise use the following steps:
     1. In the Azure Portal for your virtual machine select **Connect** from the left-hand menu.
     1. Under Native RDP click on **Select**.
     1. Scroll down to **Download and open the RDP file** and click on Download RDP file.

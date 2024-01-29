@@ -29,7 +29,7 @@ This workshop is broken up into several modules than can all be taken together o
 
 In order to complete the exercises in this workshop you will need the following:
 
-- Download the lab files from https://aka.ms/cloudsqlworkshopfiles for all modules
+- Download the lab files from https://aka.ms/cloudsqlworkshopfiles for all modules. 
 - You will need an Azure subscription that has Azure Role-Based Control (RBAC) rights and resource quotas to deploy Azure Virtual Machines, Azure SQL Managed Instances, and Azure SQL Database depending on what modules you complete.
 - You will need rights to deploy a SQL Server 2022 virtual machine from the marketplace for Modules 3 and 4. You can use Developer Edition to save costs.
 - Module 7 requires the ability to use an additional Microsoft Entra ID account but you can skip that exercise in that module if you don't have this.

@@ -11,7 +11,7 @@ In these exercises you will:
 ## Prerequisites
 
 - You must have completed exercises in Module 3 to deploy a SQL Server on Azure Virtual Machine.
-- You will need a client computer that can use the Remote Desktop Protocol(RDP)
+- You will need a client computer that can use the Remote Desktop Protocol(RDP). Users who cannot use RDP can use the Bastion service deployed in Module 3.
 - You will need access to the files and scripts associated to the workshop which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. No further action is needed if you downloaded these in Module 3.
 
 ## Exercise 4.1 - Verify the SQL Server on Azure Virtual Machine deployment.
@@ -29,6 +29,7 @@ You will use a stress test workload to verify the I/O performance of the storage
 
 ### Setup
 
+- Connect to the VM, if not already connected, using RDP or Bastion as you did in Module 3.
 - Download the ostress program for the workload from https://aka.ms/ostress. Run the install program using all the defaults.
 
 ### Verify SQL Server instance settings

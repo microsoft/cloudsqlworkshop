@@ -16,7 +16,7 @@ In these exercises you will:
 ## Prerequisites
 
 - You must have an Azure subscription with the ability to create an Azure SQL Database using the General Purpose Service Tier. You must have the ability to create an Azure SQL Database in the Azure region of your choice.
-- You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
+- You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine like the one you deployed in Module 3. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database because of your choices when deploying the Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
 - You will need access to the **Source Code** zip file which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. *Extract* out the Source Code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-release** folder. You can skip this step if you have already downloaded these files into your VM as part of a previous module. You do not need the tpch.bak file for this module.
 - In your client computer you will use **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** (https://aka.ms/azuredatastudio) which you will also use in this module.
 
@@ -120,6 +120,7 @@ In this exercise you will explore your Azure SQL Database deployment and perform
 In this section, you will connect Azure SQL Database and explore more about your deployment of the logical server and database.
 
 1. If you are connecting from an Azure Virtual Machine, you can skip this step. If are you connecting from a client computer not inside Azure, you can create a server-level firewall rule as documented at https://learn.microsoft.com/azure/azure-sql/database/secure-database-tutorial?view=azuresql#create-firewall-rules.
+1. You can use RDP or the Bastion service to connect to the Azure Virtual Machine you deployed in Module 3 as a client computer.
 1. Connect on your client computer using SSMS with the Server Name as listed in the Azure Portal for the database using SQL Authentication with the SQL admin and password you specified when creating the logical server. You can select Remember password to make it easier to connect again in the future. **Tip:** Also connect with SSMS to the local SQL Server so you can compare and contrast.
 1. Notice Object Explorer differences
     1. Right-click on logical server and notice there are no options to configure the logical server or see properties. This is because a Logical Server is not the same as a SQL Server instance. It is a logical construct that hosts one or more databases.
