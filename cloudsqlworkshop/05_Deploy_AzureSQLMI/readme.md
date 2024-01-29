@@ -47,6 +47,7 @@ Use the following Networking options for the deployment.
 - Create a new virtual network as part of your deployment.
 - Use the Proxy connection type and disable the public endpoint.
 - Use TLS 1.2 for encryption.
+- If you use an Azure VM in the same virtual network as the Azure SQL Managed Instance you can keep the Public endpoint disabled. Otherwise, enable the Public endpoint.
 
 ### Security options
 
@@ -72,6 +73,8 @@ You do not need to use any Tags.
 
 Perform the following steps after the deployment completes to perform a basic validation of the deployment by connecting to the Azure SQL Managed Instance. You will also examine in the Deployments for the resource group the duration of the Managed Instance deployment.
 
+**Important**: If you enabled the Public endpoint you will need to add a networking rule after the instance has been deployed to allow your Azure VM to connect to the Azure SQL Managed Instance. You can learn more at https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/public-endpoint-configure.
+
 ### Connect to the Azure SQL Managed Instance
 
 Connect to the Azure SQL Managed instance using a client and SQL tools.
@@ -82,6 +85,8 @@ Connect to the Azure SQL Managed instance using a client and SQL tools.
     1. Scroll down to **Download and open the RDP file** and click on Download RDP file.
     1. Select the RDP file to open it and click on **Connect**.
 1. Verify you can connect to the Azure SQL Managed Instance deployment. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment. **Tip:**  In the top right hand search edit box in SSMS, type in **PresentOn** to increase fonts and make it easier to see.
+
+**Important**: If you can't connect to the Managed Instance your Azure VM client may not be in the same virtual network as the Managed Instance. In this situation, use the public endpoint for the Managed Instance. You can find the public endpoint by going to the Azure Portal and selecting the Managed Instance. On the left-hand menu select **Networking**. Under **Connectivity method** select **Public endpoint**. You can use the **Copy** button to copy the public endpoint to the clipboard. Use this public endpoint in SSMS to connect to the Managed Instance.
 
 ### View the deployment duration
 
