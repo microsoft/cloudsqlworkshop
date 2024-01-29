@@ -59,7 +59,7 @@ Learn how to use Azure CLI to explore your deployment. You can use the Azure Clo
 
 In this exercise you will create a new database, create a table, populate it with data, and then perform a test to observe transaction log I/O performance and possible limits. Like SQL Server, when you deploy an Azure SQL Managed Instance only system databases exist. You will need to create a new database to perform this exercise.
 
-1. Connect to the jumpbox VM using RDP or the Bastion service.
+1. Connect to the jumpbox VM using RDP or the Bastion service. Open SQL Server Management Studio (SSMS) and connect to the Azure SQL Managed Instance using the hostname, admin account, and password you created during the deployment. **Important**: If you can't connect to the Managed Instance your Azure VM client may not be in the same virtual network as the Managed Instance. In this situation, use the public endpoint for the Managed Instance. You can find the public endpoint by going to the Azure Portal and selecting the Managed Instance. On the left-hand menu select **Networking**. Under **Connectivity method** select **Public endpoint**. You can use the **Copy** button to copy the public endpoint to the clipboard. Use this public endpoint in SSMS to connect to the Managed Instance.
 
 1. Using the following documentation page: https://learn.microsoft.com/azure/azure-sql/managed-instance/resource-limits?view=azuresql#service-tier-characteristics, calculate the **Log write throughput limit** for your deployment.
 
@@ -142,7 +142,7 @@ Azure SQL Managed Instance is very compatible with SQL Server. Use this exercise
 
 ### Explore with SSMS
 
-1. Connect to your Azure SQL Managed Instance using SSMS. Use the **Host** in the Azure Portal main pane as the Server Name and the SQL admin and password you used to deploy the Azure SQL Managed Instance. **Tip:** Select remember password to speed up future connections. **Note:** Some instructor-led workshops may have the Azure SQL Managed Instance pre-deployed and you will be provided the connection information in these situations.
+1. Connect to your Azure SQL Managed Instance using SSMS. Use the **Host** in the Azure Portal main pane as the Server Name and the SQL admin and password you used to deploy the Azure SQL Managed Instance. **Tip:** Select remember password to speed up future connections. **Note:** Some instructor-led workshops may have the Azure SQL Managed Instance pre-deployed and you will be provided the connection information in these situations. You also may need to use the *public endpoint* if your Azure VM is not in the same virtual network as the Azure SQL Managed Instance.
 1. Use Object Explorer to browse the various options that look the same as SQL Server and some are missing or different:
     1. Right-click the *service* and see that the options to Start, Stop, or Restart are greyed out. This is because the service is managed by Azure.
     1. Right-click **Databases** and see that the options to Detach or Attach are not available. You don't have access to the filesystem in the underlying virtual machine so don't have access to detach or attach databases.
@@ -272,7 +272,6 @@ Let's explore automatic backups that are created for your database for Azure SQL
     ORDER BY backup_finish_date DESC;
     GO
     ```
-
     As you look at the result set, notice the combination of Full, Differential, and log backups. You can also tell by the output that these backups use checksum and compression. Note: Do not rely on the time differences between backups. There is no specific guarantee how often we will take backups but you can read more about the normal backup frequency schedule at https://learn.microsoft.com/azure/azure-sql/managed-instance/automated-backups-overview?view=azuresql#what-are-automated-database-backups
 
 ### Explore the built-in replicas for Azure SQL Managed instance databases
