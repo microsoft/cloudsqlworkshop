@@ -350,7 +350,3 @@ You will need the name of the resource group and managed instance name (not the 
 
     The results should look similar to what you saw earlier except for the last result set notice the replication_endpoint_url for the REPLICA_ROLE_PRIMARY is different indicating you have failed over to a previous secondary.
 8. In the Azure Portal find your Azure SQL Managed Instance and click on Activity log from the left-hand menu. You should see an event that a failover was issued.
-
-## Exercise 6.5 - Backup and restore to SQL Server 2022
-
-*Coming soon!*
