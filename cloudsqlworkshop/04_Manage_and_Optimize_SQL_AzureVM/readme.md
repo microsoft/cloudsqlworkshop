@@ -119,6 +119,8 @@ Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Ext
 
 ## Exercise 4.3 - Bonus Exercise with Premium SSD v2 disks
 
+In this exercise you will explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks. **This capability is currently in preview**.
+
 Use the Azure Portal to walk through the steps to deploy a new SQL Server virtual machine from the marketplace (without deploying the VM). On the Basics screen choose **Availability Zone** under Availability Options. Using the **Next**: options skip to the blade for **SQL Server Settings**.
 
 Make sure the checkbox for **Use Premium SSD v2 for this virtual machine** is checked. Select *Change Configuration* under the storage settings. Explore the new portal experience to choose Size, Max IOPS, and Throughput for data and log disks. You can learn more about this experience at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/storage-configuration-premium-ssd-v2.
