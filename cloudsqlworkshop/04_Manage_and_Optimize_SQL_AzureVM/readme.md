@@ -105,9 +105,9 @@ Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Ext
 
     Enabling this option allows you to store and manage keys for features like transparent data encryption (TDE), column level encryption (CLE), and backup encryption in Azure Key Vault. You can learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/azure-key-vault-integration-configure.
 
-    **Microsoft Entra Authentication**
+    **Microsoft Entry Authentication**
 
-    This option allows you to enable Microsoft Entra Authentication (formerly known as Azure Active Directory) for SQL Server running in the virtual machine (only supported for SQL Server 2022 and later) This provides a method for you to use more secure authentication methods than SQL Authentication but does not require a Windows domain. It also provides new secure login methods such as Multi-Factor Authentication (MFA). Learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm
+    This option allows you to enable Microsoft Entry  Authentication (formerly known as Azure Active Directory) for SQL Server running in the virtual machine (only supported for SQL Server 2022 and later) This provides a method for you to use more secure authentication methods than SQL Authentication but does not require a Windows domain. It also provides new secure login methods such as Multi-Factor Authentication (MFA). Learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm
 
 10. On the left hand menu select **Microsoft Defender for the Cloud**
 
