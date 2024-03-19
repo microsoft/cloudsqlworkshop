@@ -105,9 +105,9 @@ Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Ext
 
     Enabling this option allows you to store and manage keys for features like transparent data encryption (TDE), column level encryption (CLE), and backup encryption in Azure Key Vault. You can learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/azure-key-vault-integration-configure.
 
-    **Microsoft Entry Authentication**
+    **Microsoft Entra Authentication**
 
-    This option allows you to enable Microsoft Entry Authentication (formerly known as Azure Active Directory) for SQL Server running in the virtual machine (only supported for SQL Server 2022 and later) This provides a method for you to use more secure authentication methods than SQL Authentication but does not require a Windows domain. It also provides new secure login methods such as Multi-Factor Authentication (MFA). Learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm
+    This option allows you to enable Microsoft Entra Authentication (formerly known as Azure Active Directory) for SQL Server running in the virtual machine (only supported for SQL Server 2022 and later) This provides a method for you to use more secure authentication methods than SQL Authentication but does not require a Windows domain. It also provides new secure login methods such as Multi-Factor Authentication (MFA). Learn more at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm
 
 10. On the left hand menu select **Microsoft Defender for the Cloud**
 
@@ -121,7 +121,7 @@ Use the Azure Portal to review the capabilities of the SQL Server IaaS Agent Ext
 
 In this exercise you will explore using Premium SSD v2 disks for database files to save cost and minimize the needed size of the managed disks. **This capability is currently in preview**.
 
-Use the Azure Portal to walk through the steps to deploy a new SQL Server virtual machine from the marketplace (without deploying the VM). On the Basics screen choose **Availability Zone** under Availability Options. Using the **Next**: options skip to the blade for **SQL Server Settings**.
+Use the Azure Portal to walk through the steps to deploy a new SQL Server virtual machine from the marketplace (without deploying the VM). On the Basics screen choose **Availability Zone** under Availability Options. **Choose the E4bds_v5 VM size.** Using the **Next**: options skip to the blade for **SQL Server Settings**.
 
 Make sure the checkbox for **Use Premium SSD v2 for this virtual machine** is checked. Select *Change Configuration* under the storage settings. Explore the new portal experience to choose Size, Max IOPS, and Throughput for data and log disks. You can learn more about this experience at https://learn.microsoft.com/azure/azure-sql/virtual-machines/windows/storage-configuration-premium-ssd-v2.
 
