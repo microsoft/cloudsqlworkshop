@@ -29,9 +29,9 @@ You must meet the following requirements:
 - Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Server including any free edition.
 - The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. So for example, the **E4ds_v5** VM Size could be a good starting point. You must deploy the virtual machine using the Azure Portal. For the purposes of this exercise, use VM sizes with Intel processors.
 - The Virtual Machine has these other requirements:
-    - Create a new resource group of the name of your choosing.
+    - Create a new resource group of the name of your choosing. **Note: Your instructor may aleady have resource group deployed**
     - Choose a VM name of your choosing.
-    - Choose any region that is supported for your subscription and RBAC permissions. For instructor led workshops, check with you instructor.
+    - Choose any region that is supported for your subscription and RBAC permissions. **Note: For instructor led workshops, check with you instructor.**
     - The VM has No Infrastructure Redundancy requirements
     - The VM can use the Standard security type
     - The VM cannot run with Azure Spot discounts
