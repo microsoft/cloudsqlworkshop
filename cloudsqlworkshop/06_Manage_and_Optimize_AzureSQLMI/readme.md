@@ -169,7 +169,7 @@ Look at common SQL diagnostics you also use for SQL Server.
     - **Query store** is ON by default for your user database.
     - Your database is encrypted with **TDE** by default.
     - **Accelerated Database Recovery** is ON by default and cannot be disabled (this is required for Microsoft to honor SLAs).
-    - **Read Committed Snapshot Isolation** is ON by default.
+    - **Read Committed Snapshot Isolation** is OFF by default.
     
 2. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
 
