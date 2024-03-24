@@ -296,7 +296,7 @@ Let's use ADS to explore the database and look at various features to compare an
 
 ### Configure and connect with Microsoft Entra
 
-Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to connect as users of the database. You will need access to a Microsoft Entry account to use in this exercise. For instructor led workshops, your instructor will provide this information for you.
+Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to connect as users of the database. You will need access to a Microsoft Entra account to use in this exercise. For instructor led workshops, your instructor will provide this information for you.
 
 1. Find the logical server in the Azure Portal.
 1. Select **Microsoft Entra ID** on the left-hand menu in the portal.
@@ -315,7 +315,7 @@ Learn to configure your Azure SQL Database to allow Microsoft Entra accounts to 
 
     Where `<Microsoft Entra Account>` is the name of the other Microsoft Entra account.
 
-1. Disconnect with SSMS and connect with the 2nd Microsoft Entry Account. Notice you only have access to the user database. This is an example of using Microsoft Entra to provide a user access to a database without creating a login.
+1. Disconnect with SSMS and connect with the 2nd Microsoft Entra Account. Notice you only have access to the user database. This is an example of using Microsoft Entra to provide a user access to a database without creating a login.
 
     **Important:** When you connect with this 2nd user you must specify the user database name in the Connection Properties tab. If you get this error check the database context
 
