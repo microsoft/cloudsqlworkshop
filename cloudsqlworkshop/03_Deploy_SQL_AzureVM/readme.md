@@ -56,7 +56,7 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 **Requirements for database files**
 
-- Database files must be stored on a disk other than the OS disk, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
+- Database files must be stored on a disk other than the OS disk, can use the default drive letter and path from the Azure Portal, and require Premium SSD. Do not store user database data or log files on temporary or ephemeral disks.
 - The database files only require **512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
 - I/O performance requirements for database files is **3000 to 4000 IOPS**, and a max of **200Mb throughput**.
 - System databases (other than tempdb) should be configured to be on the same disk as database files.
