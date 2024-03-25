@@ -2,7 +2,7 @@
 
 This is a set of exercises to deploy SQL Server on Azure Virtual Machine. The exercises are designed to be completed in a workshop environment with an instructor; however, you can also complete them on your own if you have the necessary Azure subscription and resources.
 
-In these exercises, you will be given a scenario and set of requirements to deploy SQL Server on Azure Virtual. You will learn new skills unique to Azure as well as using your existing SQL Server skills to achieve a successful deployment.
+In these exercises, you will be given a scenario and set of requirements to deploy SQL Server on Azure Virtual Machine. You will learn new skills unique to Azure as well as using your existing SQL Server skills to achieve a successful deployment.
 
 In these exercises you will:
 
@@ -29,9 +29,9 @@ You must meet the following requirements:
 - Deploy SQL Server 2022 with Windows Server 2022. You may use any edition of SQL Server including any free edition.
 - The Azure Virtual machine must support at minimum 4 vCores and 32Gb of RAM and use the **E5-series**. So for example, the **E4ds_v5** VM Size could be a good starting point. You must deploy the virtual machine using the Azure Portal. For the purposes of this exercise, use VM sizes with Intel processors.
 - The Virtual Machine has these other requirements:
-    - Create a new resource group of the name of your choosing. **Note: Your instructor may aleady have resource group deployed**
+    - Create a new resource group of the name of your choosing. **Note: Your instructor may aleady have resource groups deployed**
     - Choose a VM name of your choosing.
-    - Choose any region that is supported for your subscription and RBAC permissions. **Note: For instructor led workshops, check with you instructor.**
+    - Choose any region that is supported for your subscription and RBAC permissions. **Note: For instructor led workshops, check with your instructor.**
     - The VM has No Infrastructure Redundancy requirements
     - The VM can use the Standard security type
     - The VM cannot run with Azure Spot discounts
@@ -41,7 +41,7 @@ You must meet the following requirements:
     - You do have existing Windows Server licenses that you can use for this PoC.
     - There are no special requirements for the OS disk,  Management, Advanced, or Monitoring sections when deploying the VM.
     - For Networking, choose the default virtual network and subnet that is created for you. You do not need to create a new virtual network or subnet. You need to make sure you use a **Basic** NIC networking security group.
-        - **Important Notes:** For instructor led labs your instruction may ask you to deploy the Azure Virtual Machine in a *specific virtual network and subnet* that allows it to easily connect to Azure SQL Managed Instance for other modules.
+        - **Important Notes:** For instructor led labs your instructor may ask you to deploy the Azure Virtual Machine in a *specific virtual network and subnet* that allows it to easily connect to Azure SQL Managed Instance for other modules.
         - **Users who cannot use RDP** may need to deploy a Bastion service deployed with your virtual network in Azure to connect to the Azure Virtual Machine. For instructions to deploy a Bastion service see https://docs.microsoft.com/azure/bastion/bastion-create-host-portal. For instructor led labs your instructor may provide you with a Bastion service to use.
     - You do not have to specify any tags for the VM.
 - The SQL Server instance should be configured as follows:
@@ -58,19 +58,19 @@ The database, system databases, transaction log, and tempdb must meet the follow
 
 - Database files must be stored on a disk other than the OS disk, can use the default drive letter and path from the Azure Portal, and require Premium SSD. Do not store user database data or log files on temporary or ephemeral disks.
 - The database files only require **512Gb** storage to account for growth. (Note: the database used to verify the scenario is only 1Gb in size but is only used a test).
-- I/O performance requirements for database files is **3000 to 4000 IOPS**, and a max of **200Mb throughput**.
+- I/O performance requirements for database files is **3000 to 4000 IOPS**, and a max of **200MB throughput**.
 - System databases (other than tempdb) should be configured to be on the same disk as database files.
 
 **Requirements for the transaction log**
 
 - Must be stored on a separate disk from database files, can use the default drive letter and path from the Azure Portal, and require Premium SSD.
-- The transaction log requires **128Gb** storage, **500 IOPS**, and **100Mb** max throughput.
+- The transaction log requires **128GB** storage, **500 IOPS**, and **100MB** max throughput.
 
 **Requirements for tempdb**
 
 - Tempdb must be stored on the local SSD drive for Azure VM so you must choose an Azure VM size that supports local SSD storage. Tempdb *could grow to 128Gb* in size so the VM size you choose must support that.
 - Configure the number of tempdb files to match vCores for your chosen VM size. 
-- Use other best practices to make tempdb data and transaction log files an initial size of 8Mb with autogrow set to 64Mb.
+- Use other best practices to make tempdb data and transaction log files an initial size of 8MB with autogrow set to 64MB.
 
 You do not need to use any Tags.
 
@@ -117,8 +117,8 @@ The requirements and steps should give you enough information to complete the ex
 
 Storage is usually what will be most difficult to configure. Consider the following answers to help you if you get stuck or want to verify your work.
 
-- If you first start with a 512Gb disk you will see that the IOPS and throughput are not enough. You will need to choose a larger disk size. But when you go to 1TB you will see the IOPS and throughput are enough but you will see warnings about the VM size capping IOPS and throughput.
-- Change the transaction log to 128Gb. The IOPS and throughput are enough for that disk.
+- If you first start with a 512GB disk you will see that the IOPS and throughput are not enough. You will need to choose a larger disk size. But when you go to 1TB you will see the IOPS and throughput are enough but you will see warnings about the VM size capping IOPS and throughput.
+- Change the transaction log to 128GB. The IOPS and throughput are enough for that disk.
 - The warning still exists for the VM size but not for IOPS anymore but for throughput. We need a VM size that supports our throughput requirements for both disks.
 - So you need to cancel out of this and go back and choose a different VM size. **Note:** If you stayed with this choice you would be capped on IOPS and throughput that is less than what is required.
 - Our app only needs 4 vCores so we don't want to have to overpay for cores to get the I/O performance we need. So the **E4bds_v5** becomes a new choice that meets all of our requirements but is still cost effective. Change to this VM size then go back to the storage configuration assistant. You will see that there are no more warnings. You now have the storage performance you need for the workload
