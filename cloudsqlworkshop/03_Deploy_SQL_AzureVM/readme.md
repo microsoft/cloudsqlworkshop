@@ -46,7 +46,7 @@ You must meet the following requirements:
     - You do not have to specify any tags for the VM.
 - The SQL Server instance should be configured as follows:
     - MAXDOP for the server = # of cores from the VM
-    - Locked Pages in Memory enabled.
+    - Lock Pages in Memory enabled.
     - Instant File Initialization enabled.
     - All other instance configuration choices can be left to their defaults.
     
