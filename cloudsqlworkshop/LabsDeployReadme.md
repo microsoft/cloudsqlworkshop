@@ -37,11 +37,11 @@ All details here: [Workshop labs](https://github.com/microsoft/cloudsqlworkshop/
 
 | Module | link |
 |-------|-----------|
-| Exercise 3 - Deploy SQL Azure VM| [Readme](./03_Deploy_SQL_AzureVM/ReadmeLabsDeploy.md) |
-| Exercise 4 - Manage and Optimiza SQL Azure V| [Readme](./04_Manage_and_Optimize_SQL_AzureVM/ReadmeLabsDeploy.md) |
-| Exercise 5 - Deploy Azure SQL MI | [Readme](./05_Deploy_AzureSQLMI/ReadmeLabsDeploy.md) |
-| Exercise 6 - Manage and Optimiza  Azure SQL MI | [Readme](./06_Manage_and_Optimize_AzureSQLMI/ReadmeLabsDeploy.md) |
-| Exercise 7 - Deploy, Manage and Optimize Azure SQL DB | [Readme](./07_Deploy_Manage_Optimize_AzureSQLDB/ReadmeLabsDeploy.md) |
+| Exercise 3 - Deploy SQL Azure VM| [Readme](./03_Deploy_SQL_AzureVM/LabsDeployReadme.md) |
+| Exercise 4 - Manage and Optimiza SQL Azure V| [Readme](./04_Manage_and_Optimize_SQL_AzureVM/LabsDeployReadme.md) |
+| Exercise 5 - Deploy Azure SQL MI | [Readme](./05_Deploy_AzureSQLMI/LabsDeployReadme.md) |
+| Exercise 6 - Manage and Optimiza  Azure SQL MI | [Readme](./06_Manage_and_Optimize_AzureSQLMI/LabsDeployReadme.md) |
+| Exercise 7 - Deploy, Manage and Optimize Azure SQL DB | [Readme](./07_Deploy_Manage_Optimize_AzureSQLDB/LabsDeployReadme.md) |
 
 
 ---
