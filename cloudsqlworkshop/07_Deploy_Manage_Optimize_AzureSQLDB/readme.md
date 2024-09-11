@@ -9,7 +9,6 @@ In these exercises you will:
 - Learn how to view the deployment of an Azure SQL Database.
 - Learn how to explore and configure an Azure SQL Database including Microsoft Entra authentication.
 - Learn similarities and differences between SQL Server and Azure SQL Database.
-- Learn how to connect and use Azure SQL Database with Azure Data Studio.
 - Learn how to scale an Azure SQL Database using Serverless.
 - Learn how to explore built-in HADR capabilities of Azure SQL Database.
 
@@ -18,7 +17,7 @@ In these exercises you will:
 - You must have an Azure subscription with the ability to create an Azure SQL Database using the General Purpose Service Tier. You must have the ability to create an Azure SQL Database in the Azure region of your choice.
 - You need a client computer to connect and run workloads against Azure SQL Database. You can use your own computer or use an Azure Virtual Machine like the one you deployed in Module 3. If you use an Azure Virtual Machine you will be automatically enabled to connect to Azure SQL Database because of your choices when deploying the Azure SQL Database. If you use your own client computer you will need to enable a firewall setting. This will be described in more detail in the exercise to deploy the Azure SQL Database.
 - You will need access to the **Source Code** zip file which you can download into your deployed VM from https://aka.ms/cloudsqlworkshopfiles. *Extract* out the Source Code zip file which will put the files into the **`<user>`\Downloads\cloudsqlworkshop-1.0-release** folder. You can skip this step if you have already downloaded these files into your VM as part of a previous module. You do not need the tpch.bak file for this module.
-- In your client computer you will use **SQL Server Management Studio** (https://aka.ms/ssms). SSMS will also install **Azure Data Studio** (https://aka.ms/azuredatastudio) which you will also use in this module.
+- In your client computer you will use **SQL Server Management Studio** (https://aka.ms/ssms).
 
     > **Note:** For instructor led workshops you may use the same virtual machine you deployed in Module 3 of this workshop.
 
@@ -103,13 +102,13 @@ Perform the following steps after the deployment completes to perform a basic va
 1. On the left-hand menu select **Deployments**.
 1. The deployment name should start with "Microsoft.SQLDatabase.newDatabaseNewServer...". If you scroll to the right you can see the Duration of the deployment. This is the time it took to deploy the Azure SQL Logical Server and Database. You can click on the deployment name to see more details about the deployment.
 
-## Exercise 7.3 - Explore and connect to Azure SQL Database
+## Exercise 7.3: Explore and connect to Azure SQL Database
 
 In this exercise you will explore your Azure SQL Database deployment and perform some basic configuration.
 
 ### Explore Azure SQL Database in the Azure Portal
 
-1. If look at the **Essentials** pane In the Azure Portal for you database you can see various properties under Essentials including your resource group, Status, Region (Location), and Subscription. One of the most important properties is Server name. This is the name of the logical server that hosts your database. This is the name of the SQL Server you will use to connect with tools like Azure Data Studio or SSMS. You can also see the Earliest restore point for the database based on automatic backups (which may not be available immediately after you create the database but will be populated in minutes after deployment).
+1. If look at the **Essentials** pane In the Azure Portal for you database you can see various properties under Essentials including your resource group, Status, Region (Location), and Subscription. One of the most important properties is Server name. This is the name of the logical server that hosts your database. This is the name of the SQL Server you will use to connect with tools like SSMS. You can also see the Earliest restore point for the database based on automatic backups (which may not be available immediately after you create the database but will be populated in minutes after deployment).
 1. Under Essentials you can see options for Getting Started, Monitoring, Properties, Features, Notifications, Integrations, and Tutorials. A very rich set of options for your database.
 1. On the left-hand menu, there is an option to open up a **Query Editor** to run queries from the Azure Portal. While you won't use the editor in this module you can learn more at https://learn.microsoft.com/azure/azure-sql/database/query-editor.
 1. Under this on the left-hand menu, under **Settings** there are options to change Compute + Storage, view Connection Strings for applications, and change the default Maintenance Window. You will change Compute + Storage in a later exercise but you can click on each of these to explore how to use them.
@@ -142,7 +141,7 @@ In this section, you will connect Azure SQL Database and explore more about your
     SELECT @@VERSION;
      ```    
 
-    You should see results that look similar to the following:
+    You should see results that look similar to the following (the date/time may new newer):
 
     `Microsoft SQL Azure (RTM) - 12.0.2000.8   Sep 18 2023 12:22:37   Copyright (C) 2022 Microsoft Corporation`
 
@@ -187,34 +186,7 @@ In this section, you will connect Azure SQL Database and explore more about your
     INSERT INTO dontdropme VALUES (1);
     GO
     ```
-
-### Use Azure Data Studio with Azure SQL Database
-
-Let's use a tool that you may not be as familiar with called Azure Data Studio (ADS) to connect to Azure SQL Database.
-
-#### Connect with Azure Data Studio
-
-1. Launch Azure Data Studio. You may get a prompt to update to the latest version. If so, update to the latest version which will take a few minutes to complete. If prompted, select Yes to enabling Preview features.
-1. To connect, click on the icon Connections on the left-hand menu and then click on **New Connection**.
-1. Fill in the following Connection details:
-    1. Connection type: Microsoft SQL Server
-    1. Input type: Parameters
-    1. Server: The name of your logical server
-    1. Authentication type: SQL Login
-    1. User name: The SQL admin user name
-    1. Password: The SQL admin password. Click Remember password.
-    1. Database: The name of your database
-    1. Encrypt: Mandatory (True)
-    1. Trust Server Certificate: True
-1. Click **Connect**
-
-#### Explore your database with Azure Data Studio (ADS)
-
-Let's use ADS to explore the database and look at various features to compare and contrast with SQL Server and Azure SQL Database.
-
-1. Use the Object Explorer interface to browse tables from the sample database AdventureWorksLT.
-2. Right-click on the connection and select **New Query**. Use `<Ctrl>+<+>` to increase the font size.
-3. Execute the following query to view database properties:
+1. View database properties with the following query:
 
     ```tsql
     SELECT name, database_id, recovery_model_desc, compatibility_level, is_query_store_on, is_encrypted, is_accelerated_database_recovery_on, is_read_committed_snapshot_on FROM sys.databases;
@@ -231,7 +203,7 @@ Let's use ADS to explore the database and look at various features to compare an
     - **Accelerated Database Recovery** is ON by default and cannot be disabled (This is required for Microsoft to honor SLAs).
     - **Read Committed Snapshot Isolation** is ON by default.
 
-4. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
+1. Run the following queries to see common ***Dynamic Management Views (DMV)*** you use in SQL Server are supported:
 
     ```tsql
     SELECT * FROM sys.dm_exec_sessions;
@@ -284,15 +256,13 @@ Let's use ADS to explore the database and look at various features to compare an
 
     Even with a logical server, the SQL Server instance is managed by Microsoft and you cannot change instance level settings but that is a benefit of having a managed database service.
 
-8. Use SQL Profiler with Azure SQL Database
+8. Use XEvent Profiler (XEProfiler) for Azure SQL Database
 
-   **Note:** This extension requires Azure Data Studio version 1.46 later. If you have not updated and restarted Azure Data Studio, do so now.
+XEProfiler provides you simliar capabilities as you may have seen in the past with SQL Profiler. XEProfiler allows you to quickly see a live stream of extended events for common events like SQL queries. XEProfiler has been supported for SQL Server and Azure SQL Managed Instance and is now supported for Azure SQL Database.
 
-   Use the SQL Server Profiler extension of Azure Data Studio to  trace queries against your database. Use the following documentation to learn how to install and use the extension: https://learn.microsoft.com/azure-data-studio/extensions/sql-server-profiler-extension.
+You can access XEProfiler in SSMS off the Object Explorer when connected to the logical server of an Azure SQL Database.
 
-    This extension uses Extended Events to help you trace queries. You can learn more about Extended Events at https://docs.microsoft.com/sql/relational-databases/extended-events/extended-events.
-
-    Background events are not shown. You can use Object Explorer to expand and refresh in Azure Data Studio to see some events show up.
+Expand the options in Object Explorer for your database and click on XEvent Profiler. Double-click Standard. You will see a new window with a live stream of events. If you wait a few seconds, new events will appear. These are examples of queries used by our infrastructure to monitor and manage your database.
 
 ### Configure and connect with Microsoft Entra
 
