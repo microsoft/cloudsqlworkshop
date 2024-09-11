@@ -164,6 +164,8 @@ In this section, you will connect Azure SQL Database and explore more about your
     
     You can do this in SSMS in your current connection, by using the drop-down in the upper left-hand corner and selecting your database. When you do this notice in the bottom right-hand corner of SSMS the connection string changes to include the database name. **Change the context now for the next step**.
 
+### Explore Azure SQL Database through T-SQL
+
 1. Examine resource limits of your database
 
     Try executing the following query:
@@ -256,9 +258,9 @@ In this section, you will connect Azure SQL Database and explore more about your
 
     Even with a logical server, the SQL Server instance is managed by Microsoft and you cannot change instance level settings but that is a benefit of having a managed database service.
 
-8. Use XEvent Profiler (XEProfiler) for Azure SQL Database
+### Use Extended Events through SSMS
 
-XEProfiler provides you simliar capabilities as you may have seen in the past with SQL Profiler. XEProfiler allows you to quickly see a live stream of extended events for common events like SQL queries. XEProfiler has been supported for SQL Server and Azure SQL Managed Instance and is now supported for Azure SQL Database.
+XEvent Profiler (XEProfiler) provides you simliar capabilities as you may have seen in the past with SQL Profiler. XEProfiler allows you to quickly see a live stream of extended events for common events like SQL queries. XEProfiler has been supported for SQL Server and Azure SQL Managed Instance and is now supported for Azure SQL Database.
 
 You can access XEProfiler in SSMS off the Object Explorer when connected to the logical server of an Azure SQL Database.
 
