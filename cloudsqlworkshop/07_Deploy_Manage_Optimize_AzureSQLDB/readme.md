@@ -260,7 +260,7 @@ In this section, you will connect Azure SQL Database and explore more about your
 
 ### Use Extended Events through SSMS
 
-XEvent Profiler (XEProfiler) provides you simliar capabilities as you may have seen in the past with SQL Profiler. XEProfiler allows you to quickly see a live stream of extended events for common events like SQL queries. XEProfiler has been supported for SQL Server and Azure SQL Managed Instance and is now supported for Azure SQL Database.
+XEvent Profiler (XEProfiler) provides you similar capabilities as you may have seen in the past with SQL Profiler. XEProfiler allows you to quickly see a live stream of extended events for common events like SQL queries. XEProfiler has been supported for SQL Server and Azure SQL Managed Instance and is now supported for Azure SQL Database.
 
 You can access XEProfiler in SSMS off the Object Explorer when connected to the logical server of an Azure SQL Database.
 
