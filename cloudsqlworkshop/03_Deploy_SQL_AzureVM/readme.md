@@ -82,7 +82,7 @@ In this exercise, you will go through the process of deploying SQL Server on an 
 
 2. To help you get started in the Azure Portal type in Azure SQL in the search box and choose **Azure SQL** and then choose **Azure SQL** from the Marketplace section.
 
-3. You should see three choices for Azure SQL. Select the Image dropdown for SQL Virtual Machines. Based on the requirements choose the least expensive option that meets the requirements and click Create.
+3. You should see three choices for Azure SQL. Select the Image dropdown for SQL Virtual Machines. Based on the requirements choose the least expensive option that meets the requirements and click Create. You do not need the High Availability option.
 
 1. You are now in a user experience to **Create a virtual machine** with several tabs starting with **Basics**.
 
