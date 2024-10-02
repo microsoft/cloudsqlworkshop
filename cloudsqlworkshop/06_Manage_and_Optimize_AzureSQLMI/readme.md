@@ -22,7 +22,7 @@ In this exercise, you will use the Azure Portal (https://portal.azure.com) and A
 ### Explore your deployment in the Azure Portal
 
 1. Find your Azure SQL Managed Instance in the Azure Portal. You can use the search bar at the top of the Azure Portal to search for the name of your Azure SQL Managed Instance or you can find it in the resource group you deployed it to.
-1. Select **November 2022 Feature Wave** from the left-hand menu and review the new innovations that are in the feature wave.
+1. Select **Start/Stop Schedule** from the left-hand menu under Settings and review how you can start and stop your instance on-demand or on a schedule.
 1. Select **Compute + Storage** from the left-hand menu. Review the various choices you have for service-tiers, Zone Redundancy, Hardware generation, vCores, and storage.
     1. Learn how to reduce your cost. **Note: Your instructor may have you skip this section if prices are not shown for an instance that is already deployed. Instead, you can explore the Azure Pricing Calculator at https://azure.microsoft.com/pricing/calculator/ to see the possible cost savings.**
     2. Scroll down to view the pricing details at the bottom of the page. Take note of the cost. Scroll back up to SQL Server License and select **Azure Hybrid Benefit (AHB)** and check the "I confirm..." option. Scroll down and see the Cost Savings.
