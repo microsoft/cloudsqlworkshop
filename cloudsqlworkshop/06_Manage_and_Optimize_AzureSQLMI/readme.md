@@ -22,7 +22,7 @@ In this exercise, you will use the Azure Portal (https://portal.azure.com) and A
 ### Explore your deployment in the Azure Portal
 
 1. Find your Azure SQL Managed Instance in the Azure Portal. You can use the search bar at the top of the Azure Portal to search for the name of your Azure SQL Managed Instance or you can find it in the resource group you deployed it to.
-1. Select **November 2022 Feature Wave** from the left-hand menu and review the new innovations that are in the feature wave.
+1. Select **Start/Stop Schedule** from the left-hand menu under Settings and review how you can start and stop your instance on-demand or on a schedule.
 1. Select **Compute + Storage** from the left-hand menu. Review the various choices you have for service-tiers, Zone Redundancy, Hardware generation, vCores, and storage.
     1. Learn how to reduce your cost. **Note: Your instructor may have you skip this section if prices are not shown for an instance that is already deployed. Instead, you can explore the Azure Pricing Calculator at https://azure.microsoft.com/pricing/calculator/ to see the possible cost savings.**
     2. Scroll down to view the pricing details at the bottom of the page. Take note of the cost. Scroll back up to SQL Server License and select **Azure Hybrid Benefit (AHB)** and check the "I confirm..." option. Scroll down and see the Cost Savings.
@@ -147,7 +147,6 @@ Azure SQL Managed Instance is very compatible with SQL Server. Use this exercise
     1. Right-click the *service* and see that the options to Start, Stop, or Restart are greyed out. This is because the service is managed by Azure.
     1. Right-click **Databases** and see that the options to Detach or Attach are not available. You don't have access to the filesystem in the underlying virtual machine so don't have access to detach or attach databases.
     1. Right-click **Databases** and select Restore Database. Click on "..." next to Device. Select the drop down for the Backup media type and you can see that you can only restore from URL or S3. You don't have access directly to the filesystem of the underlying VM so can only restore from Azure Storage or S3 storage.
-    1. Looking at the high-level list of Object Explorer options notice the Always On High Availability option is missing. This is because Always On is built-in and you don't have to configure it.
     1. Expand the **Management** folder in Object Explorer. Notice features like Resource Governor, Extended Events, and DTC are there.
     1. Right-click on *the database* you created in Exercise 6.2. Select Properties and then Files. Expand out the window. Notice you can modify size and even add or remove files and notice the path which is a local drive within the VM (because Business Critical service tier databases are stored on local SSD drives). Click add to add a new file. Notice you are not allowed to change the path because you don't have access to the underlying filesystem of the VM.
 
